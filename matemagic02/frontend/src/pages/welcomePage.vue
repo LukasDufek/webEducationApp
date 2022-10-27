@@ -11,9 +11,9 @@
       <p id="profile-name" class="profile-name-card"></p>
       <form class="form-signin">
         <span id="reauth-email" class="reauth-email"></span>
-        <input type="text" id="inputFirstName" placeholder="Jméno" v-model="username" />
-        <input type="text" id="inputLastName" placeholder="Příjmení" v-model="username" />
-        <input type="password" id="inputPassword" placeholder="Heslo" v-model="password" />
+        <input type="text" id="inputFirstName" placeholder="Jméno" v-model="jmeno" />
+        <input type="text" id="inputLastName" placeholder="Příjmení" v-model="prijmeni" />
+        <input type="password" id="inputPassword" placeholder="Heslo" v-model="heslo" />
         <button class="btn btn-lg btn-primary btn-block btn-signin" @click="login" type="submit">Přihlásit</button>
 
         <div>Jsem: {{ role }}</div>
@@ -37,8 +37,9 @@
 export default {
   data() {
     return {
-      username: '',
-      password: '',
+      jmeno: '',
+      prijmeni: '',
+      heslo: '',
       msg: '',
       role: 'vyber',
 
@@ -51,21 +52,11 @@ export default {
      * @values username, password
      */
     login() {
-    /*
-      for (let i = 0; i < this.$store.state.users.length; i++) {
-        if (this.username === this.$store.state.users[i].username && this.password === this.$store.state.users[i].password) {
-          this.$store.state.userLogged = true;
-          this.$router.push('./Todos');
-        }
-
-      }
-      if(!this.$store.state.userLogged){
-        alert("Incorrect login or password");
-      }
-
-     */
-
       if(this.role ==="Žák") {
+        this.$store.state.atributy.jmeno = this.jmeno;
+        this.$store.state.atributy.prijmeni = this.prijmeni;
+        this.$store.state.atributy.heslo = this.heslo;
+
         this.$router.push('./profileOverviewPage');
       }else if(this.role ==="Učitel"){
         this.$router.push('./zadatSlovniUlohu');

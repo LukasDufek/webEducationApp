@@ -10,6 +10,7 @@ export default new Vuex.Store({
         atributy: {
             jmeno: '',
             prijmeni: '',
+            heslo: '',
             rocnik: 1,
             penize: 0,
             zkusenosti: 0,
