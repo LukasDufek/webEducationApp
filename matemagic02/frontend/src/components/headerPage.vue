@@ -29,7 +29,7 @@
 
     </div>
 
-    <div class="study-year">{{this.$store.state.atributy.rocnik}}.Ročník</div>
+    <div class="study-year">{{this.$store.state.attributes.year_of_study}}.Ročník</div>
 
 
   </header>
@@ -91,8 +91,6 @@ export default {
 
   font-size: 3rem;
 }
-
-
 
 
 </style>
