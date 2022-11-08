@@ -53,9 +53,9 @@ export default {
      */
     login() {
       if(this.role ==="Žák") {
-        this.$store.state.atributy.jmeno = this.first_name;
-        this.$store.state.atributy.prijmeni = this.last_name;
-        this.$store.state.atributy.heslo = this.password;
+        this.$store.state.attributes.first_name = this.first_name;
+        this.$store.state.attributes.last_name = this.last_name;
+        this.$store.state.attributes.password = this.password;
 
         this.$router.push('./profileOverviewPage');
       }else if(this.role ==="Učitel"){

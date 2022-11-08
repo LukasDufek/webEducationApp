@@ -43,7 +43,7 @@
 import store from "@/store/store";
 
 export default {
-  name: "slovniUlohy",
+  name: "mathWordTasks",
   data(){
     return{
       word_tasks:[],

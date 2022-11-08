@@ -39,10 +39,14 @@ class ItemService{
         });
     }
 
+
     //delete items
     static deleteItem(id){
         return axios.delete(`${url}${id}`);
     }
+
+
+
 }
 
 export default ItemService;

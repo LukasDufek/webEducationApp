@@ -1,5 +1,10 @@
 <template>
+  <div>
+    <game-header/>
+    <div>
 
+    </div>
+  </div>
 </template>
 
 <script>

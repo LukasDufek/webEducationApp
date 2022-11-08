@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import TaskService from "../../dataServices/TaskService";
+
+import axios from "axios";
 
 //import createPersistedState from 'vuex-persistedstate';
 
@@ -16,10 +17,10 @@ export default new Vuex.Store({
             money: 0,
             exp: 0,
             abilities:{
-                strength :0,
-                attack :0,
-                defense :0,
-                hp : 0
+                strength :1,
+                attack :1,
+                defense :1,
+                hp : 1
             },
             inventory:[],
             helm_equip:null,
@@ -53,12 +54,17 @@ export default new Vuex.Store({
             state.attributes.money += count;
         },
         async addTask(state, task){
-            state.word_tasks.push(task);
+
             try{
-                await TaskService.insertTask(task);
+                await axios.post("api/tasks", task);
             }catch (err){
                 console.log(err);
             }
+            state.word_tasks.push(task.data);
+        },
+
+        addItem(state, item){
+            state.items.push(item);
         }
 
     },

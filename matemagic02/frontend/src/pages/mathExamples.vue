@@ -283,7 +283,7 @@ export default {
         }
 
         //this.$store.state.atributy.penize += this.reward;
-        store.commit('zvysPocet', this.reward);
+        store.commit('addMoney', this.reward);
 
 
     },
@@ -294,7 +294,7 @@ export default {
       this.exercise_completed = false;
       this.results = [];
       console.log(this.reward);
-      console.log(this.$store.state.atributy.penize);
+      console.log(this.$store.state.attributes.money);
       console.log('this.$store.state.atributy.jmeno');
     }
 

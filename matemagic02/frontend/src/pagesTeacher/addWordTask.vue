@@ -37,12 +37,12 @@
 <script>
 import store from "@/store/store";
 import HeaderTeacher from "@/components/headerTeacher";
-//import TaskService from "../../dataServices/TaskService";
+
 
 
 
 export default {
-  name: "zadatSlovniUlohu",
+  name: "addWordTask",
   components: {HeaderTeacher},
   //components: {HeaderTeacher},
   data() {

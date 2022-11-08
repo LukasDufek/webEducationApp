@@ -1,50 +1,73 @@
-const express = require('express');
-const mongodb = require('mongodb');
-
-const itemRouter = express.Router();
-
-// Get Posts
-itemRouter.get('/', async (req, res) => {
-    const items = await loadPostsCollection();
-    res.send(await items.find({}).toArray());
-    //res.send('hello');
-});
-
-// Add Post
-itemRouter.post('/', async (req, res) => {
-    const items = await loadPostsCollection();
-    await items.insertOne({
-        name: req.body.name,
-        type: req.body.type,
-        using: req.body.using,
-        value: req.body.value,
-        img_address:req.body.img_address,
-        price: req.body.price,
-        sell_price:req.body.sell_price
-
-    });
-    res.status(201).send();
-});
+const Router  = require('express')
+const Item = require('../../models/Item')
 
 
-// Delete Post
-itemRouter.delete('/:id', async (req, res) => {
-    const items = await loadPostsCollection();
-    await items.deleteOne({ _id: new mongodb.ObjectID(req.params.id) });
-    res.status(200).send({});
-});
+const itemConnect = require("../../connections")
 
+//itemConnect('mongodb+srv://lukas-dufek:frameworkvuejs@items.x2hdz8c.mongodb.net/?retryWrites=true&w=majority');
 
-async function loadPostsCollection() {
-    const client = await mongodb.MongoClient.connect(
-        //heslo je: 'frameworkvuejs'
-        'mongodb+srv://lukas-dufek:frameworkvuejs@cluster0.glcymo1.mongodb.net/?retryWrites=true&w=majority',
-        {
-            useNewUrlParser: true
-        }
-    );
-
-    return client.db('Cluster0').collection('items');
+async function loadDatabase(){
+    itemConnect.makeConnection('mongodb+srv://lukas-dufek:frameworkvuejs@items.x2hdz8c.mongodb.net/?retryWrites=true&w=majority');
 }
 
-module.exports = itemRouter;
+const ItemRouter = Router()
+
+ItemRouter.get('/', async (req, res) => {
+    await itemConnect.closeConnection();
+    await loadDatabase();
+    try {
+        const Items = await Item.find()
+        if (!Items) throw new Error('No Items')
+        res.status(200).json(Items)
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+
+
+
+
+})
+
+ItemRouter.post('/', async (req, res) => {
+    await itemConnect.closeConnection();
+    await loadDatabase();
+    const newItem = new Item(req.body)
+    try {
+        const item = await newItem.save()
+        if (!item) throw new Error('Something went wrong saving the item')
+        res.status(200).json(item)
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+})
+
+ItemRouter.put('/:id', async (req, res) => {
+    await itemConnect.closeConnection();
+    await loadDatabase();
+    const { id } = req.params
+
+    try {
+        const response = await Item.findByIdAndUpdate(id, req.body)
+        if (!response) throw Error('Something went wrong ')
+        const updated = { ...response._doc, ...req.body }
+        res.status(200).json(updated)
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+})
+
+ItemRouter.delete('/:id', async (req, res) => {
+    await itemConnect.closeConnection();
+    await loadDatabase();
+    const { id } = req.params
+    try {
+        const removed = await Item.findByIdAndDelete(id)
+        if (!removed) throw Error('Something went wrong ')
+        res.status(200).json(removed)
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+
+})
+
+module.exports = ItemRouter;

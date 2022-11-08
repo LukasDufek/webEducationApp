@@ -32,10 +32,11 @@
 </template>
 
 <script>
+import axios from "axios";
 import HeaderTeacher from "@/components/headerTeacher";
-import TaskService from "../../dataServices/TaskService";
+
 export default {
-  name: "slovniUlohyEdit",
+  name: "editWordTask",
   components: {HeaderTeacher},
 
   data(){
@@ -47,7 +48,7 @@ export default {
   },
  async mounted() {
     try {
-      this.$store.state.word_tasks = await TaskService.getTasks();
+      this.$store.state.word_tasks = (await axios.get("/api/tasks")).data;
       this.word_tasks = this.$store.state.word_tasks;
     }catch (err){
       console.log(err);
@@ -55,11 +56,11 @@ export default {
   },
   methods:{
 
-   async delete_task(pozice, word_task){
-      this.searched_task = word_task;
+   async delete_task(position, word_task){
+
       try {
-        await TaskService.deleteTask(this.searched_task._id);
-        this.word_tasks.splice(pozice, 1);
+        await axios.delete("api/tasks/" + word_task._id);
+        this.word_tasks.splice(position, 1);
         this.$store.state.word_tasks = this.word_tasks;
       }catch (err){
         console.log(err);

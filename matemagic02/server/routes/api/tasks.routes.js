@@ -1,49 +1,71 @@
-const express = require('express');
-const mongodb = require('mongodb');
+const Router  = require('express')
+const Task = require('../../models/Task')
 
-const taskRouter = express.Router();
+const taskConnect = require("../../connections")
+const mongoose = require("mongoose");
 
-// Get Posts
-taskRouter.get('/', async (req, res) => {
-    const tasks = await loadPostsCollection();
-    res.send(await tasks.find({}).toArray());
-    //res.send('hello');
-});
-
-// Add Post
-taskRouter.post('/', async (req, res) => {
-    const tasks = await loadPostsCollection();
-    await tasks.insertOne({
-        text_of_task: req.body.text_of_task,
-        for_year: req.body.for_year,
-        result: req.body.result,
-        student_result: req.body.student_result,
-        reward: req.body.reward
-
-
-    });
-    res.status(201).send();
-});
-
-
-// Delete Post
-taskRouter.delete('/:id', async (req, res) => {
-    const tasks = await loadPostsCollection();
-    await tasks.deleteOne({ _id: new mongodb.ObjectID(req.params.id) });
-    res.status(200).send({});
-});
-
-
-async function loadPostsCollection() {
-    const client = await mongodb.MongoClient.connect(
-        //heslo je: 'frameworkvuejs'
-        'mongodb+srv://lukas-dufek:frameworkvuejs@slovniulohy.ofdkuu5.mongodb.net/?retryWrites=true&w=majority',
-        {
-            useNewUrlParser: true
-        }
-    );
-
-    return client.db('slovniUlohy').collection('tasks');
+async function loadDatabase() {
+    taskConnect.makeConnection('mongodb+srv://lukas-dufek:frameworkvuejs@slovniulohy.ofdkuu5.mongodb.net/?retryWrites=true&w=majority');
 }
 
-module.exports = taskRouter;
+const TaskRouter = Router()
+
+TaskRouter.get('/', async (req, res) => {
+    await taskConnect.closeConnection();
+    await loadDatabase();
+    try {
+        const tasks = await Task.find()
+        if (!tasks) throw new Error('No Items')
+        res.status(200).json(tasks)
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+
+
+})
+
+TaskRouter.post('/', async (req, res) => {
+    await taskConnect.closeConnection();
+    await loadDatabase();
+    const newTask = new Task(req.body)
+    try {
+        const task = await newTask.save()
+        if (!task) throw new Error('Something went wrong saving the item')
+        res.status(200).json(task)
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+
+})
+
+TaskRouter.put('/:id', async (req, res) => {
+    await taskConnect.closeConnection();
+    await loadDatabase();
+    const { id } = req.params
+
+    try {
+        const response = await Task.findByIdAndUpdate(id, req.body)
+        if (!response) throw Error('Something went wrong ')
+        const updated = { ...response._doc, ...req.body }
+        res.status(200).json(updated)
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+
+})
+
+TaskRouter.delete('/:id', async (req, res) => {
+    await taskConnect.closeConnection();
+    await loadDatabase();
+    const { id } = req.params
+    try {
+        const removed = await Task.findByIdAndDelete(id)
+        if (!removed) throw Error('Something went wrong ')
+        res.status(200).json(removed)
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+
+})
+
+module.exports = TaskRouter;

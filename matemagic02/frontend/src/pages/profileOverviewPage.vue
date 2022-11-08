@@ -3,17 +3,20 @@
     <header-page/>
     <div class="profile-overview-content">
 <h1>Přehled tvého profilu</h1>
-<h2>Jméno: {{first_name}}</h2>
-<h2>Příjmení: {{last_name}}</h2>
-<h2>Ročník: {{year_of_study}}</h2>
-<h2>Zkušenosti: {{exp}}</h2>
-<h2>Peníze: {{money}}</h2>
+<h2>Jméno: {{this.$store.state.attributes.first_name}}</h2>
+<h2>Příjmení: {{this.$store.state.attributes.last_name}}</h2>
+<h2>Ročník: {{this.$store.state.attributes.year_of_study}}</h2>
+<h2>Zkušenosti: {{this.$store.state.attributes.exp}}</h2>
+<h2>Peníze: {{this.$store.state.attributes.money}}</h2>
       <img src="../assets/silver-coin.png" class="imgCar" alt="" border="0" />
     </div>
-    <section v-if="this.year_of_study >= 3">
-      <button>VSTOUPIT DO HRY</button>
+    <!--
+    <section v-if="this.$store.state.attributes.year_of_study >= 3">
+      <button @click="toGame">VSTOUPIT DO HRY</button>
     </section>
-
+    -->
+    <button @click="toGame">VSTOUPIT DO HRY</button>
+    <br>
 
     <router-link to="/" class="link">
       <span role="link">Odlásit se</span>
@@ -39,14 +42,13 @@ export default {
 
   mounted(){
 
-    this.first_name=  this.$store.state.attributes.first_name;
-    this.last_name =  this.$store.state.attributes.last_name;
-    this.year_of_study = this.$store.state.attributes.year_of_study;
-    this.exp = this.$store.state.attributes.exp;
-    this.money = this.$store.state.attributes.money;
-
 
   },
+  methods:{
+    toGame(){
+      this.$router.push('./characterOverview');
+    }
+  }
 
 }
 </script>
