@@ -16,7 +16,7 @@
       </router-link>
 
 
-      <router-link to="/slovniUlohy" class="link">
+      <router-link to="/mathWordTasks" class="link">
         <span role="">Slovní úlohy</span>
       </router-link>
 
@@ -58,10 +58,11 @@ export default {
   left: 0;
   right: 0;
   width: 100%;
-  height: 100px;
+  height: 5rem;
   display: flex;
   flex: auto;
   align-items: center;
+
 
 
   box-shadow: 0 0 25px 0 black;

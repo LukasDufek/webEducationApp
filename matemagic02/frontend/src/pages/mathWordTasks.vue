@@ -2,16 +2,17 @@
 
   <div class="main-contentA">
     <header-page/>
-    <div class="main-content">
-      <h1>Slovní úlohy pro {{this.$store.state.attributes.year_of_study}}.Ročník</h1>
+    <div class="container">
+      <div class="main-content">
+      <h1><u>Slovní úlohy pro {{this.$store.state.attributes.year_of_study}}.Ročník</u></h1>
 
 
       <section class="one-example" v-if="!phase_of_evaluation  && word_tasks[item]">
 
-        <h3>{{word_tasks[item].text_of_task}}</h3>
-        <h2>Sem napiš svůj výsledek</h2>
-          <input type="number" v-model="result">
-          <button @click="evaluate(result)">Vyhodnotit</button>
+        <h2>{{word_tasks[item].text_of_task}}</h2>
+        <h5>Sem napiš svůj výsledek</h5>
+          <input class="input-submit" type="number" v-model="result">
+          <button class="button-submit" @click="evaluate(result)">✔</button>
 
         <br>
 
@@ -26,11 +27,13 @@
         <button @click="next_word_task">Další úloha </button>
       </section>
 
-      <section v-if="item > word_tasks.length">
-        <h2>Bohužel pro tebe nemámme žádné nové úlohy</h2>
+      <section v-if="item >= word_tasks.length">
+        <h2>Bohužel pro tebe nemáme žádné nové úlohy</h2>
       </section>
 
 
+
+    </div>
 
     </div>
 
@@ -41,6 +44,7 @@
 <script>
 
 import store from "@/store/store";
+import axios from "axios";
 
 export default {
   name: "mathWordTasks",
@@ -54,7 +58,13 @@ export default {
     }
   },
 
-  mounted() {
+ async mounted() {
+
+    try{
+      this.$store.state.word_tasks = (await axios.get("/api/tasks")).data;
+    }catch(err){
+      console.log(err);
+    }
 
     for(let i=0; i<this.$store.state.word_tasks.length; i++){
       if(this.$store.state.attributes.year_of_study === this.$store.state.word_tasks[i].for_year) {
@@ -87,19 +97,63 @@ export default {
 
 <style scoped>
 
+.container{
+  margin-top: 5rem;
+  padding-top: 1rem;
+  padding-bottom: 30rem;
+
+
+}
+
 .main-content{
-  margin: auto;
-  margin-top: 10rem;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 2rem;
+
   position: center;
   text-align: center;
-  width: 85%;
+  width: 70%;
   background: #ffee80;
   font-size: 20px;
+  border-style: solid;
   border-radius: 1em;
   padding-left: 2em;
   padding-top: -1em;
-
-  margin-bottom: 5rem;
+  padding-bottom: 2rem;
 }
+
+h1{
+  padding-bottom: 1rem;
+  font-size: 200%;
+}
+
+h2{
+  font-size: 200%;
+}
+
+.input-submit{
+
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 2%;
+  font-size: 115%;
+  text-align: center;
+
+  display: inline-block;
+
+}
+
+.button-submit{
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 1% 2%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 115%;
+  margin-left: 1%;
+}
+
 
 </style>

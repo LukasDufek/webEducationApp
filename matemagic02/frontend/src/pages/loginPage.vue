@@ -4,7 +4,7 @@
   <div class="container">
     <div class="card card-container">
       <h1 class="welcome">Vítejte ve hře <u>MateMagic</u> </h1>
-      <h1 class="login">Pihlášení</h1>
+      <h1 class="login-card">Pihlášení</h1>
       <h2>Nemáš účet?</h2>
       <button class="btn btn-lg btn-primary btn-block btn-signin" @click="login" type="submit">Registruj se zde</button>
       <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
@@ -15,6 +15,18 @@
         <input type="text" id="inputLastName" placeholder="Příjmení" v-model="last_name" />
         <input type="password" id="inputPassword" placeholder="Heslo" v-model="password" />
         <button class="btn btn-lg btn-primary btn-block btn-signin" @click="login" type="submit">Přihlásit</button>
+        <br>
+
+        <select v-model="year">
+          <option disabled value="">Zvolit ročník</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+        <br>
+        <br>
 
         <div>Jsem: {{ role }}</div>
         <br>
@@ -25,6 +37,7 @@
         <label for="Učitel">Učitel</label>
 
         <br>
+
 
       </form>
     </div>
@@ -40,6 +53,7 @@ export default {
       first_name: '',
       last_name: '',
       password: '',
+      year:0,
       msg: '',
       role: 'vyber',
 
@@ -53,13 +67,17 @@ export default {
      */
     login() {
       if(this.role ==="Žák") {
+
         this.$store.state.attributes.first_name = this.first_name;
         this.$store.state.attributes.last_name = this.last_name;
         this.$store.state.attributes.password = this.password;
+        this.$store.state.attributes.year_of_study = this.year;
+        this.$store.state.attributes.money = 250;
+
 
         this.$router.push('./profileOverviewPage');
       }else if(this.role ==="Učitel"){
-        this.$router.push('./zadatSlovniUlohu');
+        this.$router.push('./addWordTask');
       }
 
     },
@@ -71,19 +89,20 @@ export default {
 
 <style>
 
-.container {
-  /* NUTNE ZMENIT OBRAZEK*/
-  background-image: url("https://slevomat.sgcdn.cz/images/t/1280/11/45/11456672-186820.webp");
-  background-color: #cccccc;
+.container{
+  margin-top: -5%;
+
 }
 
-.login{
+.login-card{
+
   font-size: 30px;
   text-align: center;
   padding-bottom: 50px;
 }
 
 .card-container.card {
+  margin-top: 5%;
   max-width: 350px;
   padding: 40px 40px;
   border: #7cff97 4px solid;
@@ -107,8 +126,8 @@ export default {
 .card {
   background-color: #F7F7F7;
   padding: 20px 25px 30px;
-  margin: 0 auto 25px;
-  margin-top: 50px;
+  margin: auto;
+
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   border-radius: 2px;

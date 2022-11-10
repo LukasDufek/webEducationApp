@@ -64,8 +64,11 @@ export default new Vuex.Store({
         },
 
         addItem(state, item){
-            state.items.push(item);
-        }
+            state.attributes.inventory.push(item);
+        },
+
+
+
 
     },
 

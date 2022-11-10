@@ -1,15 +1,16 @@
 <template>
 <div class="main-contentA">
   <header-page/>
-  <div class="main-content">
-    <h1>Příklady pro {{this.$store.state.attributes.year_of_study}}.Ročník</h1>
+  <div class="container">
+    <div class="main-content">
+    <h1> <u>Příklady pro {{this.$store.state.attributes.year_of_study}}.Ročník</u></h1>
     <h2>Dnes jsi už absolvoval {{this.daily_limit}} cvičení</h2>
 
 
       <section class="one-example" v-if="!exercise_completed && examples[item]">
 
-        <h3>{{item+1}}.Příklad: <h2>{{examples[item].first_number}} {{examples[item].operator}} {{examples[item].second_number}} =</h2> <input type="number" v-model="result">
-          <button @click="add_to_results(result)">✔</button> </h3>
+        <h3 class="example-text">{{item+1}}.Příklad: <h2>{{examples[item].first_number}} {{examples[item].operator}} {{examples[item].second_number}} =</h2> <input class="input-submit" type="number" v-model="result">
+          <button class="button-submit" @click="add_to_results(result)"> ✔</button> </h3>
 
     <br>
 
@@ -27,12 +28,13 @@
       <section v-for="(item, index) in wrong_examples" :key="index">
       <h3>{{(index+1)}}.Příklad: {{wrong_examples[index].first_number}} {{wrong_examples[index].operator}} {{wrong_examples[index].second_number}}
        = {{wrong_examples[index].result}} </h3>
-        <p>Tvuj result: {{wrong_examples[index].your_result}}</p>
+        <h3>Tvuj result: {{wrong_examples[index].your_result}}</h3>
 
 
       </section>
       <button @click="next_exercise">Další procvičování</button>
     </section>
+    </div>
 
   </div>
 
@@ -66,7 +68,8 @@ export default {
 
   mounted() {
 
-    switch (this.$store.state.attributes.year_of_study){
+
+    switch (parseInt(this.$store.state.attributes.year_of_study)){
       case 1:
         this.generate_examples_for_I();
         break;
@@ -144,7 +147,8 @@ export default {
 
 
 
-    //GNEREROVANI CVICENI PRO II.ROCNIK
+
+    //-----------------GNEREROVANI CVICENI PRO II.ROCNIK---------------------------
     //1. FUNKCE pro 2.ROCNIK
     generate_addition_examples_II() {
       let first_number = Math.floor(Math.random() * 100) +20;
@@ -215,7 +219,7 @@ export default {
 
     },
 
-    //3. FUNKCE pro 1.ROCNIK
+    //3. FUNKCE pro 2.ROCNIK
     generate_examples_for_II(){
 
       for(let i=0; i<4; i++){
@@ -305,20 +309,72 @@ export default {
 
 <style scoped>
 
+.container{
+  margin-top: 5rem;
+  padding-top: 1rem;
+  padding-bottom: 20rem;
+
+
+}
+
 
 .main-content{
-  margin: auto;
-  margin-top: 10rem;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 2rem;
+
   position: center;
   text-align: center;
-  width: 85%;
+  width: 70%;
   background: #ffee80;
   font-size: 20px;
+  border-style: solid;
   border-radius: 1em;
   padding-left: 2em;
   padding-top: -1em;
 
-  margin-bottom: 5rem;
+
+}
+
+h1{
+  padding-bottom: 1rem;
+  font-size: 200%;
+}
+
+h2{
+  font-size: 150%;
+}
+
+h3{
+  font-size: 135%;
+}
+
+.example-text{
+  font-size: 200%;
+}
+
+.button-submit{
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 1% 2%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 70%;
+  margin-left: 1%;
+}
+
+.input-submit{
+
+  width: 10%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 2%;
+  text-align: center;
+
+  display: inline-block;
+  font-size: 75%;
 }
 
 </style>

@@ -25,10 +25,10 @@ const routes = [
     {path:"/", component: welcomePage},
     {path:"/profileOverviewPage", component: profileOverviewPage},
     {path:"/mathExamples", component: mathExamples},
-    {path:"/slovniUlohy", component: mathWordTasks},
+    {path:"/mathWordTasks", component: mathWordTasks},
 
-    {path:"/zadatSlovniUlohu", component: addWordTask},
-    {path:"/slovniUlohyEdit", component: editWordTask},
+    {path:"/addWordTask", component: addWordTask},
+    {path:"/editWordTask", component: editWordTask},
 
     {path:"/gameShop", component: gameShop},
     {path:"/gameHeader", component: gameHeader},

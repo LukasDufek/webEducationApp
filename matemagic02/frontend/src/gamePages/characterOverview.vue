@@ -30,6 +30,13 @@ export default {
 
 .main-content{
   margin-top: 10%;
+  margin-left: 2rem;
+  max-width: 350px;
+  padding: 40px 40px;
+
+  border: #3449ff 4px solid;
+
+  background: white;
 }
 
 </style>

@@ -5,12 +5,12 @@
 
     <div class="navbar">
 
-      <router-link to="/zadatSlovniUlohu"  class="link">
+      <router-link to="/addWordTask"  class="link">
         <span role="link">Zadat úlohu</span>
       </router-link>
 
 
-      <router-link to="/slovniUlohyEdit"  class="link">
+      <router-link to="/editWordTask"  class="link">
         <span role="link">Správá úloh</span>
       </router-link>
 

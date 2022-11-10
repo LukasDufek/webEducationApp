@@ -45,6 +45,7 @@ export default {
 .header {
   float: inside;
   background-color: white;
+  color: black;
   position: fixed;
   top: 0;
   left: 0;
@@ -54,9 +55,11 @@ export default {
   display: flex;
   flex: auto;
   align-items: center;
+  padding-bottom: 1em;
+  border-bottom: 4px solid black;
 
+  box-shadow: 0 0 45px 0 blue;
 
-  box-shadow: 0 0 25px 0 black;
 }
 
 .navbar .link {
@@ -64,7 +67,8 @@ export default {
   margin-left: 2rem;
 
   position: center;
-  font-size: 2rem;
+  font-size: 2em;
+
 
 
 }
@@ -73,6 +77,7 @@ export default {
   float: left;
 
   margin-left: 1rem;
+  margin-right: 1rem;
   font-size: 4rem;
 }
 
