@@ -2,6 +2,7 @@
 
   <div>
     <header-teacher/>
+    <div class="container">
     <div class="main-content">
       <br>
       <section v-for="(item,index) in word_tasks" :key="index">
@@ -26,6 +27,7 @@
 
       </section>
 
+    </div>
     </div>
   </div>
 
@@ -75,14 +77,24 @@ export default {
 
 <style scoped>
 
+.container{
+  margin-top: 5rem;
+  padding-top: 1rem;
+  padding-bottom: 30rem;
+
+
+}
+
 .main-content{
   margin: auto;
-  margin-top: 10rem;
+  margin-top: 2rem;
   position: center;
   text-align: center;
-  width: 85%;
+  width: 70%;
   background: #ffee80;
   font-size: 20px;
+  border-style: solid;
+  border-radius: 1em;
   border-radius: 1em;
   padding-left: 2em;
   padding-top: -1em;

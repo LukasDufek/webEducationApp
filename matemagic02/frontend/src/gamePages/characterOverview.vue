@@ -1,7 +1,7 @@
 <template>
   <div>
     <game-header/>
-    <div class="main-content">
+    <div v-if="this.$store.state.logged" class="main-content">
       <h2>Tvoje postava {{this.$store.state.attributes.first_name}}</h2>
 
       <h3>Tvé schonposti:</h3>
@@ -14,6 +14,8 @@
       <h3>Zkušenosti: {{this.$store.state.attributes.exp}}</h3>
 
     </div>
+
+
   </div>
 
 </template>

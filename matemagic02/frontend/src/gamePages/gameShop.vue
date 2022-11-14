@@ -181,7 +181,8 @@ export default {
   position: center;
   text-align: center;
   width: 70%;
-  background: #fff498;
+  /* background: #fff498; */
+  background: rgba(255,244,152,0.8);
   font-size: 20px;
   border-style: solid;
   border-radius: 1em;

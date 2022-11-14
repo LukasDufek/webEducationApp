@@ -2,7 +2,7 @@
   <div>
     <header-page/>
     <div class="container">
-    <div class="user-card">
+    <div  v-if="this.$store.state.logged" class="user-card">
       <h1>Přehled tvého profilu</h1>
       <h2>Jméno: {{this.$store.state.attributes.first_name}}</h2>
       <h2>Příjmení: {{this.$store.state.attributes.last_name}}</h2>
@@ -24,7 +24,15 @@
       </router-link>
     </div>
 
+
+      <div v-else>
+        <h1 class="no-logged">Sezení uplynulo</h1>
+      </div>
+
   </div>
+
+
+
   </div>
 </template>
 
@@ -82,6 +90,11 @@ export default {
 
 .logout{
   margin-top: 3%;
+}
+
+.no-logged{
+  font-size: 400%;
+  padding-bottom: 50%;
 }
 
 </style>

@@ -1,6 +1,7 @@
 <template>
   <div>
     <header-teacher/>
+    <div class="container">
     <div class="main-content">
     <h2>Jako učitel můžeš zadávat slovní úlohy</h2>
 
@@ -30,6 +31,7 @@
       <br>
       <button @click="odhlasit">Odhlásit se</button>
   </div>
+    </div>
 </div>
 
 </template>
@@ -84,8 +86,31 @@ export default {
 
 <style scoped>
 
+.container{
+  margin-top: 5rem;
+  padding-top: 1rem;
+  padding-bottom: 30rem;
+
+
+}
+
 .main-content{
-  margin-top: 10rem;
+  
+
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 2rem;
+
+  position: center;
+  text-align: center;
+  width: 70%;
+  background: #ffee80;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 1em;
+  padding-left: 2em;
+  padding-top: -1em;
+  padding-bottom: 2rem;
 }
 
 </style>

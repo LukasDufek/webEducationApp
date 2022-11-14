@@ -73,6 +73,7 @@ export default {
         this.$store.state.attributes.password = this.password;
         this.$store.state.attributes.year_of_study = this.year;
         this.$store.state.attributes.money = 250;
+        this.$store.state.logged = true;
 
 
         this.$router.push('./profileOverviewPage');

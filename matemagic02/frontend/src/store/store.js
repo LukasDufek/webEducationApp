@@ -9,11 +9,12 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+        logged: false,
         attributes: {
             first_name: '',
             last_name: '',
             password: '',
-            year_of_study: 1,
+            year_of_study: 4,
             money: 0,
             exp: 0,
             abilities:{

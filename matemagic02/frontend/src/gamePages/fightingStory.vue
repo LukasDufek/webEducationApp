@@ -1,15 +1,32 @@
 <template>
   <div>
     <game-header/>
-    <div>
+    <div class="container">
 
     </div>
   </div>
+
 </template>
 
 <script>
+//import axios from "axios";
+
+import GameHeader from "@/gamePages/gameHeader";
+
 export default {
-  name: "fightingStory"
+  name: "fightingStory",
+  components: {GameHeader},
+
+  data(){
+    return{
+      text:''
+    }
+
+  },
+  mounted() {
+    const reader = new FileReader();
+    this.text = reader.readAsText()
+  }
 }
 </script>
 
