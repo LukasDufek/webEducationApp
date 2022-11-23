@@ -7,7 +7,7 @@
 
     <h2>Zadání slovní úlohy:</h2>
     <p style="white-space: pre-line;">{{ text_of_task }}</p>
-    <textarea v-model="text_of_task" placeholder="Zde napiš celé znění slovní úlohy"></textarea>
+    <textarea class="text-area-for-task" v-model="text_of_task" placeholder="Zde napiš celé znění slovní úlohy"></textarea>
       <br>
       <h2>Zadej ročník, pro jaký je úlohu určena</h2>
     <select v-model="for_year">
@@ -95,7 +95,7 @@ export default {
 }
 
 .main-content{
-  
+
 
   margin-right: auto;
   margin-left: auto;
@@ -111,6 +111,10 @@ export default {
   padding-left: 2em;
   padding-top: -1em;
   padding-bottom: 2rem;
+}
+.text-area-for-task{
+  width: 40%;
+
 }
 
 </style>

@@ -14,14 +14,14 @@ export default new Vuex.Store({
             first_name: '',
             last_name: '',
             password: '',
-            year_of_study: 4,
+            year_of_study: 5,
             money: 0,
             exp: 0,
             abilities:{
-                strength :1,
-                attack :1,
-                defense :1,
-                hp : 1
+                strength :5,
+                attack :5,
+                defense :5,
+                hp : 5
             },
             inventory:[],
             helm_equip:null,
@@ -53,6 +53,24 @@ export default new Vuex.Store({
     mutations: {
         addMoney(state, count){
             state.attributes.money += count;
+        },
+
+        upgradeAbillity(state, ability){
+
+            switch(ability){
+                case 'strength':
+                    state.attributes.abilities.strength++;
+                    break;
+                case 'attack':
+                    state.attributes.abilities.attack++;
+                    break;
+                case 'defense':
+                    state.attributes.abilities.defense++;
+                    break;
+                case 'hp':
+                    state.attributes.abilities.hp++;
+                    break;
+            }
         },
         async addTask(state, task){
 

@@ -1,140 +1,111 @@
 <template>
-<div class="main-contentA">
-  <header-page/>
-  <div class="container">
-    <div class="main-content">
-    <h1> <u>Příklady pro {{this.$store.state.attributes.year_of_study}}.Ročník</u></h1>
-    <h2>Dnes jsi už absolvoval {{this.daily_limit}} cvičení</h2>
+  <div class="main-contentA">
+    <header-page/>
+    <div class="container">
+      <div class="main-content">
+        <h1> <u>Příklady pro {{this.$store.state.attributes.year_of_study}}.Ročník</u></h1>
+        <h2>Dnes jsi už absolvoval {{this.daily_limit}} cvičení</h2>
 
 
-      <section class="one-example" v-if="!exercise_completed && examples[item]">
+        <section class="one-example" v-if="!exercise_completed && examples[item]">
 
-        <section class="calculate" v-if="examples[item].type=== 'calculate'" >
-       <h3 class="example-text">
+          <section class="calculate" v-if="examples[item].type=== 'calculate'" >
+            <h3 class="example-text">
 
-        <h3>{{item+1}}.Příklad:</h3>
-         <h4>{{examples[item].message}}</h4>
-         <h2>{{this.part_zeros(examples[item].first_number)}} {{examples[item].operator}} {{this.part_zeros(examples[item].second_number)}} =</h2> <input class="input-submit" type="number" v-model="result">
-          <button class="button-submit" @click="add_to_results(result, examples[item], 0)"> ✔</button>
+              <h3>{{item+1}}.Příklad:</h3>
+              <h4>{{examples[item].message}}</h4>
+              <h2>{{this.part_zeros(examples[item].first_number)}} {{examples[item].operator}} {{this.part_zeros(examples[item].second_number)}} =</h2> <input class="input-submit" type="number" v-model="result">
+              <button class="button-submit" @click="add_to_results(result, examples[item], 0)"> ✔</button>
 
-          </h3>
+            </h3>
 
-    <br>
+            <br>
+          </section>
+
+          <section class="compare" v-else-if="examples[item].type=== 'compare'">
+
+            <h3 class="example-text">
+              <h3>{{item+1}}.Příklad:</h3>
+              <h4>{{examples[item].message}}</h4>
+              <h2>{{examples[item].first_number}}
+                <select class="input-submit" v-model="result">
+                  <option>=</option>
+                  <option>&lt;</option>
+                  <option>&gt;</option>
+                </select> {{examples[item].second_number}}</h2>
+              <button class="button-submit" @click="add_to_results(result, examples[item], 0)"> ✔</button>
+            </h3>
+
+            <br>
+          </section>
+
+          <section class="round" v-else-if="examples[item].type=== 'round'" >
+            <h3 class="example-text">
+              <h3>{{item+1}}.Příklad:</h3>
+              <h4>{{examples[item].message}} {{examples[item].second_number}}</h4>
+              <h2>{{this.part_zeros(examples[item].first_number)}} {{examples[item].operator}} </h2>
+              <input class="input-submit" type="number" v-model="result">
+              <button class="button-submit" @click="add_to_results(result, examples[item], 0)"> ✔</button>
+            </h3>
+
+            <br>
+          </section>
+
+          <section class="" v-else-if="examples[item].type=== 'division_remainder'" >
+            <h3 class="example-text">
+              <h3>{{item+1}}.Příklad:</h3>
+              <h4>{{examples[item].message}}</h4>
+              <h2>{{examples[item].first_number}} {{examples[item].operator}} {{examples[item].second_number}} = </h2>
+              <input class="input-submit" type="number" v-model="result">
+              <p>Zb.</p>
+              <input class="input-submit" type="number" v-model="remainder">
+              <button class="button-submit" @click="add_to_results(result, examples[item], remainder)"> ✔</button>
+            </h3>
+
+            <br>
+          </section>
+
+          <section class="roman-num" v-else-if="examples[item].type=== 'roman_num'" >
+            <h3 class="example-text">
+              <h3>{{item+1}}.Příklad:</h3>
+              <h4>{{examples[item].message}}</h4>
+              <h2>{{examples[item].first_number}} {{examples[item].operator}} =</h2>
+              <input class="input-submit" type="number" v-model="result">
+              <button class="button-submit" @click="add_to_results(result, examples[item], 0)"> ✔</button>
+            </h3>
+
+            <br>
+          </section>
+
+
+
         </section>
 
-        <section class="calculate" v-else-if="examples[item].type=== 'decimal'" >
-          <h3 class="example-text">
-
-            <h3>{{item+1}}.Příklad:</h3>
-            <h4>{{examples[item].message}}</h4>
-            <h2>{{this.part_zeros(examples[item].first_number)}} {{examples[item].operator}} {{this.part_zeros(examples[item].second_number)}} =</h2>
-            <input class="input-submit" type="number" step="0.01" v-model="result">
-            <button class="button-submit" @click="add_to_results(result, examples[item], 0)"> ✔</button>
-
-          </h3>
-
-          <br>
+        <section v-if="item >= this.count_of_exmaples">
+          <button @click="to_evalution">Vyhodnotit</button>
         </section>
 
+        <section v-if="exercise_completed">
+          <h2>Počet chyb: {{num_of_wrong}} z {{examples.length}} příkladů</h2>
+          <h2>Tvoje úspěšnost je : {{this.success_rate}}%</h2>
+          <h2>Dostáváš odměnu : {{this.reward}}</h2>
+          <h2 v-if="wrong_examples.length > 0">Příklady, které byly špatně: </h2>
+          <section v-for="(item, index) in wrong_examples" :key="index">
+            <h3 v-if="wrong_examples[index].type === 'compare'">{{(index+1)}}.Příklad: {{wrong_examples[index].first_number}} <u>{{wrong_examples[index].result}}</u>  {{wrong_examples[index].second_number}} </h3>
+            <h3 v-else-if="wrong_examples[index].type === 'division_remainder'">{{(index+1)}}.Příklad: {{wrong_examples[index].toText}} <u>{{wrong_examples[index].result}} Zb. {{wrong_examples[index].remainder}}</u> </h3>
+            <h3 v-else>{{(index+1)}}.Příklad: {{wrong_examples[index].toText}} <u>{{wrong_examples[index].result}}</u> </h3>
+            <h3>Tvuj výsledek: {{wrong_examples[index].your_result}}</h3>
+            <h3 v-if="wrong_examples[index].type === 'division_remainder'">Tvůj zbytek: {{wrong_examples[index].your_remainder}}</h3>
 
-        <section class="compare" v-else-if="examples[item].type=== 'compare'">
 
-        <h3 class="example-text">
-          <h3>{{item+1}}.Příklad:</h3>
-          <h4>{{examples[item].message}}</h4>
-          <h2>{{examples[item].first_number}}
-            <select class="input-submit" v-model="result">
-            <option>=</option>
-            <option>&lt;</option>
-            <option>&gt;</option>
-          </select> {{examples[item].second_number}}</h2>
-            <button class="button-submit" @click="add_to_results(result, examples[item], 0)"> ✔</button>
-        </h3>
-
-        <br>
+          </section>
+          <button @click="next_exercise">Další procvičování</button>
         </section>
+      </div>
 
-        <section class="round" v-else-if="examples[item].type=== 'round'" >
-          <h3 class="example-text">
-          <h3>{{item+1}}.Příklad:</h3>
-          <h4>{{examples[item].message}} {{examples[item].second_number}}</h4>
-          <h2>{{this.part_zeros(examples[item].first_number)}} {{examples[item].operator}} </h2>
-            <input class="input-submit" type="number" v-model="result">
-            <button class="button-submit" @click="add_to_results(result, examples[item], 0)"> ✔</button>
-          </h3>
-
-          <br>
-        </section>
-
-        <section class="" v-else-if="examples[item].type=== 'division_remainder'" >
-          <h3 class="example-text">
-            <h3>{{item+1}}.Příklad:</h3>
-            <h4>{{examples[item].message}}</h4>
-            <h2>{{examples[item].first_number}} {{examples[item].operator}} {{examples[item].second_number}} = </h2>
-            <input class="input-submit" type="number" v-model="result">
-            <p>Zb.</p>
-            <input class="input-submit" type="number" v-model="remainder">
-            <button class="button-submit" @click="add_to_results(result, examples[item], remainder)"> ✔</button>
-          </h3>
-
-          <br>
-        </section>
-
-        <section class="roman-num" v-else-if="examples[item].type=== 'roman_num'" >
-          <h3 class="example-text">
-            <h3>{{item+1}}.Příklad:</h3>
-            <h4>Římská čísla</h4>
-            <h4>{{examples[item].message}}</h4>
-            <h2>{{examples[item].first_number}} {{examples[item].operator}} =</h2>
-            <input class="input-submit-roman" type="text" v-model="result">
-            <button class="button-submit" @click="add_to_results(result, examples[item], 0)"> ✔</button>
-          </h3>
-
-          <br>
-        </section>
-
-        <section class="roman-num" v-else-if="examples[item].type=== 'fraction'" >
-          <h3 class="example-text">
-            <h3>{{item+1}}.Příklad:</h3>
-            <h4>{{examples[item].message}}</h4>
-            <!-- <h3><sup>{{examples[item].first_number[0]}}</sup>&frasl; <sup> {{examples[item].first_number[0]}} </sup> {{examples[item].operator}}  {{examples[item].second_number}}</h3> -->
-            <h3>{{examples[item].first_number[0]}}/{{examples[item].first_number[1]}} {{examples[item].operator}}  {{examples[item].second_number}}</h3>
-            <input class="input-submit" type="text" v-model="result">
-            <button class="button-submit" @click="add_to_results(result, examples[item], 0)"> ✔</button>
-          </h3>
-
-          <br>
-        </section>
-
-
-
-      </section>
-
-    <section v-if="item >= this.count_of_exmaples">
-      <button @click="to_evalution">Vyhodnotit</button>
-    </section>
-
-    <section v-if="exercise_completed">
-      <h2>Počet chyb: {{num_of_wrong}} z {{count_of_exmaples}} příkladů</h2>
-      <h2>Tvoje úspěšnost je : {{this.success_rate}}%</h2>
-      <h2>Dostáváš odměnu : {{this.reward}}</h2>
-      <h2 v-if="wrong_examples.length > 0">Příklady, které byly špatně: </h2>
-      <section v-for="(item, index) in wrong_examples" :key="index">
-        <h3 v-if="wrong_examples[index].type === 'compare'">{{(index+1)}}.Příklad: {{wrong_examples[index].first_number}} <u>{{wrong_examples[index].result}}</u>  {{wrong_examples[index].second_number}} </h3>
-        <h3 v-else-if="wrong_examples[index].type === 'division_remainder'">{{(index+1)}}.Příklad: {{wrong_examples[index].toText}} <u>{{wrong_examples[index].result}} Zb. {{wrong_examples[index].remainder}}</u> </h3>
-        <h3 v-else>{{(index+1)}}.Příklad: {{wrong_examples[index].toText}} <u>{{wrong_examples[index].result}}</u> </h3>
-        <h3>Tvuj výsledek: {{wrong_examples[index].your_result}}</h3>
-        <h3 v-if="wrong_examples[index].type === 'division_remainder'">Tvůj zbytek: {{wrong_examples[index].your_remainder}}</h3>
-
-
-      </section>
-      <button @click="next_exercise">Další procvičování</button>
-    </section>
     </div>
 
   </div>
-
-</div>
 
 </template>
 
@@ -150,12 +121,12 @@ export default {
       example: {},
       examples: [],
       results:[],
-      result: 0.0,
+      result: 0,
       remainder: 0,
       exercise_completed: false,
       item: 0,
       num_of_wrong:0,
-      success_rate:0,
+      success_rate:100,
       wrong_examples:[],
       daily_limit : 0,
       reward:0,
@@ -238,7 +209,7 @@ export default {
         this.generate_subtraction_examples(20, 100);
       }
       // eslint-disable-next-line
-      this.examples = this.examples.sort(() => 0.5 - Math.random());
+      this.examples = this.examples.sort((a, b) => 0.5 - Math.random());
 
       //return this.examples;
     },
@@ -263,7 +234,7 @@ export default {
         this.generate_division_examples(2, 100);
       }
       // eslint-disable-next-line
-      this.examples = this.examples.sort(() => 0.5 - Math.random());
+      this.examples = this.examples.sort((a, b) => 0.5 - Math.random());
 
       //return this.examples;
     },
@@ -280,20 +251,21 @@ export default {
         if(i<2){
           //cele tisice
 
+          this.generate_multiplication_examples(10, 100000);
+          this.generate_division_examples(10, 100000);
+          this.generate_round_examples(1000, 1000000, 100000);
           this.generate_round_examples(1000, 1000000, 10000);
           this.generate_round_examples(1000, 1000000, 1000);
         }
         if(i<3){
           this.generate_addition_examples(1000, 100000);
           this.generate_subtraction_examples(1000, 100000);
-          this.generate_multiplication_examples(10, 100000);
-          this.generate_division_examples(10, 100000);
         }
 
         this.generate_division_remainder_examples(2, 100);
       }
       // eslint-disable-next-line
-      this.examples = this.examples.sort(() => 0.5 - Math.random());
+      this.examples = this.examples.sort((a, b) => 0.5 - Math.random());
 
       //return this.examples;
     },
@@ -343,32 +315,22 @@ export default {
 
     generate_examples_for_V(){
 
-      for(let i = 0; i<2; i++) {
+      for(let i = 0; i<4; i++) {
 
-        this.generate_addition_examples_for_V(1, 100);
-        this.generate_subtraction_examples(1, 100);
-        //this.generate_fraction_examples(2, 200);
-        this.generate_multiplication_examples_for_V(2, 10);
-        this.generate_division_examples_for_V(2, 100);
-        this.generate_roman_number_example_intToRoman(1,3000);
-        this.generate_roman_number_example_romanToInt(1, 3000);
-        this.generate_addtion_decimal_examples(10, 100);
-        this.generate_subtraction_decimal_examples(10, 100);
-        this.generate_multiplication_decimal_examples(10, 100);
-        this.generate_division_decimal_examples(10, 100);
+        this.generate_addition_examples(1, 100);
+        //this.generate_subtraction_examples(1, 100);
+        this.generate_multiplication_examples(2, 10);
+        this.generate_division_examples(2, 100);
+        this.generate_int_number_for_roman(1,3000);
+        this.generate_string_for_roman();
       }
       // eslint-disable-next-line
-      this.examples = this.examples.sort(() => 0.5 - Math.random());
+      this.examples = this.examples.sort((a, b) => 0.5 - Math.random());
 
       //return this.examples;
     },
 
-    /**
-     * generovani prikladu na rimska cisla - integer na rimske
-     * @param minLimit
-     * @param maxLimit
-     */
-    generate_roman_number_example_intToRoman(minLimit, maxLimit){
+    generate_int_number_for_roman(minLimit, maxLimit){
       //maxLimit = 3000
       let first_number = Math.floor((Math.random() * (maxLimit - minLimit + 1)) + minLimit);
 
@@ -384,37 +346,74 @@ export default {
 
 
       if(this.exists_same_example(this.example)){
-        this.generate_roman_number_example_intToRoman();
+        this.generate_int_number_for_roman();
       } else {
         this.examples.push(this.example);
       }
     },
 
-    /**
-     * generovani prikladu na rimska cisla - rimske na integer
-     * @param minLimit
-     * @param maxLimit
-     */
-    generate_roman_number_example_romanToInt(minLimit, maxLimit){
-      let result = Math.floor((Math.random() * (maxLimit - minLimit + 1)) + minLimit);
+    generate_string_for_roman(){
+      let first_number = this.string_generator();
 
       let operator = '';
       let your_result = 0;
       let message = 'Převeď:';
       let type = 'roman_num';
 
-      let first_number = this.convert_int_to_roman(result);
+      let result = this.convert_roman_to_int(first_number);
       let toText = first_number.toString()+' '+operator.toString()+' = ';
       this.example = {message, type, toText, first_number, operator, result, your_result}
 
 
       if(this.exists_same_example(this.example)){
-        this.generate_roman_number_example_romanToInt();
+        this.generate_string_for_roman();
         //prechod pres desitku
       } else {
         this.examples.push(this.example);
       }
 
+    },
+
+
+
+    convert_roman_to_int(s) {
+      let result = 0;
+      if (s == null) {
+        result = 0;
+      }
+      let myMap = new Map();
+      myMap.set('I', 1);
+      myMap.set('V', 5);
+      myMap.set('X', 10);
+      myMap.set('L', 50);
+      myMap.set('C', 100);
+      myMap.set('D', 500);
+      myMap.set('M', 1000);
+
+      let len = s.length;
+      for (let i = 0; i < len; i++) {
+        if (myMap.get(s.charAt(i)) < myMap.get(s.charAt(i + 1))) {
+          result -= myMap.get(s.charAt(i))
+        } else {
+          result += myMap.get(s.charAt(i))
+        }
+
+      }
+
+      return result;
+    },
+
+    string_generator(){
+
+      let length = Math.floor((Math.random() * (15 - 1 + 1)) + 1);
+      let characters ='MDCLXVI';
+      let result = ' ';
+      const charactersLength = characters.length;
+      for ( let i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      }
+
+      return result;
     },
 
 
@@ -435,260 +434,16 @@ export default {
         [1, 'I']
       ];
 
-        if (num === 0) {
-          return '';
+      if (num === 0) {
+        return '';
+      }
+      for (let i = 0; i < romanMatrix.length; i++) {
+        if (num >= romanMatrix[i][0]) {
+          return romanMatrix[i][1] + this.convert_int_to_roman(num - romanMatrix[i][0]);
         }
-        for (let i = 0; i < romanMatrix.length; i++) {
-          if (num >= romanMatrix[i][0]) {
-            return romanMatrix[i][1] + this.convert_int_to_roman(num - romanMatrix[i][0]);
-          }
-        }
-
-    },
-
-    /**
-     * metoda na generovani prikladu se zlomky
-     * zlomek max 20/20 z cisla max 200
-     * @param minLimit
-     * @param maxLimit
-     */
-    generate_fraction_examples(minLimit, maxLimit){
-
-      let first_number = [];
-      //citatel
-      first_number [0]= Math.floor((Math.random() * ((maxLimit/20) - minLimit + 1)) + minLimit);
-      //jmenovatel
-      first_number [1]= Math.floor((Math.random() * ((maxLimit/20) - minLimit + 1)) + minLimit);
-      //z pozadovaneho cisla
-      let second_number = Math.floor((Math.random() * (maxLimit - minLimit + 1)) + minLimit);
-
-
-      let operator = 'z čísla';
-      let your_result = 0;
-      let message = 'Vpočítej:';
-      let type = 'fraction';
-      let result = Math.floor((second_number / first_number[1]) *first_number[0]);
-
-      //let toText = first_number.toString()+' '+operator.toString()+' '+second_number.toString()+' = ';
-      this.example = {message, type, first_number, second_number, operator, result, your_result}
-
-      if(second_number % first_number[1] !== 0) {
-        this.generate_fraction_examples(minLimit, maxLimit);
-      }else if(first_number[0] === first_number[1]){
-        this.generate_fraction_examples(minLimit, maxLimit);
-      }else if(this.exists_same_example(this.example)){
-        this.generate_fraction_examples(minLimit, maxLimit);
-        //prechod pres desitku
-      }else {
-        this.examples.push(this.example);
-      }
-
-
-    },
-
-    generate_addition_examples_for_V(minLimit, maxLimit) {
-
-      let first_number = Math.floor((Math.random() * (maxLimit - minLimit + 1)) + minLimit);
-      let second_number = Math.floor((Math.random() * (maxLimit - minLimit + 1)) + minLimit);
-
-        first_number *= 1000000;
-        second_number *= 1000000;
-
-
-      let operator = '+';
-      let your_result = 0;
-      let type = 'calculate';
-      let message = 'Vpočítej:';
-
-      let result = first_number + second_number;
-      let toText = first_number.toString()+' '+operator.toString()+' '+second_number.toString()+' = '
-      this.example = {message, type, toText, first_number, second_number, operator, result, your_result};
-
-      if(result > (maxLimit * 1000000)){
-        this.generate_addition_examples_for_V(minLimit, maxLimit);
-      }else if(this.exists_same_example(this.example)){
-        this.generate_addition_examples_for_V(minLimit, maxLimit);
-        //prechod pres desitku
-      }else {
-        this.examples.push(this.example);
       }
 
     },
-
-    generate_multiplication_examples_for_V(minLimit, maxLimit) {
-      let first_number = Math.floor((Math.random() * (maxLimit - minLimit + 1)) + minLimit);
-      let second_number = Math.floor((Math.random() * (maxLimit - minLimit + 1)) + minLimit);
-
-      let nums = [100, 1000, 10000];
-
-        //second_number (1-10)
-        first_number *= nums[Math.floor(Math.random()*nums.length)];
-        first_number /= 10;
-
-
-      let operator = '•';
-      let your_result = 0;
-      let message = 'Vpočítej:';
-      let type = 'calculate';
-      let result = first_number * second_number;
-      let toText = first_number.toString()+' '+operator.toString()+' '+second_number.toString()+' = ';
-      this.example = {message, type, toText, first_number, second_number, operator, result, your_result}
-
-
-      if(this.exists_same_example(this.example)){
-        this.generate_multiplication_examples_for_V(minLimit, maxLimit);
-
-      } else {
-        this.examples.push(this.example);
-      }
-
-    },
-
-    generate_division_examples_for_V(minLimit, maxLimit) {
-
-      let first_number = Math.floor((Math.random() * (maxLimit - minLimit + 1)) + minLimit);
-
-      let second_number = Math.floor((Math.random() * (10 - minLimit + 1)) + minLimit);
-
-
-      let nums = [100, 1000, 10000];
-
-
-        let tmp = first_number;
-        first_number *= nums[Math.floor(Math.random()*nums.length)];
-        first_number /= 10;
-
-
-      let operator = ':';
-      let your_result = 0;
-      let message = 'Vpočítej:';
-      let type = 'calculate';
-      let result = first_number / second_number;
-
-      let toText = first_number.toString()+' '+operator.toString()+' '+second_number.toString()+' = ';
-      this.example = {message, type, toText, first_number, second_number, operator, result, your_result}
-
-
-      if( (tmp / second_number) > 10  ){
-        this.generate_division_examples_for_V(minLimit, maxLimit);
-      }
-      else if(tmp % second_number !==0 ){
-        this.generate_division_examples_for_V(minLimit, maxLimit);
-      }
-      else if(this.exists_same_example(this.example)){
-        this.generate_division_examples_for_V(minLimit, maxLimit);
-
-      } else {
-        this.examples.push(this.example);
-      }
-
-    },
-
-
-    generate_addtion_decimal_examples(minLimit, maxLimit){
-
-      let first_number = Math.floor(Math.random() * (minLimit * maxLimit - 1 * maxLimit) + 1 * maxLimit) / (maxLimit);
-      let second_number = Math.floor(Math.random() * (minLimit * maxLimit - 1 * maxLimit) + 1 * maxLimit) / (maxLimit);
-
-      let operator = '+';
-      let your_result = 0.0;
-      let type = 'decimal';
-      let message = 'Vpočítej:';
-
-      let result = first_number + second_number;
-      result = Math.round(result * 100) / 100;
-      let toText = first_number.toString()+' '+operator.toString()+' '+second_number.toString()+' = '
-      this.example = {message, type, toText, first_number, second_number, operator, result, your_result};
-
-     if(this.exists_same_example(this.example)){
-        this.generate_addition_examples(minLimit, maxLimit);
-      }else {
-        this.examples.push(this.example);
-      }
-
-    },
-
-    generate_subtraction_decimal_examples(minLimit, maxLimit){
-
-      let first_number = Math.floor(Math.random() * (minLimit * maxLimit - 1 * maxLimit) + 1 * maxLimit) / (maxLimit);
-      let second_number = Math.floor(Math.random() * (minLimit * maxLimit - 1 * maxLimit) + 1 * maxLimit) / (maxLimit);
-
-      let tmp;
-      if(second_number > first_number){
-        tmp=second_number;
-        second_number = first_number;
-        first_number = tmp;
-      }
-
-      let operator = '-';
-      let your_result = 0.0;
-      let type = 'decimal';
-      let message = 'Vpočítej:';
-
-      let result = first_number - second_number;
-      result = Math.round(result * 100) / 100;
-      let toText = first_number.toString()+' '+operator.toString()+' '+second_number.toString()+' = '
-      this.example = {message, type, toText, first_number, second_number, operator, result, your_result};
-
-      if(this.exists_same_example(this.example)){
-        this.generate_addition_examples(minLimit, maxLimit);
-      }else {
-        this.examples.push(this.example);
-      }
-
-    },
-
-    generate_multiplication_decimal_examples(minLimit, maxLimit){
-
-      let first_number = Math.floor(Math.random() * (minLimit * maxLimit - 1 * maxLimit) + 1 * maxLimit) / (maxLimit);
-
-      let nums = [10, 100, 1000];
-
-      let second_number = nums[Math.floor(Math.random()*nums.length)];
-
-      let operator = '•';
-      let your_result = 0.0;
-      let type = 'decimal';
-      let message = 'Vpočítej:';
-
-      let result = first_number * second_number;
-      result = Math.round(result * 100) / 100;
-      let toText = first_number.toString()+' '+operator.toString()+' '+second_number.toString()+' = '
-      this.example = {message, type, toText, first_number, second_number, operator, result, your_result};
-
-      if(this.exists_same_example(this.example)){
-        this.generate_addition_examples(minLimit, maxLimit);
-      }else {
-        this.examples.push(this.example);
-      }
-
-    },
-
-    generate_division_decimal_examples(minLimit, maxLimit){
-
-      let first_number = Math.floor(Math.random() * (minLimit * maxLimit - 1 * maxLimit) + 1 * maxLimit) / (maxLimit);
-
-      let nums = [10, 100, 1000];
-
-      let second_number = nums[Math.floor(Math.random()*nums.length)];
-
-      let operator = ':';
-      let your_result = 0.0;
-      let type = 'decimal';
-      let message = 'Vpočítej:';
-
-      let result = first_number / second_number;
-      let toText = first_number.toString()+' '+operator.toString()+' '+second_number.toString()+' = '
-      this.example = {message, type, toText, first_number, second_number, operator, result, your_result};
-
-      if(this.exists_same_example(this.example)){
-        this.generate_addition_examples(minLimit, maxLimit);
-      }else {
-        this.examples.push(this.example);
-      }
-
-    },
-
 
 
 
@@ -712,9 +467,15 @@ export default {
         first_number = Math.round((Math.random() * (maxLimit - minLimit + 1)) / minLimit) * minLimit ;
         second_number = Math.round((Math.random() * (maxLimit - minLimit + 1)) / minLimit) * minLimit ;
       }
+      else if (parseInt(this.$store.state.attributes.year_of_study) === 5){
 
+        if((first_number + second_number) > maxLimit){
+          this.generate_addition_examples(minLimit, maxLimit);
+        }
 
-
+        first_number *= 1000000;
+        second_number *= 1000000;
+      }
 
       let operator = '+';
       let your_result = 0;
@@ -725,7 +486,7 @@ export default {
       let toText = first_number.toString()+' '+operator.toString()+' '+second_number.toString()+' = '
       this.example = {message, type, toText, first_number, second_number, operator, result, your_result};
 
-      if(result > maxLimit){
+      if(result > maxLimit && parseInt(this.$store.state.attributes.year_of_study) !== 5){
         this.generate_addition_examples(minLimit, maxLimit);
       }else if(this.exists_same_example(this.example)){
         this.generate_addition_examples(minLimit, maxLimit);
@@ -948,27 +709,27 @@ export default {
 //overeni zde takovy priklad jiz v pole neexistuje
     exists_same_example(example){
       let exists = false;
-        for(let i=0; i<this.examples.length; i++) {
-          if (example.type === 'calculate' || example.type ==='division_remainder' || example.type === 'fraction' || example.type ==='decimal') {
-            if (example.first_number === this.examples[i].first_number && example.second_number === this.examples[i].second_number &&
-                example.operator === this.examples[i].operator) {
-              exists = true;
-            }
-          } else if (example.type === 'compare') {
-            if (example.first_number === this.examples[i].first_number && example.second_number === this.examples[i].second_number) {
-              exists = true;
-            }
-          }else if(example.type ==='round'){
-            if(example.first_number === this.examples[i].first_number && example.second_number === this.examples[i].second_number){
-              exists = true;
-            }
-          }else if(example.type ==='roman_num'){
-            if(example.first_number === this.examples[i].first_number){
-              exists = true;
-            }
+      for(let i=0; i<this.examples.length; i++) {
+        if (example.type === 'calculate' || example.type ==='division_remainder') {
+          if (example.first_number === this.examples[i].first_number && example.second_number === this.examples[i].second_number &&
+              example.operator === this.examples[i].operator) {
+            exists = true;
+          }
+        } else if (example.type === 'compare') {
+          if (example.first_number === this.examples[i].first_number && example.second_number === this.examples[i].second_number) {
+            exists = true;
+          }
+        }else if(example.type ==='round'){
+          if(example.first_number === this.examples[i].first_number && example.second_number === this.examples[i].second_number){
+            exists = true;
+          }
+        }else if(example.type ==='roman_num'){
+          if(example.first_number === this.examples[i].first_number){
+            exists = true;
           }
         }
-        return exists;
+      }
+      return exists;
     },
 
     /**
@@ -985,7 +746,7 @@ export default {
         return '<';
       }else{
         return '=';
-        }
+      }
 
     },
 
@@ -1006,12 +767,7 @@ export default {
 //---------------FUNKCE PRO VYHODNOCOVANI-------------------------------------
 //odeslani studentova reseni do vysledku
     add_to_results(result_number, example, remainder){
-
-      if( !isNaN( parseFloat(result_number)) && parseFloat(result_number) % 1 !== 0){
-
-        result_number = parseFloat(result_number).toFixed(2);
-      }
-      else if( !isNaN(parseInt(result_number))){
+      if(!isNaN(parseInt(result_number)) && example.type !== 'roman_num' ){
         result_number = parseInt(result_number);
       }
       //console.log(result_number);
@@ -1040,44 +796,33 @@ export default {
 
       for(let i=0; i<this.examples.length; i++) {
 
-
-        if(isNaN(this.examples[i].result) && this.examples[i].type ==='roman_num'){
-          this.examples[i].your_result = String(this.examples[i].your_result).toUpperCase();
-          if(this.examples[i].result !== this.examples[i].your_result){
-            this.num_of_wrong++;
-            this.wrong_examples.push(this.examples[i]);
-          }
-        }
-
-        else if (this.examples[i].type === 'division_remainder') {
+        if (this.examples[i].type === 'division_remainder') {
           if (this.examples[i].result !== this.examples[i].your_result && this.examples[i].remainder !== this.examples[i].your_remainder) {
             this.num_of_wrong++;
+            //this.examples[i].your_result = this.results[i];
             this.wrong_examples.push(this.examples[i]);
           }
-        }
-        else {
-          if(this.examples[i].type ==='decimal' && this.examples[i].result %1 !==0 && this.examples[i].operator !==':'){
-            this.examples[i].result = parseFloat(this.examples[i].result).toFixed(2);
-          }
+        } else {
           if (this.examples[i].result !== this.examples[i].your_result) {
             this.num_of_wrong++;
+            //this.examples[i].your_result = this.results[i];
             this.wrong_examples.push(this.examples[i]);
           }
         }
       }
 
 
-      this.success_rate = ((this.count_of_exmaples - this.wrong_examples.length) / this.count_of_exmaples) * 100;
-        if(this.success_rate>= 90){
-          this.reward = parseInt( this.$store.state.attributes.year_of_study) * 4;
-        }else if(this.success_rate >= 75){
-          this.reward = parseInt( this.$store.state.attributes.year_of_study) *2;
-        }else if(this.success_rate >= 60){
-          this.reward = parseInt(this.$store.state.attributes.year_of_study) * 1;
-        }
+      this.success_rate = ((this.examples.length - this.wrong_examples.length) / this.examples.length) * 100;
+      if(this.success_rate>= 90){
+        this.reward = parseInt( this.$store.state.attributes.year_of_study) * 4;
+      }else if(this.success_rate >= 75){
+        this.reward = parseInt( this.$store.state.attributes.year_of_study) *2;
+      }else if(this.success_rate >= 60){
+        this.reward = parseInt(this.$store.state.attributes.year_of_study) * 1;
+      }
 
-        //this.$store.state.atributy.penize += this.reward;
-        store.commit('addMoney', this.reward);
+      //this.$store.state.atributy.penize += this.reward;
+      store.commit('addMoney', this.reward);
 
 
     },
@@ -1163,16 +908,6 @@ h3{
 .input-submit{
 
   width: 15%;
-  padding-top: 1%;
-  padding-bottom: 1%;
-  padding-left: 2%;
-  text-align: center;
-
-  display: inline-block;
-  font-size: 75%;
-}
-.input-submit-roman{
-  width: 20%;
   padding-top: 1%;
   padding-bottom: 1%;
   padding-left: 2%;
