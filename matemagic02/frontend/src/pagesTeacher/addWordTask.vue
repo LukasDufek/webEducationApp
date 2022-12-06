@@ -37,10 +37,9 @@
 </template>
 
 <script>
+
 import store from "@/store/store";
 import HeaderTeacher from "@/components/headerTeacher";
-
-
 
 
 export default {
@@ -95,7 +94,6 @@ export default {
 }
 
 .main-content{
-
 
   margin-right: auto;
   margin-left: auto;

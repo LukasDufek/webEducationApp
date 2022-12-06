@@ -1,18 +1,13 @@
 const Router  = require('express')
 const Task = require('../../models/Task')
 
-const taskConnect = require("../../connections")
-const mongoose = require("mongoose");
 
-async function loadDatabase() {
-    taskConnect.makeConnection('mongodb+srv://lukas-dufek:frameworkvuejs@slovniulohy.ofdkuu5.mongodb.net/?retryWrites=true&w=majority');
-}
+
 
 const TaskRouter = Router()
 
 TaskRouter.get('/', async (req, res) => {
-    await taskConnect.closeConnection();
-    await loadDatabase();
+
     try {
         const tasks = await Task.find()
         if (!tasks) throw new Error('No Items')
@@ -25,8 +20,7 @@ TaskRouter.get('/', async (req, res) => {
 })
 
 TaskRouter.post('/', async (req, res) => {
-    await taskConnect.closeConnection();
-    await loadDatabase();
+
     const newTask = new Task(req.body)
     try {
         const task = await newTask.save()
@@ -39,8 +33,7 @@ TaskRouter.post('/', async (req, res) => {
 })
 
 TaskRouter.put('/:id', async (req, res) => {
-    await taskConnect.closeConnection();
-    await loadDatabase();
+
     const { id } = req.params
 
     try {
@@ -55,8 +48,7 @@ TaskRouter.put('/:id', async (req, res) => {
 })
 
 TaskRouter.delete('/:id', async (req, res) => {
-    await taskConnect.closeConnection();
-    await loadDatabase();
+
     const { id } = req.params
     try {
         const removed = await Task.findByIdAndDelete(id)

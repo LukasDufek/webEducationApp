@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 //const {itemsConnections} = require("../connections")
 
-let Item = new mongoose.Schema({
+const Item = new mongoose.Schema({
     name: String,
     type: String,
     using: String,
@@ -14,7 +14,7 @@ let Item = new mongoose.Schema({
 
 
 
-module.exports = mongoose.model('Item', Item)
+module.exports = mongoose.model('Item', Item, 'items')
 
 
 

@@ -16,8 +16,18 @@
       <h2><u>{{item.name}}</u></h2>
       <h3 v-if="item.using==='attack'">Útok +{{item.value}}</h3>
       <h3 v-else-if="item.using==='defence'">Obrana +{{item.value}}</h3>
-      <h3 class="money">Cena: {{item.price}} stříbrných</h3>
-      <h3 class="money">Prodejní cena: {{item.sell_price}} stříbrných</h3>
+
+      <h3 class="money" v-if="item.price%10 === 0">Cena: {{item.price/10}} <gold-coin-component/> </h3>
+      <h3 class="money" v-else-if= "item.price/10 > 0 ">Cena: {{item.price/10}} <gold-coin-component/> {{item.price%10}}  <silver-coin-component/> </h3>
+      <h3 class="money" v-else >Cena: {{item.price}}  <silver-coin-component/> </h3>
+
+
+      <h3 class="money" v-if="item.price%10 === 0">Prodejní cena: {{item.sell_price/10}} <gold-coin-component/> </h3>
+      <h3 class="money" v-else-if= "item.price/10 > 0 ">Prodejní cena: {{item.sell_price/10}}<gold-coin-component/> {{item.sell_price%10}}  <silver-coin-component/> </h3>
+      <h3 class="money" v-else >Prodejní cena: {{item.sell_price}}  <silver-coin-component/> </h3>
+
+      <!-- {{this.$store.state.attributes.money/10}} <gold-coin-component/>  a {{this.$store.state.attributes.money%10 }} <silver-coin-component/> -->
+
       <img v-bind:src=item.img_address class="imgItem" alt="" />
       <br>
       <br>
@@ -38,11 +48,14 @@ import axios from "axios";
 
 import GameHeader from "@/gamePages/gameHeader";
 import store from "@/store/store";
+import SilverCoinComponent from "@/components/silverCoinComponent";
+import goldCoinComponent from "@/components/goldCoinComponent";
+
 
 export default {
 
   name: "gameShop",
-  components: {GameHeader},
+  components: {goldCoinComponent, SilverCoinComponent, GameHeader},
   data(){
     return{
       selectedType: "Zbraň",
@@ -201,14 +214,12 @@ export default {
   width: 40%;
   margin-bottom: 5%;
   margin-left: 30%;
-  position: relative;
-  /*
-  margin-bottom: 5%;
-  position: relative;
+
+
   left: 37%;
   right: 37%;
   top: 20%;
-   */
+
 
   padding: 10px;
   border: 2px;

@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-//const {itemsConnections} = require("../connections");
 
 
 let Task = new mongoose.Schema({
@@ -10,7 +9,7 @@ let Task = new mongoose.Schema({
     reward: Number,
 });
 
-module.exports = mongoose.model('Task', Task);
+module.exports = mongoose.model('Task', Task, 'tasks');
 
 
 

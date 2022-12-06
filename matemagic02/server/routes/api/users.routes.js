@@ -6,14 +6,10 @@ const passport = require('passport');
 const key = require('../../config/keys').secret;
 const User = require('../../models/User');
 
-const itemConnect = require("../../connections");
-
 
 //itemConnect('mongodb+srv://lukas-dufek:frameworkvuejs@items.x2hdz8c.mongodb.net/?retryWrites=true&w=majority');
 
-async function loadDatabase(){
-    itemConnect.makeConnection('mongodb+srv://lukas-dufek:frameworkvuejs@users.twvvwss.mongodb.net/?retryWrites=true&w=majority');
-}
+
 
 /**
  * @route POST api/users/register
@@ -21,8 +17,8 @@ async function loadDatabase(){
  * @access Public
  */
 router.post('/register', async (req, res) => {
-    await itemConnect.closeConnection();
-    await loadDatabase();
+
+
     let {
         name,
         username,
@@ -83,8 +79,7 @@ router.post('/register', async (req, res) => {
  * @access Public
  */
 router.post('/login', async (req, res) => {
-    await itemConnect.closeConnection();
-    await loadDatabase();
+
     User.findOne({
         username: req.body.username
     }).then(user => {

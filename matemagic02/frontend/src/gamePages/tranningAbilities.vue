@@ -11,7 +11,7 @@
         <h3>Obrana: {{this.defense}} <button @click="training('defense', defense)">+</button> cena: {{this.defense}} stříbrných</h3>
         <h3>Výdrž: {{this.hp}} <button @click="training('hp', hp)">+</button> cena: {{this.hp}} stříbrných</h3>
         <br>
-        <h3>Vlastníš: {{Math.floor(this.$store.state.attributes.money /10)}} zlatých a {{this.$store.state.attributes.money % 10}} stříbrných mincí</h3>
+        <h3>Vlastníš: {{Math.floor(this.$store.state.attributes.money /10)}} <gold-coin-component/> a {{this.$store.state.attributes.money % 10}} <silver-coin-component/> </h3>
         <h3>Zkušenosti: {{this.$store.state.attributes.exp}}</h3>
 
       </div>
@@ -23,9 +23,11 @@
 <script>
 import GameHeader from "@/gamePages/gameHeader";
 import store from "@/store/store";
+import GoldCoinComponent from "@/components/goldCoinComponent";
+import SilverCoinComponent from "@/components/silverCoinComponent";
 export default {
   name: "tranningAbilities",
-  components: {GameHeader},
+  components: {SilverCoinComponent, GoldCoinComponent, GameHeader},
 
   data(){
     return{

@@ -1,36 +1,23 @@
 const Router  = require('express')
 const Item = require('../../models/Item')
 
-
-const itemConnect = require("../../connections")
-
-//itemConnect('mongodb+srv://lukas-dufek:frameworkvuejs@items.x2hdz8c.mongodb.net/?retryWrites=true&w=majority');
-
-async function loadDatabase(){
-    itemConnect.makeConnection('mongodb+srv://lukas-dufek:frameworkvuejs@items.x2hdz8c.mongodb.net/?retryWrites=true&w=majority');
-}
-
 const ItemRouter = Router()
 
 ItemRouter.get('/', async (req, res) => {
-    await itemConnect.closeConnection();
-    await loadDatabase();
+
     try {
-        const Items = await Item.find()
+        const Items = await Item.find();
         if (!Items) throw new Error('No Items')
         res.status(200).json(Items)
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
 
-
-
-
 })
 
+
 ItemRouter.post('/', async (req, res) => {
-    await itemConnect.closeConnection();
-    await loadDatabase();
+
     const newItem = new Item(req.body)
     try {
         const item = await newItem.save()
@@ -42,8 +29,7 @@ ItemRouter.post('/', async (req, res) => {
 })
 
 ItemRouter.put('/:id', async (req, res) => {
-    await itemConnect.closeConnection();
-    await loadDatabase();
+
     const { id } = req.params
 
     try {
@@ -57,8 +43,7 @@ ItemRouter.put('/:id', async (req, res) => {
 })
 
 ItemRouter.delete('/:id', async (req, res) => {
-    await itemConnect.closeConnection();
-    await loadDatabase();
+
     const { id } = req.params
     try {
         const removed = await Item.findByIdAndDelete(id)

@@ -20,7 +20,7 @@
         <span role="">Slovní úlohy</span>
       </router-link>
 
-      <router-link to="/services" class="link">
+      <router-link to="/finalExam" class="link">
         <span role="link">Závěrečný Test</span>
       </router-link>
 

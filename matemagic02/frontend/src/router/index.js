@@ -7,6 +7,7 @@ import welcomePage from "@/pages/loginPage";
 import profileOverviewPage from "@/pages/profileOverviewPage";
 import mathExamples from "@/pages/mathExamples";
 import mathWordTasks from "@/pages/mathWordTasks";
+import finalExam from "@/pages/finalExam";
 
 //pro ucitele
 import addWordTask from "@/pagesTeacher/addWordTask";
@@ -26,6 +27,7 @@ const routes = [
     {path:"/profileOverviewPage", component: profileOverviewPage},
     {path:"/mathExamples", component: mathExamples},
     {path:"/mathWordTasks", component: mathWordTasks},
+    {path:"/finalExam", component: finalExam},
 
     {path:"/addWordTask", component: addWordTask},
     {path:"/editWordTask", component: editWordTask},

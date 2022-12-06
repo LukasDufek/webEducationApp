@@ -8,8 +8,7 @@
       <h2>Příjmení: {{this.$store.state.attributes.last_name}}</h2>
       <h2>Ročník: {{this.$store.state.attributes.year_of_study}}</h2>
       <h2>Zkušenosti: {{this.$store.state.attributes.exp}}</h2>
-      <h2>Peníze: {{this.$store.state.attributes.money}}</h2>
-      <img src="../assets/silver-coin.png" class="imgCar" alt="" border="0" />
+      <h2>{{this.$store.state.attributes.money/10}} <gold-coin-component/>  a {{this.$store.state.attributes.money%10 }} <silver-coin-component/></h2>
 
       <!--
       <section v-if="this.$store.state.attributes.year_of_study >= 3">
@@ -37,9 +36,11 @@
 </template>
 
 <script>
+import SilverCoinComponent from "@/components/silverCoinComponent";
+import GoldCoinComponent from "@/components/goldCoinComponent";
 export default {
   name: "profileOverviewPage",
-
+  components: {GoldCoinComponent, SilverCoinComponent},
   data() {
     return {
       first_name:'',

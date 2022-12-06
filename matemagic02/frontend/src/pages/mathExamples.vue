@@ -278,8 +278,8 @@ export default {
 
       for(let i = 0; i<4; i++){
         if(i<2){
-          //cele tisice
 
+          //cele tisice
           this.generate_round_examples(1000, 1000000, 10000);
           this.generate_round_examples(1000, 1000000, 1000);
         }
@@ -1098,6 +1098,7 @@ export default {
     }
 
   }
+
 }
 
 </script>
