@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div v-if="isLoggedIn">
     <header-page/>
     <div class="container">
-    <div  v-if="this.$store.state.logged" class="user-card">
+    <div   class="user-card">
       <h1>Přehled tvého profilu</h1>
       <h2>Jméno: {{this.$store.state.attributes.first_name}}</h2>
       <h2>Příjmení: {{this.$store.state.attributes.last_name}}</h2>
@@ -18,29 +18,31 @@
       <button class="to-game-button" @click="toGame">VSTOUPIT DO HRY</button>
       <br>
 
-      <router-link to="/" class="logout">
-        <span role="link">Odlásit se</span>
-      </router-link>
+      <button class="to-game-button" @click="logoutUser">Odhlásit se</button>
+
     </div>
 
 
-      <div v-else>
-        <h1 class="no-logged">Sezení uplynulo</h1>
-      </div>
-
   </div>
 
 
-
   </div>
+
+  <div v-else>
+    <no-logged/>
+  </div>
+
 </template>
 
 <script>
 import SilverCoinComponent from "@/components/silverCoinComponent";
 import GoldCoinComponent from "@/components/goldCoinComponent";
+import {mapGetters} from "vuex";
+import { mapActions } from "vuex";
+import NoLogged from "@/components/noLogged";
 export default {
   name: "profileOverviewPage",
-  components: {GoldCoinComponent, SilverCoinComponent},
+  components: {NoLogged, GoldCoinComponent, SilverCoinComponent},
   data() {
     return {
       first_name:'',
@@ -56,7 +58,16 @@ export default {
 
 
   },
+  computed: {
+    ...mapGetters(["isLoggedIn"])
+  },
   methods:{
+
+    ...mapActions(["logout"]),
+    logoutUser() {
+      this.logout();
+    },
+
     toGame(){
       this.$router.push('./characterOverview');
     }

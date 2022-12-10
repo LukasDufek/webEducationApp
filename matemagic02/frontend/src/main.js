@@ -2,27 +2,29 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from '@/store/store';
-import Axios from 'axios';
+import axios from "axios";
 import headerPage from "./components/headerPage";
 import ('./style.css')
 
-
-
-//import { library } from '@fortawesome/fontawesome-svg-core'
-
-/* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
-/* import specific icons */
-//import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 
 
 Vue.config.productionTip = false
 
+// Setting up default vue http modules for api calls
+Vue.prototype.$http = axios;
+// Load the token from the localStorage
+const token = localStorage.getItem("token");
+// Is there is any token then we will simply append default axios authorization headers
+if (token) {
+  Vue.prototype.$http.defaults.headers.common['Authorization'] = token;
+}
+
+
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('headerPage', headerPage)
 
-Axios.defaults.headers.common['Authorization'] = `Bearer ${store.state.token}`;
+
 
 new Vue({
   router,

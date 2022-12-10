@@ -4,40 +4,20 @@
   <div class="container">
     <div class="card card-container">
       <h1 class="welcome">Vítejte ve hře <u>MateMagic</u> </h1>
-      <h1 class="login-card">Pihlášení</h1>
+      <h1 class="login">Pihlášení</h1>
       <h2>Nemáš účet?</h2>
-      <button class="btn btn-lg btn-primary btn-block btn-signin" @click="login" type="submit">Registruj se zde</button>
+      <button class="btn btn-lg btn-primary btn-block btn-signin" @click="toRegister" type="submit">Registruj se zde</button>
       <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
       <p id="profile-name" class="profile-name-card"></p>
-      <form class="form-signin">
+      <form class="form-signin" @submit.prevent="loginUser">
         <span id="reauth-email" class="reauth-email"></span>
-        <input type="text" id="inputFirstName" placeholder="Jméno" v-model="first_name" />
-        <input type="text" id="inputLastName" placeholder="Příjmení" v-model="last_name" />
+        <input type="text" id="inputFirstName" placeholder="Jméno" v-model="username" />
+        <input type="text" id="inputLastName" placeholder="Email" v-model="email" />
         <input type="password" id="inputPassword" placeholder="Heslo" v-model="password" />
-        <button class="btn btn-lg btn-primary btn-block btn-signin" @click="login" type="submit">Přihlásit</button>
-        <br>
+        <button class="btn btn-lg btn-primary btn-block btn-signin" value="login" type="submit">Přihlásit</button>
 
-        <select v-model="year">
-          <option disabled value="">Zvolit ročník</option>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
-        <br>
-        <br>
-
-        <div>Jsem: {{ role }}</div>
-        <br>
-        <input type="radio" id="Žák" value="Žák" v-model="role" />
-        <label for="Žák">Žák</label>
-
-        <input type="radio" id="Učitel" value="Učitel" v-model="role" />
-        <label for="Učitel">Učitel</label>
 
         <br>
-
 
       </form>
     </div>
@@ -46,42 +26,130 @@
 </template>
 <script>
 
+import {mapActions} from 'vuex';
+import axios from "axios";
+
 
 export default {
   data() {
     return {
-      first_name: '',
-      last_name: '',
+      username: '',
+      email: '',
       password: '',
-      year:0,
       msg: '',
-      role: 'vyber',
+      user:{},
+      users:[]
 
 
     };
   },
+
+  async mounted() {
+
+    try {
+      this.users = (await axios.get("/api/users")).data;
+      //console.log(this.users);
+    } catch (err) {
+      //console.log(err);
+    }
+  },
+
   methods: {
+
+    ...mapActions(['login']),
     /**
      * login method
      * @values username, password
      */
-    login() {
-      if(this.role ==="Žák") {
+    loginUser() {
 
-        this.$store.state.attributes.first_name = this.first_name;
-        this.$store.state.attributes.last_name = this.last_name;
-        this.$store.state.attributes.password = this.password;
-        this.$store.state.attributes.year_of_study = this.year;
-        this.$store.state.attributes.money = 250;
-        this.$store.state.logged = true;
+      this.controllerMethod();
 
 
-        this.$router.push('./profileOverviewPage');
-      }else if(this.role ==="Učitel"){
-        this.$router.push('./addWordTask');
+      let user ={
+        username: this.username,
+        password: this.password,
+        email: this.email
+      };
+
+
+      this.login(user)
+          .then(res => {
+
+
+            if (res.data.success) {
+
+              if(this.user.role === 'teacher'){
+                this.$router.push("./addWordTask");
+
+
+              }else{
+                this.$router.push("./profileOverviewPage");
+              }
+
+            }
+          })
+          .catch(err => {
+            alert("Nesprávné heslo nebo email");
+            console.log(err);
+          });
+
+
+      /*
+      //let user = this.user;
+      let user1 = {
+        username: this.user.username,
+        password: this.user.password
+      };
+
+        this.login(user1)
+            .then(res => {
+
+              console.log(res.data);
+              if (res.data.success) {
+
+                console.log("dostal jsem se za res");
+                if(this.user.role ==='student') {
+                  this.$router.push("/profileOverviewPage");
+                }
+
+                  //this.$store.state.attributes.first_name = this.username;
+                  //this.$store.state.attributes.email = this.email;
+                  //this.$store.state.attributes.password = this.password;
+
+                else {
+                  this.$router.push('./addWordTask');
+                }
+              }
+            })
+            .catch(err => {
+              //alert("Špatné jméno nebo heslo");
+              console.log(err);
+            });
+
+        */
+    },
+
+    controllerMethod(){
+
+
+      for(let i =0; i<this.users.length; i++){
+        if(this.users[i].email === this.email){
+          this.user = this.users[i];
+        }
       }
 
+
     },
+
+    /**
+     * continue as host method
+     */
+
+    toRegister(){
+      this.$router.push('./registerPage');
+    }
+
 
   }
 };
@@ -90,20 +158,19 @@ export default {
 
 <style>
 
-.container{
-  margin-top: -5%;
-
+.container {
+  /* NUTNE ZMENIT OBRAZEK*/
+  background-image: url("https://slevomat.sgcdn.cz/images/t/1280/11/45/11456672-186820.webp");
+  background-color: #cccccc;
 }
 
-.login-card{
-
+.login{
   font-size: 30px;
   text-align: center;
   padding-bottom: 50px;
 }
 
 .card-container.card {
-  margin-top: 5%;
   max-width: 350px;
   padding: 40px 40px;
   border: #7cff97 4px solid;
@@ -127,8 +194,8 @@ export default {
 .card {
   background-color: #F7F7F7;
   padding: 20px 25px 30px;
-  margin: auto;
-
+  margin: 0 auto 25px;
+  margin-top: 50px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   border-radius: 2px;

@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const userRouter = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
@@ -7,70 +7,120 @@ const key = require('../../config/keys').secret;
 const User = require('../../models/User');
 
 
-//itemConnect('mongodb+srv://lukas-dufek:frameworkvuejs@items.x2hdz8c.mongodb.net/?retryWrites=true&w=majority');
-
-
-
 /**
  * @route POST api/users/register
  * @desc Register the User
  * @access Public
  */
-router.post('/register', async (req, res) => {
-
-
+userRouter.post('/register',  (req, res) => {
     let {
-        name,
         username,
         email,
         password,
-        confirm_password
+        confirm_password,
+        role,
+        year
     } = req.body;
+    //console.log(req.body);
     if (password !== confirm_password) {
+
+
         return res.status(400).json({
             msg: "Password do not match."
         });
-    }
-    // Check for the unique Username
-    User.findOne({
-        username: username
-    }).then(user => {
-        if (user) {
-            return res.status(400).json({
-                msg: "Username is already taken."
-            });
-        }
-    })
-    // Check for the Unique Email
-    User.findOne({
-        email: email
-    }).then(user => {
-        if (user) {
-            return res.status(400).json({
-                msg: "Email is already registred. Did you forgot your password."
-            });
-        }
-    });
-    // The data is valid and new we can register the user
-    let newUser = new User({
-        name,
-        username,
-        password,
-        email
-    });
-    // Hash the password
-    bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-            if (err) throw err;
-            newUser.password = hash;
-            newUser.save().then(user => {
-                return res.status(201).json({
-                    success: true,
-                    msg: "Hurry! User is now registered."
+
+    }else {
+        /*
+        // Check for the unique Username
+        User.findOne({
+            username: req.body.username
+        }).then(user => {
+            if (user) {
+                return res.status(400).json({
+                    success: false,
+                    msg: "Username is already taken."
                 });
-            });
+
+            }
+        })
+
+         */
+
+
+
+        // Check for the Unique Email
+        User.findOne({
+            email: email
+        }).then( async user => {
+            if (user) {
+                //console.log("mail se nasel", email);
+                return res.status(400).json({
+                    msg: "Email is already registred. Did you forgot your password."
+                });
+
+            } else {
+
+                let newUser = new User({
+                    username,
+                    email,
+                    password,
+                    role,
+                    year
+                });
+
+
+                try {
+                    const salt = await bcrypt.genSalt(10);
+                    // The data is valid and new we can register the user
+
+                    newUser.password = await bcrypt.hash(newUser.password, salt);
+
+                    await newUser.save().then(() => {
+                        return res.status(201).json({
+                            success: true,
+                            msg: "Hurry! User is now registered."
+                        });
+                    });
+
+
+                } catch (err) {
+
+                }
+
+
+                // Hash the password
+
+
+                /*
+                bcrypt.genSalt(10, (err, salt) => {
+                    bcrypt.hash(req.body.password, salt, (err, hash) => {
+                        if (err) {
+
+                            //console.log(req.body.email);
+                            //console.log(email);
+                            //console.log(salt);
+                            //console.log(err);
+                            throw err;
+                        }else{
+                            newUser.password = hash;
+                            newUser.save().then(() => {
+                                return res.status(201).json({
+                                    success: true,
+                                    msg: "Hurry! User is now registered."
+                                });
+                            });
+                        }
+                    });
+                });
+                */
+
+
+            }
+
         });
-    });
+    }
+
+
 });
 
 /**
@@ -78,45 +128,49 @@ router.post('/register', async (req, res) => {
  * @desc Signing in the User
  * @access Public
  */
-router.post('/login', async (req, res) => {
+userRouter.post('/login',  (req, res) => {
 
     User.findOne({
-        username: req.body.username
+        email: req.body.email
     }).then(user => {
         if (!user) {
             return res.status(404).json({
                 msg: "Username is not found.",
                 success: false
             });
-        }
-        // If there is user we are now going to compare the password
-        bcrypt.compare(req.body.password, user.password).then(isMatch => {
-            if (isMatch) {
-                // User's password is correct and we need to send the JSON Token for that user
-                const payload = {
-                    _id: user._id,
-                    username: user.username,
-                    name: user.name,
-                    email: user.email
-                }
-                jwt.sign(payload, key, {
-                    expiresIn: 604800
-                }, (err, token) => {
-                    res.status(200).json({
-                        success: true,
-                        token: `Bearer ${token}`,
-                        user: user,
-                        msg: "Hurry! You are now logged in."
+        }else {
+
+            // If there is user we are now going to compare the password
+            bcrypt.compare(req.body.password, user.password).then(isMatch => {
+                if (isMatch) {
+                    // User's password is correct and we need to send the JSON Token for that user
+                    const payload = {
+                        _id: user._id,
+                        username: user.username,
+                        email: user.email,
+                        role: user.role
+                        //year: user.year
+                    }
+                    jwt.sign(payload, key, {
+                        expiresIn: 172800
+                    }, (err, token) => {
+                        res.status(200).json({
+                            success: true,
+                            token: `Bearer ${token}`,
+                            user: user,
+                            msg: "Hurry! You are now logged in."
+                        });
+                    })
+                } else {
+                    return res.status(404).json({
+                        msg: "Incorrect password.",
+                        success: false
                     });
-                })
-            } else {
-                return res.status(404).json({
-                    msg: "Incorrect password.",
-                    success: false
-                });
-            }
-        })
+                }
+            })
+        }
     });
+
 });
 
 /**
@@ -124,7 +178,7 @@ router.post('/login', async (req, res) => {
  * @desc Return the User's Data
  * @access Private
  */
-router.get('/profile', passport.authenticate('jwt', {
+userRouter.get('/profile', passport.authenticate('jwt', {
 
     session: false
 }), (req, res) => {
@@ -134,4 +188,17 @@ router.get('/profile', passport.authenticate('jwt', {
         user: req.user
     });
 });
-module.exports = router;
+
+userRouter.get('/', async (req, res) => {
+
+    try {
+        const Users = await User.find();
+        if (!Users) throw new Error('No Users')
+        res.status(200).json(Users)
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+
+})
+
+module.exports = userRouter;

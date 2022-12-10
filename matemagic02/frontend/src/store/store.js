@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
+import Auth from "../Warehouse/Auth";
 import axios from "axios";
 
 //import createPersistedState from 'vuex-persistedstate';
@@ -8,6 +9,10 @@ import axios from "axios";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+
+    modules:{
+        Auth
+    },
     state: {
         logged: false,
         attributes: {
