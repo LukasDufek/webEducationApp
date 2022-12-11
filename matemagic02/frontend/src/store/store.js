@@ -91,6 +91,12 @@ export default new Vuex.Store({
             state.attributes.inventory.push(item);
         },
 
+        setLocalUser(state, user){
+            state.attributes.first_name = user.first_name;
+            state.attributes.last_name = user.last_name;
+            state.attributes.year_of_study = user.year;
+        }
+
 
 
 

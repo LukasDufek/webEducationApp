@@ -64,7 +64,7 @@ const actions = {
                          commit
                      }) {
         commit('profile_request');
-        let res = await axios.get('/api/users/profile')
+        let res = await axios.get('/api/users/profile');
         commit('user_profile', res.data.user)
         return res;
     },

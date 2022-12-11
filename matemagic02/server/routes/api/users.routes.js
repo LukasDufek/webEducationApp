@@ -14,14 +14,15 @@ const User = require('../../models/User');
  */
 userRouter.post('/register',  (req, res) => {
     let {
-        username,
+        first_name,
+        last_name,
         email,
         password,
         confirm_password,
         role,
         year
     } = req.body;
-    //console.log(req.body);
+
     if (password !== confirm_password) {
 
 
@@ -53,7 +54,7 @@ userRouter.post('/register',  (req, res) => {
             email: email
         }).then( async user => {
             if (user) {
-                //console.log("mail se nasel", email);
+
                 return res.status(400).json({
                     msg: "Email is already registred. Did you forgot your password."
                 });
@@ -61,7 +62,8 @@ userRouter.post('/register',  (req, res) => {
             } else {
 
                 let newUser = new User({
-                    username,
+                    first_name,
+                    last_name,
                     email,
                     password,
                     role,
@@ -146,7 +148,8 @@ userRouter.post('/login',  (req, res) => {
                     // User's password is correct and we need to send the JSON Token for that user
                     const payload = {
                         _id: user._id,
-                        username: user.username,
+                        first_name: user.first_name,
+                        last_name: user.last_name,
                         email: user.email,
                         role: user.role
                         //year: user.year

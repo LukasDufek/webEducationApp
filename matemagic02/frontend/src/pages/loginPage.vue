@@ -11,7 +11,6 @@
       <p id="profile-name" class="profile-name-card"></p>
       <form class="form-signin" @submit.prevent="loginUser">
         <span id="reauth-email" class="reauth-email"></span>
-        <input type="text" id="inputFirstName" placeholder="Jméno" v-model="username" />
         <input type="text" id="inputLastName" placeholder="Email" v-model="email" />
         <input type="password" id="inputPassword" placeholder="Heslo" v-model="password" />
         <button class="btn btn-lg btn-primary btn-block btn-signin" value="login" type="submit">Přihlásit</button>
@@ -28,12 +27,12 @@
 
 import {mapActions} from 'vuex';
 import axios from "axios";
+import store from "@/store/store";
 
 
 export default {
   data() {
     return {
-      username: '',
       email: '',
       password: '',
       msg: '',
@@ -59,7 +58,7 @@ export default {
     ...mapActions(['login']),
     /**
      * login method
-     * @values username, password
+     * @values email, password
      */
     loginUser() {
 
@@ -67,9 +66,9 @@ export default {
 
 
       let user ={
-        username: this.username,
-        password: this.password,
-        email: this.email
+        email: this.email,
+        password: this.password
+
       };
 
 
@@ -85,6 +84,7 @@ export default {
 
               }else{
                 this.$router.push("./profileOverviewPage");
+                store.commit('setLocalUser', this.user);
               }
 
             }
@@ -94,40 +94,6 @@ export default {
             console.log(err);
           });
 
-
-      /*
-      //let user = this.user;
-      let user1 = {
-        username: this.user.username,
-        password: this.user.password
-      };
-
-        this.login(user1)
-            .then(res => {
-
-              console.log(res.data);
-              if (res.data.success) {
-
-                console.log("dostal jsem se za res");
-                if(this.user.role ==='student') {
-                  this.$router.push("/profileOverviewPage");
-                }
-
-                  //this.$store.state.attributes.first_name = this.username;
-                  //this.$store.state.attributes.email = this.email;
-                  //this.$store.state.attributes.password = this.password;
-
-                else {
-                  this.$router.push('./addWordTask');
-                }
-              }
-            })
-            .catch(err => {
-              //alert("Špatné jméno nebo heslo");
-              console.log(err);
-            });
-
-        */
     },
 
     controllerMethod(){
@@ -138,6 +104,7 @@ export default {
           this.user = this.users[i];
         }
       }
+
 
 
     },

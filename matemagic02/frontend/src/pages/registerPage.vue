@@ -11,51 +11,17 @@
       <p id="profile-name" class="profile-name-card"></p>
 
       <form @submit.prevent="register">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input
-              id="username"
-              type="text"
-              placeholder="Username"
-              name="username"
-              v-model="username"
-              class="form-control"
-          >
-        </div>
+        <div class="form-signin">
+          <input type="text" class="inputName" placeholder="Jméno" v-model="first_name" />
 
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input
-              id="email"
-              type="text"
-              placeholder="Email"
-              name="email"
-              v-model="email"
-              class="form-control"
-          >
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-              type="password"
-              class="form-control"
-              placeholder="Password"
-              name="password"
-              id="password"
-              v-model="password"
-          >
-        </div>
-        <div class="form-group">
-          <label for="confirm_password">Confirm Password</label>
-          <input
-              type="password"
-              class="form-control"
-              placeholder="Confirm Password"
-              name="confirm_password"
-              id="confirm_password"
-              v-model="confirm_password"
-          >
-        </div>
+          <input type="text" class="inputName" placeholder="Příjmení" v-model="last_name" />
+
+          <input type="text" class="inputName" placeholder="Email" v-model="email" />
+
+          <input type="password" id="inputPassword" placeholder="Heslo" v-model="password" />
+
+          <input type="password" id="inputPasswordAgain" placeholder="Potvrdit heslo" v-model="confirm_password" />
+
 
 
         <br>
@@ -80,10 +46,13 @@
         <br>
         <br>
         </div>
+          <br>
 
-        <button class="btn btn-primary" @click="registerUser">Zaregistrovat</button>
+        <button class="btn btn-lg btn-primary btn-block btn-signin" @click="registerUser">Zaregistrovat</button>
 
+        </div>
       </form>
+
 
 
     </div>
@@ -96,11 +65,12 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      username: '',
+      first_name: '',
+      last_name: '',
       email: '',
       password: '',
       confirm_password: '',
-      year:0,
+      year:1,
       msg: '',
       role: 'vyber',
 
@@ -114,7 +84,8 @@ export default {
 
     registerUser() {
       let user = {
-        username: this.username,
+        first_name: this.first_name,
+        last_name: this.last_name,
         email: this.email,
         password: this.password,
         confirm_password: this.confirm_password,
@@ -238,7 +209,7 @@ export default {
   box-sizing: border-box;
 }
 
-.form-signin #inputFirstName, #inputLastName,
+.form-signin .inputName,
 .form-signin #inputPassword, #inputPasswordAgain  {
   direction: ltr;
   height: 44px;
