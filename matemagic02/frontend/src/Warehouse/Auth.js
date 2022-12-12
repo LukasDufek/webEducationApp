@@ -1,4 +1,5 @@
 import axios from 'axios';
+import store from "@/store/store";
 //import router from '../router';
 
 const state = {
@@ -65,7 +66,8 @@ const actions = {
                      }) {
         commit('profile_request');
         let res = await axios.get('/api/users/profile');
-        commit('user_profile', res.data.user)
+        commit('user_profile', res.data.user);
+        store.commit("setLocalUser", res.data.user);
         return res;
     },
     // Logout the user

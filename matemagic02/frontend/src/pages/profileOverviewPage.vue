@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isLoggedIn">
+  <div v-if="user">
     <header-page/>
     <div class="container">
     <div   class="user-card">
@@ -54,26 +54,24 @@ export default {
     }
   },
 
-  mounted(){
+  computed: mapGetters(["user"]),
+  methods: {
+    ...mapActions(["getProfile"]),
 
-
-  },
-  computed: {
-    ...mapGetters(["isLoggedIn"])
-  },
-  methods:{
-
-    ...mapActions(["logout"]),
     logoutUser() {
       this.logout();
     },
 
     toGame(){
       this.$router.push('./characterOverview');
-    }
-  }
 
-}
+    }
+  },
+  created() {
+    this.getProfile();
+  }
+};
+
 </script>
 
 <style scoped>

@@ -27,7 +27,7 @@
 
 import {mapActions} from 'vuex';
 import axios from "axios";
-import store from "@/store/store";
+//import store from "@/store/store";
 
 
 export default {
@@ -84,7 +84,7 @@ export default {
 
               }else{
                 this.$router.push("./profileOverviewPage");
-                store.commit('setLocalUser', this.user);
+                //store.commit('setLocalUser', this.user);
               }
 
             }
