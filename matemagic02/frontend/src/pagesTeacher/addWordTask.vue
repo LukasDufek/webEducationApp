@@ -29,7 +29,6 @@
       <br>
       <br>
       <br>
-      <button @click="odhlasit">Odhlásit se</button>
   </div>
     </div>
 </div>
@@ -40,12 +39,12 @@
 
 import store from "@/store/store";
 import HeaderTeacher from "@/components/headerTeacher";
+import {mapActions, mapGetters} from "vuex";
 
 
 export default {
   name: "addWordTask",
   components: {HeaderTeacher},
-  //components: {HeaderTeacher},
   data() {
     return {
       text_of_task:'',
@@ -56,7 +55,9 @@ export default {
       actual_task:{}
     }
   },
+  computed: mapGetters(["user"]),
   methods: {
+    ...mapActions(["getProfile"]),
 
     async addWordTask(_text_of_task, _for_year, _result, _reward){
 
@@ -76,9 +77,16 @@ export default {
       location.reload();
       console.log(this.word_tasks);
     },
+    /*
     odhlasit(){
-      this.$router.push('/');
+      this.$router.push('./');
     }
+     */
+
+
+  },
+  created() {
+    this.getProfile();
   }
 }
 </script>

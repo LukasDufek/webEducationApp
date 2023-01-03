@@ -3,6 +3,7 @@
     <game-header/>
     <div class="container">
   <div class="main-content">
+    <h2 class="your-money">{{Math.floor(user.money/10)}} <gold-coin-component/>   {{user.money%10 }} <silver-coin-component/></h2>
     <button class="change-shopping-btn" @click="changeShopping">{{this.button_msg}}</button>
     <br>
     <br>
@@ -50,6 +51,7 @@ import GameHeader from "@/gamePages/gameHeader";
 import store from "@/store/store";
 import SilverCoinComponent from "@/components/silverCoinComponent";
 import goldCoinComponent from "@/components/goldCoinComponent";
+import {mapActions, mapGetters} from "vuex";
 
 
 export default {
@@ -68,6 +70,8 @@ export default {
       buying: true
     }
   },
+  computed: mapGetters(["user"]),
+
   async mounted(){
     try {
       this.shop_items = (await axios.get("api/items/")).data;
@@ -85,13 +89,13 @@ export default {
       console.log(this.err);
     }
 
-    //this.players_items = this.$store.state.attributes.inventory;
+    //this.players_items = this.$store.getters.user.inventory;
 
-    for(let i=0; i<this.players_items.length; i++){
-      console.log(this.players_items[i].name);
-    }
+
   },
   methods:{
+      ...mapActions(["getProfile"]),
+
     changeSelectedType(parameter){
 
       this.selectedItems = [];
@@ -122,7 +126,7 @@ export default {
       this.items = [];
       if(!this.buying){
         this.button_msg = "Nakoupit předměty";
-        this.items = this.players_items;
+        this.items = this.user.inventory;
         this.changeSelectedType('zbrane');
         this.button2_msg = "PRODAT";
 
@@ -132,6 +136,7 @@ export default {
         this.changeSelectedType('zbrane');
         this.button2_msg = "KOUPIT";
 
+
       }
 
 
@@ -139,12 +144,12 @@ export default {
 
     buyItem(item){
       if(this.button2_msg ==="KOUPIT") {
-        if (this.$store.state.attributes.money >= item.price) {
+        if (this.user.money >= item.price) {
           if (!this.sameItem(item)) {
             //pridat do inventare
             store.commit('addItem', item);
             store.commit('addMoney', -(item.price));
-            this.players_items.push(item);
+            //this.players_items.push(item);
 
             alert("Položka koupena");
           } else {
@@ -154,9 +159,12 @@ export default {
           alert("Nedostatek peněz");
         }
 
-      }//sell item
-      for(let i=0; i<this.players_items.length; i++){
-        console.log(this.players_items[i].name);
+      }
+      else if(this.button2_msg ==="PRODAT"){
+        store.commit('removeItem', item);
+        store.commit('addMoney', item.sell_price);
+        alert("Položka prodána");
+        this.changeShopping();
       }
 
     },
@@ -164,8 +172,8 @@ export default {
     sameItem(item){
       let allready_got = false;
 
-      for(let i=0; i<this.players_items.length; i++){
-        if(this.players_items[i]._id ===item._id){
+      for(let i=0; i<this.user.inventory.length; i++){
+        if(this.user.inventory[i]._id ===item._id){
           allready_got = true;
         }
       }
@@ -173,6 +181,10 @@ export default {
     }
 
 
+  },
+
+  created() {
+    this.getProfile();
   }
 }
 </script>
@@ -261,6 +273,11 @@ export default {
 .change-shopping-btn{
   background-color: #4CAF50;
   margin-top: 2%;
+}
+.your-money{
+  text-align: right;
+  padding-right: 2rem;
+  margin-bottom: -2rem;
 }
 
 </style>

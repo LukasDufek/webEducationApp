@@ -56,27 +56,7 @@ export default new Vuex.Store({
         }],
     },
     mutations: {
-        addMoney(state, count){
-            state.attributes.money += count;
-        },
 
-        upgradeAbillity(state, ability){
-
-            switch(ability){
-                case 'strength':
-                    state.attributes.abilities.strength++;
-                    break;
-                case 'attack':
-                    state.attributes.abilities.attack++;
-                    break;
-                case 'defense':
-                    state.attributes.abilities.defense++;
-                    break;
-                case 'hp':
-                    state.attributes.abilities.hp++;
-                    break;
-            }
-        },
         async addTask(state, task){
 
             try{
@@ -87,15 +67,33 @@ export default new Vuex.Store({
             state.word_tasks.push(task.data);
         },
 
+        /*
+        async editTask(state, task) {
+            let id = task._id;
+
+            for(let i=0; i<state.word_tasks.length; i++){
+                if(id=== state.word_tasks[i]._id){
+                    state.word_tasks[i] = task;
+                }
+            }
+
+            await axios({
+                method: 'put',
+                url: `api/tasks/${id}`,
+                data: state.word_tasks
+
+            });
+        }
+
+         */
+
+        /*
         addItem(state, item){
             state.attributes.inventory.push(item);
         },
 
-        setLocalUser(state, user){
-            state.attributes.first_name = user.first_name;
-            state.attributes.last_name = user.last_name;
-            state.attributes.year_of_study = user.year;
-        }
+         */
+
 
 
 

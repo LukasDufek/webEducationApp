@@ -3,7 +3,7 @@
   <header-page/>
   <div class="container">
     <div class="main-content">
-    <h1> <u>Příklady pro {{this.$store.state.attributes.year_of_study}}.Ročník</u></h1>
+    <h1> <u>Příklady pro {{user.year}}.Ročník</u></h1>
     <h2>Dnes jsi už absolvoval {{this.daily_limit}} cvičení</h2>
 
 
@@ -140,9 +140,12 @@
 
 <script>
 import store from "@/store/store";
+import {mapGetters} from "vuex";
 
 export default {
   name: "mathExamples",
+
+  computed: mapGetters(["user"]),
 
   data() {
     return {
@@ -159,12 +162,13 @@ export default {
       wrong_examples:[],
       daily_limit : 0,
       reward:0,
-      count_of_exmaples: 20
+      count_of_exmaples: 20,
 
     }
   },
 
   mounted() {
+
 
     this.GENERATE();
 
@@ -174,7 +178,7 @@ export default {
   methods: {
 
     GENERATE(){
-      switch (parseInt(this.$store.state.attributes.year_of_study)){
+      switch (parseInt(this.$store.getters.user.year)){
         case 1:
           this.generate_examples_for_I();
           break;
@@ -708,7 +712,7 @@ export default {
       let first_number = Math.floor((Math.random() * (maxLimit - minLimit + 1)) + minLimit);
       let second_number = Math.floor((Math.random() * (maxLimit - minLimit + 1)) + minLimit);
 
-      if(parseInt(this.$store.state.attributes.year_of_study) === 4){
+      if(parseInt(this.$store.getters.user.year) === 4){
         first_number = Math.round((Math.random() * (maxLimit - minLimit + 1)) / minLimit) * minLimit ;
         second_number = Math.round((Math.random() * (maxLimit - minLimit + 1)) / minLimit) * minLimit ;
       }
@@ -730,7 +734,7 @@ export default {
       }else if(this.exists_same_example(this.example)){
         this.generate_addition_examples(minLimit, maxLimit);
         //prechod pres desitku
-      }else if( ((first_number%10) + (second_number%10) > 10) && (parseInt(this.$store.state.attributes.year_of_study) < 3)){
+      }else if( ((first_number%10) + (second_number%10) > 10) && (parseInt(this.$store.getters.user.year) < 3)){
         this.generate_addition_examples(minLimit, maxLimit);
       }else {
         this.examples.push(this.example);
@@ -748,11 +752,11 @@ export default {
       let first_number = Math.floor((Math.random() * (maxLimit - minLimit + 1)) + minLimit);
       let second_number = Math.floor((Math.random() * (maxLimit - minLimit + 1)) + minLimit);
 
-      if(parseInt(this.$store.state.attributes.year_of_study)=== 4){
+      if(parseInt(this.$store.getters.user.year)=== 4){
         first_number = Math.round((Math.random() * (maxLimit - minLimit + 1)) / minLimit) * minLimit ;
         second_number = Math.round((Math.random() * (maxLimit - minLimit + 1)) / minLimit) * minLimit ;
       }
-      else if (parseInt(this.$store.state.attributes.year_of_study) === 5){
+      else if (parseInt(this.$store.getters.user.year) === 5){
         first_number *= 1000000;
         second_number *= 1000000;
       }
@@ -777,7 +781,7 @@ export default {
       if(this.exists_same_example(this.example)){
         this.generate_subtraction_examples(minLimit, maxLimit);
         //prechod pres desitku
-      }else if( ((first_number%10) - (second_number%10) < 0) && (parseInt(this.$store.state.attributes.year_of_study) < 3)){
+      }else if( ((first_number%10) - (second_number%10) < 0) && (parseInt(this.$store.getters.user.year) < 3)){
         this.generate_subtraction_examples(minLimit, maxLimit);
       } else {
         this.examples.push(this.example);
@@ -795,14 +799,14 @@ export default {
 
       let nums = [100, 1000, 10000];
 
-      if(parseInt(this.$store.state.attributes.year_of_study) === 4){
+      if(parseInt(this.$store.getters.user.year) === 4){
 
         first_number = Math.floor((Math.random() * (1000 - 10 + 1)) + 10);
 
 
         second_number = nums[Math.floor(Math.random()*nums.length)];
 
-      }else if(parseInt(this.$store.state.attributes.year_of_study) === 5){
+      }else if(parseInt(this.$store.getters.user.year) === 5){
         //second_number (1-10)
         first_number *= nums[Math.floor(Math.random()*nums.length)];
         first_number /= 10;
@@ -840,14 +844,14 @@ export default {
 
       let nums = [100, 1000, 10000];
 
-      if(parseInt(this.$store.state.attributes.year_of_study) === 4){
+      if(parseInt(this.$store.getters.user.year) === 4){
 
         let rdn = nums[Math.floor(Math.random()*nums.length)];
 
         first_number = rdn * Math.floor((Math.random() * (100 - 10 + 1)) + 10);
         second_number = rdn;
 
-      }else if(parseInt(this.$store.state.attributes.year_of_study) === 5){
+      }else if(parseInt(this.$store.getters.user.year) === 5){
 
         if( (first_number / second_number) > 10 || (first_number % second_number !== 0) ){
           this.generate_division_examples(minLimit, maxLimit);
@@ -869,10 +873,10 @@ export default {
       this.example = {message, type, toText, first_number, second_number, operator, result, your_result}
 
 
-      if( (first_number / second_number) > 10  && (parseInt(this.$store.state.attributes.year_of_study) < 5) ){
+      if( (first_number / second_number) > 10  && (parseInt(this.$store.getters.user.year) < 5) ){
         this.generate_division_examples(minLimit, maxLimit);
       }
-      else if(first_number % second_number !==0 && (parseInt(this.$store.state.attributes.year_of_study) < 5) ){
+      else if(first_number % second_number !==0 && (parseInt(this.$store.getters.user.year) < 5) ){
         this.generate_division_examples(minLimit, maxLimit);
       }
       else if(this.exists_same_example(this.example)){
@@ -893,7 +897,7 @@ export default {
      */
     generate_round_examples(minLimit, maxLimit, rounding_accuracy){
       let first_number;
-      if(parseInt(this.$store.state.attributes.year_of_study) === 5){
+      if(parseInt(this.$store.getters.user.year) === 5){
         //pro 5.rocnik, maxLimit = 100 - doporuceno
         //(Math.random() * (maxLimit - minLimit + 1) ) + minLimit)
         first_number = Math.round(( (Math.random() * maxLimit) + minLimit)*100)   /100;
@@ -1069,11 +1073,11 @@ export default {
 
       this.success_rate = ((this.count_of_exmaples - this.wrong_examples.length) / this.count_of_exmaples) * 100;
         if(this.success_rate>= 90){
-          this.reward = parseInt( this.$store.state.attributes.year_of_study) * 4;
+          this.reward = parseInt( this.$store.getters.user.year) * 4;
         }else if(this.success_rate >= 75){
-          this.reward = parseInt( this.$store.state.attributes.year_of_study) *2;
+          this.reward = parseInt( this.$store.getters.user.year) *2;
         }else if(this.success_rate >= 60){
-          this.reward = parseInt(this.$store.state.attributes.year_of_study) * 1;
+          this.reward = parseInt(this.$store.getters.user.year) * 1;
         }
 
         //this.$store.state.atributy.penize += this.reward;
@@ -1091,11 +1095,11 @@ export default {
       this.examples = [];
       this.GENERATE();
       console.log(this.reward);
-      console.log(this.$store.state.attributes.money);
       console.log('this.$store.state.atributy.jmeno');
 
 
     }
+
 
   }
 

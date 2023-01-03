@@ -4,11 +4,11 @@
     <div class="container">
     <div   class="user-card">
       <h1>Přehled tvého profilu</h1>
-      <h2>Jméno: {{this.$store.state.attributes.first_name}}</h2>
-      <h2>Příjmení: {{this.$store.state.attributes.last_name}}</h2>
-      <h2>Ročník: {{this.$store.state.attributes.year_of_study}}</h2>
-      <h2>Zkušenosti: {{this.$store.state.attributes.exp}}</h2>
-      <h2>{{this.$store.state.attributes.money/10}} <gold-coin-component/>  a {{this.$store.state.attributes.money%10 }} <silver-coin-component/></h2>
+      <h2>Jméno: {{user.first_name}}</h2>
+      <h2>Příjmení: {{user.last_name}}</h2>
+      <h2>Ročník: {{user.year}}</h2>
+      <h2>Zkušenosti: {{user.exp}}</h2>
+      <h2>{{Math.floor(user.money/10)}} <gold-coin-component/>  a {{user.money%10 }} <silver-coin-component/></h2>
 
       <!--
       <section v-if="this.$store.state.attributes.year_of_study >= 3">
@@ -18,7 +18,6 @@
       <button class="to-game-button" @click="toGame">VSTOUPIT DO HRY</button>
       <br>
 
-      <button class="to-game-button" @click="logoutUser">Odhlásit se</button>
 
     </div>
 
@@ -29,8 +28,11 @@
   </div>
 
   <div v-else>
-    <no-logged/>
+    <button @click="route">K přihlášení</button>
   </div>
+
+
+
 
 </template>
 
@@ -39,13 +41,12 @@ import SilverCoinComponent from "@/components/silverCoinComponent";
 import GoldCoinComponent from "@/components/goldCoinComponent";
 import {mapGetters} from "vuex";
 import { mapActions } from "vuex";
-import NoLogged from "@/components/noLogged";
 export default {
   name: "profileOverviewPage",
-  components: {NoLogged, GoldCoinComponent, SilverCoinComponent},
+  components: {GoldCoinComponent, SilverCoinComponent},
   data() {
     return {
-      first_name:'',
+      first_name: '',
       last_name: '',
       year_of_study:0,
       exp:0,
@@ -58,14 +59,17 @@ export default {
   methods: {
     ...mapActions(["getProfile"]),
 
-    logoutUser() {
-      this.logout();
-    },
 
     toGame(){
       this.$router.push('./characterOverview');
 
+
+    },
+
+    route(){
+      this.$router.push('./');
     }
+
   },
   created() {
     this.getProfile();

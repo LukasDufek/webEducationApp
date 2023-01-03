@@ -1,5 +1,5 @@
 import axios from 'axios';
-import store from "@/store/store";
+//import store from "@/store/store";
 //import router from '../router';
 
 const state = {
@@ -34,8 +34,8 @@ const actions = {
             if (res.data.success) {
                 const token = res.data.token;
                 const user = res.data.user;
-                console.log(res.data);
-                console.log(user);
+                //console.log(res.data);
+                //console.log(user);
                 // Store the token into the localstorage
                 localStorage.setItem('token', token);
                 // Set the axios defaults
@@ -67,7 +67,7 @@ const actions = {
         commit('profile_request');
         let res = await axios.get('/api/users/profile');
         commit('user_profile', res.data.user);
-        store.commit("setLocalUser", res.data.user);
+        //store.commit("setLocalUser", res.data.user);
         return res;
     },
     // Logout the user
@@ -77,7 +77,7 @@ const actions = {
         await localStorage.removeItem('token');
         commit('logout');
         delete axios.defaults.headers.common['Authorization'];
-        await this.$router.push('./');
+
         return
     }
 };
@@ -118,7 +118,88 @@ const mutations = {
     },
     user_profile(state, user) {
         state.user = user
-    }
+    },
+
+    //
+    async addItem(state, item) {
+        state.user.inventory.push(item);
+
+
+        let id = state.user._id;
+
+        await axios({
+            method: 'put',
+            url: `api/users/${id}`,
+            data: state.user
+
+        });
+
+    },
+
+
+    async removeItem(state, item) {
+
+
+        if (state.user.inventory.length > -1) {
+          state.user.inventory  = state.user.inventory.filter(object => {
+                return object._id !== item._id;
+            });
+
+
+
+            let id = state.user._id;
+
+            await axios({
+                method: 'put',
+                url: `api/users/${id}`,
+                data: state.user.inventory
+
+            });
+        }
+
+
+    },
+
+    async addMoney(state, count) {
+        state.user.money += count;
+
+        let id = state.user._id;
+
+        await axios({
+            method: 'put',
+            url: `api/users/${id}`,
+            data: state.user
+
+        });
+    },
+
+    async upgradeAbillity(state, ability) {
+
+        switch (ability) {
+            case 'strength':
+                state.user.abilities.strength++;
+                break;
+            case 'attack':
+                state.user.abilities.attack++;
+                break;
+            case 'defense':
+                state.user.abilities.defense++;
+                break;
+            case 'hp':
+                state.user.abilities.hp++;
+                break;
+        }
+
+        let id = state.user._id;
+
+        await axios({
+            method: 'put',
+            url: `api/users/${id}`,
+            data: state.user
+
+        });
+    },
+
 };
 
 export default {

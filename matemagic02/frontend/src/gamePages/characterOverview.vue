@@ -1,17 +1,17 @@
 <template>
   <div>
     <game-header/>
-    <div v-if="this.$store.state.logged" class="main-content">
-      <h2>Tvoje postava {{this.$store.state.attributes.first_name}}</h2>
+    <div class="main-content">
+      <h2>Tvoje postava {{user.first_name}}</h2>
 
       <h3>Tvé schonposti:</h3>
-      <h3>Síla: {{this.$store.state.attributes.abilities.strength}}</h3>
-      <h3>Útok: {{this.$store.state.attributes.abilities.attack}}</h3>
-      <h3>Obrana: {{this.$store.state.attributes.abilities.defense}}</h3>
-      <h3>Výdrž: {{this.$store.state.attributes.abilities.hp}}</h3>
+      <h3>Síla: {{user.abilities.strength}}</h3>
+      <h3>Útok: {{user.abilities.attack}}</h3>
+      <h3>Obrana: {{user.abilities.defense}}</h3>
+      <h3>Výdrž: {{user.abilities.hp}}</h3>
       <br>
-      <h3>Vlastníš: {{Math.floor(this.$store.state.attributes.money /10)}} <gold-coin-component/> a {{this.$store.state.attributes.money % 10}} <silver-coin-component/> </h3>
-      <h3>Zkušenosti: {{this.$store.state.attributes.exp}}</h3>
+      <h3>Vlastníš: {{Math.floor(user.money /10)}} <gold-coin-component/> a {{user.money % 10}} <silver-coin-component/> </h3>
+      <h3>Zkušenosti: {{user.exp}}</h3>
 
     </div>
 
@@ -24,9 +24,20 @@
 import GameHeader from "@/gamePages/gameHeader";
 import GoldCoinComponent from "@/components/goldCoinComponent";
 import SilverCoinComponent from "@/components/silverCoinComponent";
+import {mapActions, mapGetters} from "vuex";
 export default {
   name: "characterOverview",
-  components: {SilverCoinComponent, GoldCoinComponent, GameHeader}
+  components: {SilverCoinComponent, GoldCoinComponent, GameHeader},
+
+  computed: mapGetters(["user"]),
+
+  methods: {
+    ...mapActions(["getProfile"]),
+  },
+  created() {
+    this.getProfile();
+  }
+
 }
 </script>
 

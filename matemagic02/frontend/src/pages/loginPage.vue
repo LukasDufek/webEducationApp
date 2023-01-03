@@ -4,7 +4,7 @@
   <div class="container">
     <div class="card card-container">
       <h1 class="welcome">Vítejte ve hře <u>MateMagic</u> </h1>
-      <h1 class="login">Pihlášení</h1>
+      <h1 class="login">Přihlášení</h1>
       <h2>Nemáš účet?</h2>
       <button class="btn btn-lg btn-primary btn-block btn-signin" @click="toRegister" type="submit">Registruj se zde</button>
       <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />

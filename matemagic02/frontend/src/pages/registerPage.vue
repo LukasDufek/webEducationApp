@@ -70,9 +70,10 @@ export default {
       email: '',
       password: '',
       confirm_password: '',
-      year:1,
+      year:0,
       msg: '',
       role: 'vyber',
+      user:{}
 
 
     };
@@ -83,16 +84,14 @@ export default {
     ...mapActions(["register"]),
 
     registerUser() {
-      let user = {
-        first_name: this.first_name,
-        last_name: this.last_name,
-        email: this.email,
-        password: this.password,
-        confirm_password: this.confirm_password,
-        role: this.role,
-        year:this.year
-      };
-      this.register(user).then(res => {
+
+      if(this.role==='student'){
+        this.createNewPlayer();
+      }else{
+        this.createNewTeacher();
+
+      }
+      this.register(this.user).then(res => {
 
           if (res.data.success) {
 
@@ -116,6 +115,44 @@ export default {
 
     toLogin(){
       this.$router.push('./');
+    },
+
+    createNewPlayer() {
+
+            this.user = {
+              "first_name": this.first_name,
+              "last_name": this.last_name,
+              "email": this.email,
+              "password": this.password,
+              "confirm_password": this.confirm_password,
+              "role": this.role,
+              "year": this.year,
+              "money": parseInt(this.year) * 20,
+              "exp": 0,
+              "abilities": {
+                strength: 5,
+                attack: 5,
+                defense: 5,
+                hp: 5
+              },
+              "inventory": [],
+              "helm_equip": null,
+              "weapon_equip": null,
+              "armor_equip": null
+
+            }
+
+    },
+
+    createNewTeacher(){
+      this.user = {
+        first_name: this.first_name,
+        last_name: this.last_name,
+        email: this.email,
+        password: this.password,
+        confirm_password: this.confirm_password,
+        role: this.role,
+      };
     }
 
   },

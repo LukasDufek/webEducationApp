@@ -10,7 +10,7 @@
       </router-link>
 
 
-      <router-link to="/editWordTask"  class="link">
+      <router-link to="/manageWordTask"  class="link">
         <span role="link">Správá úloh</span>
       </router-link>
 
@@ -23,6 +23,8 @@
         <span role="link">####</span>
       </router-link>
 
+      <button @click="logoutUser">Odhlásit se</button>
+
 
     </div>
 
@@ -31,8 +33,21 @@
 </template>
 
 <script>
+import {mapActions, mapGetters} from "vuex";
+
 export default {
-  name: "headerTeacher"
+  name: "headerTeacher",
+
+  computed: {
+    ...mapGetters(["isLoggedIn"]),
+  },
+  methods: {
+    ...mapActions(["logout"]),
+    logoutUser() {
+      this.logout();
+      this.$router.push('./');
+    }
+  }
 }
 </script>
 

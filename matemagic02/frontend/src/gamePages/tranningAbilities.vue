@@ -3,16 +3,16 @@
   <game-header/>
   <div class="container">
       <div class="main-content">
-        <h2>Tvoje postava {{this.$store.state.attributes.first_name}}</h2>
+        <h2>Tvoje postava {{user.first_name}}</h2>
 
         <h3>Vylepšit schonposti:</h3>
-        <h3>Síla: {{this.strength}} <button @click="training('strength', strength)">+</button> cena: {{this.strength}} stříbrných</h3>
-        <h3>Útok: {{this.attack}} <button @click="training('attack', attack)">+</button> cena: {{this.attack}} stříbrných</h3>
-        <h3>Obrana: {{this.defense}} <button @click="training('defense', defense)">+</button> cena: {{this.defense}} stříbrných</h3>
-        <h3>Výdrž: {{this.hp}} <button @click="training('hp', hp)">+</button> cena: {{this.hp}} stříbrných</h3>
+        <h3>Síla: {{user.abilities.strength}} <button @click="training('strength', strength)">+</button> cena: {{user.abilities.strength}} stříbrných</h3>
+        <h3>Útok: {{user.abilities.attack}} <button @click="training('attack', attack)">+</button> cena: {{user.abilities.attack}} stříbrných</h3>
+        <h3>Obrana: {{user.abilities.defense}} <button @click="training('defense', defense)">+</button> cena: {{user.abilities.defense}} stříbrných</h3>
+        <h3>Výdrž: {{user.abilities.hp}} <button @click="training('hp', hp)">+</button> cena: {{user.abilities.hp}} stříbrných</h3>
         <br>
-        <h3>Vlastníš: {{Math.floor(this.$store.state.attributes.money /10)}} <gold-coin-component/> a {{this.$store.state.attributes.money % 10}} <silver-coin-component/> </h3>
-        <h3>Zkušenosti: {{this.$store.state.attributes.exp}}</h3>
+        <h3>Vlastníš: {{Math.floor(user.money /10)}} <gold-coin-component/> a {{user.money % 10}} <silver-coin-component/> </h3>
+        <h3>Zkušenosti: {{user.exp}}</h3>
 
       </div>
 
@@ -25,6 +25,8 @@ import GameHeader from "@/gamePages/gameHeader";
 import store from "@/store/store";
 import GoldCoinComponent from "@/components/goldCoinComponent";
 import SilverCoinComponent from "@/components/silverCoinComponent";
+import {mapGetters} from "vuex";
+
 export default {
   name: "tranningAbilities",
   components: {SilverCoinComponent, GoldCoinComponent, GameHeader},
@@ -39,18 +41,24 @@ export default {
     }
   },
 
+  computed: mapGetters(["user"]),
+
   mounted() {
+
     this.realod();
+    console.log('user',this.user);
+    console.log('user - getter',this.$store.getters.user);
 
   },
 
   methods:{
+    //...mapActions(["getProfile"]),
 
     realod(){
-      this.strength = parseInt(this.$store.state.attributes.abilities.strength);
-      this.attack = parseInt(this.$store.state.attributes.abilities.attack);
-      this.defense = parseInt(this.$store.state.attributes.abilities.defense);
-      this.hp = parseInt(this.$store.state.attributes.abilities.hp);
+      this.strength = abilities.strength;
+      this.attack = parseInt(this.user.abilities.attack);
+      this.defense = this.$store.getters.user.abilities.defense;
+      this.hp = parseInt(this.user.abilities.hp);
     },
 
     //switch na vylepseni schonposti
@@ -58,14 +66,16 @@ export default {
       console.log(this.hp);
 
       price = parseInt(price);
-      if(this.$store.state.attributes.money >= price){
+      if(this.user.money >= price){
         store.commit('upgradeAbillity', type);
         store.commit('addMoney', -(price));
         this.realod();
       }else{
         alert('Nedostatek peněz');
       }
-    }
+    },
+
+
   },
 
 

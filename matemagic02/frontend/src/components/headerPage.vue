@@ -24,12 +24,14 @@
         <span role="link">Závěrečný Test</span>
       </router-link>
 
+      <button class="to-game-button" @click.prevent="logoutUser">Odhlásit se</button>
+
 
 
 
     </div>
 
-    <div class="study-year">{{this.$store.state.attributes.year_of_study}}.Ročník</div>
+    <div class="study-year">{{this.$store.getters.user.year}}.Ročník</div>
 
 
   </header>
@@ -39,13 +41,22 @@
 <script>
 
 
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   name: "headerPage",
+  computed: {
+    ...mapGetters(["isLoggedIn"]),
+  },
   methods: {
-
-
+    ...mapActions(["logout"]),
+    logoutUser() {
+      this.logout();
+      this.$router.push('./registerPage');
+    }
   }
-}
+};
+
 </script>
 
 <style scoped>
