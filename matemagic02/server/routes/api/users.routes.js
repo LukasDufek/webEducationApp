@@ -27,7 +27,8 @@ userRouter.post('/register',  (req, res) => {
         inventory,
         helm_equip,
         weapon_equip,
-        armor_equip
+        armor_equip,
+        count_of_excercies
     } = req.body;
 
     if (password !== confirm_password) {
@@ -38,23 +39,6 @@ userRouter.post('/register',  (req, res) => {
         });
 
     }else {
-        /*
-        // Check for the unique Username
-        User.findOne({
-            username: req.body.username
-        }).then(user => {
-            if (user) {
-                return res.status(400).json({
-                    success: false,
-                    msg: "Username is already taken."
-                });
-
-            }
-        })
-
-         */
-
-
 
         // Check for the Unique Email
         User.findOne({
@@ -81,7 +65,8 @@ userRouter.post('/register',  (req, res) => {
                     inventory,
                     helm_equip,
                     weapon_equip,
-                    armor_equip
+                    armor_equip,
+                    count_of_excercies,
 
                 });
 
@@ -103,33 +88,6 @@ userRouter.post('/register',  (req, res) => {
                 } catch (err) {
 
                 }
-
-
-                // Hash the password
-
-
-                /*
-                bcrypt.genSalt(10, (err, salt) => {
-                    bcrypt.hash(req.body.password, salt, (err, hash) => {
-                        if (err) {
-
-                            //console.log(req.body.email);
-                            //console.log(email);
-                            //console.log(salt);
-                            //console.log(err);
-                            throw err;
-                        }else{
-                            newUser.password = hash;
-                            newUser.save().then(() => {
-                                return res.status(201).json({
-                                    success: true,
-                                    msg: "Hurry! User is now registered."
-                                });
-                            });
-                        }
-                    });
-                });
-                */
 
 
             }
@@ -208,6 +166,7 @@ userRouter.get('/profile', passport.authenticate('jwt', {
 });
 
 
+//update users atributes
 userRouter.put('/:id', async (req, res) => {
 
     const { id } = req.params
@@ -222,7 +181,7 @@ userRouter.put('/:id', async (req, res) => {
     }
 })
 
-
+//get all users
 userRouter.get('/', async (req, res) => {
 
     try {

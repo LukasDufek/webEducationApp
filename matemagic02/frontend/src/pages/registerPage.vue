@@ -23,7 +23,6 @@
           <input type="password" id="inputPasswordAgain" placeholder="Potvrdit heslo" v-model="confirm_password" />
 
 
-
         <br>
         <input type="radio" id="student" value="student" v-model="role" />
         <label for="student">Žák</label>
@@ -138,9 +137,11 @@ export default {
               "inventory": [],
               "helm_equip": null,
               "weapon_equip": null,
-              "armor_equip": null
+              "armor_equip": null,
+              "count_of_excercies":0
 
             }
+
 
     },
 

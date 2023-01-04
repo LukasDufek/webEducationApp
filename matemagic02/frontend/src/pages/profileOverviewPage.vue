@@ -28,7 +28,7 @@
   </div>
 
   <div v-else>
-    <button @click="route">K přihlášení</button>
+    <no-logged/>
   </div>
 
 
@@ -41,9 +41,10 @@ import SilverCoinComponent from "@/components/silverCoinComponent";
 import GoldCoinComponent from "@/components/goldCoinComponent";
 import {mapGetters} from "vuex";
 import { mapActions } from "vuex";
+import NoLogged from "@/components/noLogged";
 export default {
   name: "profileOverviewPage",
-  components: {GoldCoinComponent, SilverCoinComponent},
+  components: {NoLogged, GoldCoinComponent, SilverCoinComponent},
   data() {
     return {
       first_name: '',
@@ -66,9 +67,6 @@ export default {
 
     },
 
-    route(){
-      this.$router.push('./');
-    }
 
   },
   created() {

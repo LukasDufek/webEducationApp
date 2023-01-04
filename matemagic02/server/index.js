@@ -32,13 +32,6 @@ app.use('/api/items', items);
 app.use('/api/tasks', tasks);
 app.use('/api/users', users);
 
-/*
-NEPOTREBNE
-app.post('/api/users/signin', signinHandler);
-app.get('/api/users/welcome', welcomeHandler);
-app.post('/api/users/refresh', refreshHandler);
-app.get('/api/users/logout', logoutHandler);
-*/
 
 //connect to database
 mongoose

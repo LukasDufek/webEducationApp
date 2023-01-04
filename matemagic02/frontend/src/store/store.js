@@ -14,6 +14,7 @@ export default new Vuex.Store({
         Auth
     },
     state: {
+        /*
         logged: false,
         attributes: {
             first_name: '',
@@ -34,7 +35,9 @@ export default new Vuex.Store({
             armor_equip:null,
 
 
+
         },
+        */
 
         items:[{
             title:"",
@@ -43,7 +46,7 @@ export default new Vuex.Store({
             value_of_improvement: 0,
             img_address:"",
             price:0,
-            back_price:0,
+            sell_price:0,
             //prodejni_cena: this.cena / 2
         }],
         word_tasks:[{
@@ -66,36 +69,6 @@ export default new Vuex.Store({
             }
             state.word_tasks.push(task.data);
         },
-
-        /*
-        async editTask(state, task) {
-            let id = task._id;
-
-            for(let i=0; i<state.word_tasks.length; i++){
-                if(id=== state.word_tasks[i]._id){
-                    state.word_tasks[i] = task;
-                }
-            }
-
-            await axios({
-                method: 'put',
-                url: `api/tasks/${id}`,
-                data: state.word_tasks
-
-            });
-        }
-
-         */
-
-        /*
-        addItem(state, item){
-            state.attributes.inventory.push(item);
-        },
-
-         */
-
-
-
 
 
     },

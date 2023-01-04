@@ -2,8 +2,6 @@ const Router  = require('express')
 const Task = require('../../models/Task')
 
 
-
-
 const TaskRouter = Router()
 
 TaskRouter.get('/', async (req, res) => {

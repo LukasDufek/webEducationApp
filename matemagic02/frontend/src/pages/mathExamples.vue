@@ -22,6 +22,25 @@
     <br>
         </section>
 
+        <section class="compare" v-else-if="examples[item].type=== 'compare'">
+
+          <h3 class="example-text">
+            <h3>{{item+1}}.Příklad:</h3>
+            <h4>{{examples[item].message}}</h4>
+            <h2>{{examples[item].first_number}}
+              <select class="input-submit" v-model="result">
+                <option>=</option>
+                <option>&lt;</option>
+                <option>&gt;</option>
+              </select> {{examples[item].second_number}}</h2>
+            <button class="button-submit" @click="add_to_results(result, examples[item], 0)"> ✔</button>
+          </h3>
+
+          <br>
+        </section>
+
+
+
         <section class="calculate" v-else-if="examples[item].type=== 'decimal'" >
           <h3 class="example-text">
 
@@ -37,22 +56,7 @@
         </section>
 
 
-        <section class="compare" v-else-if="examples[item].type=== 'compare'">
 
-        <h3 class="example-text">
-          <h3>{{item+1}}.Příklad:</h3>
-          <h4>{{examples[item].message}}</h4>
-          <h2>{{examples[item].first_number}}
-            <select class="input-submit" v-model="result">
-            <option>=</option>
-            <option>&lt;</option>
-            <option>&gt;</option>
-          </select> {{examples[item].second_number}}</h2>
-            <button class="button-submit" @click="add_to_results(result, examples[item], 0)"> ✔</button>
-        </h3>
-
-        <br>
-        </section>
 
         <section class="round" v-else-if="examples[item].type=== 'round'" >
           <h3 class="example-text">
