@@ -37,6 +37,8 @@ export default {
       attack:0,
       defense:0,
       hp:0,
+      user:JSON.parse(localStorage.user)
+
 
     }
   },
@@ -45,9 +47,9 @@ export default {
 
   mounted() {
 
+    //this.user = JSON.parse(localStorage.getItem("user"));
     this.realod();
-    console.log('user',this.user);
-    console.log('user - getter',this.$store.getters.user);
+
 
   },
 
@@ -55,9 +57,10 @@ export default {
     //...mapActions(["getProfile"]),
 
     realod(){
-      this.strength = abilities.strength;
+
+      this.strength = parseInt(this.user.abilities.strength);
       this.attack = parseInt(this.user.abilities.attack);
-      this.defense = this.$store.getters.user.abilities.defense;
+      this.defense = parseInt(this.user.abilities.defense);
       this.hp = parseInt(this.user.abilities.hp);
     },
 

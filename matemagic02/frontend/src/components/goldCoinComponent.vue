@@ -1,5 +1,5 @@
 <template>
-  <img src="../assets/gold-coin.png" width="22" />
+  <img src="../assets/gold-coin.png" width="25" />
 </template>
 
 <script>

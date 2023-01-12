@@ -5,7 +5,11 @@
     <div class="logo">MateMagic</div>
 
     <div class="navbar">
+        <router-link v-for="route in this.routes" :key="route.path" v-bind:to="route.path"  class="link">
+          <span role="link">{{route.title ?? route.path}}</span>
+        </router-link>
 
+      <!--
       <router-link to="/profileOverviewPage"  class="link">
         <span role="link">Přehled</span>
       </router-link>
@@ -24,6 +28,8 @@
         <span role="link">Závěrečný Test</span>
       </router-link>
 
+      -->
+
       <button class="to-game-button" @click.prevent="logoutUser">Odhlásit se</button>
 
 
@@ -31,7 +37,7 @@
 
     </div>
 
-    <div class="study-year">{{this.$store.getters.user.year}}.Ročník</div>
+    <div class="study-year" v-if="role==='student'">{{year}}.Ročník</div>
 
 
   </header>
@@ -40,21 +46,36 @@
 
 <script>
 
-
+import {routes} from '../router/index';
 import { mapGetters, mapActions } from "vuex";
+const { role }  = JSON.parse(localStorage.user ?? '{}');
+const { year }  = JSON.parse(localStorage.user ?? '{}');
+
 
 export default {
   name: "headerPage",
+  data(){
+    return {
+
+      role: role,
+      year: year,
+      routes: routes.filter(route => {
+        //console.log(role);
+        return route.roles?.includes(role) && !route.inGame
+      })
+    }
+  },
   computed: {
     ...mapGetters(["isLoggedIn"]),
   },
   methods: {
     ...mapActions(["logout"]),
+
     logoutUser() {
       this.logout();
       this.$router.push('./registerPage');
     }
-  }
+  },
 };
 
 </script>

@@ -17,12 +17,13 @@ export default {
   name: "finalExam",
   data(){
     return{
-      examples:[]
+      examples:[],
+      user:{}
     }
 
   },
   mounted() {
-
+    this.user = JSON.parse(localStorage.getItem("user"));
 
   }
 }

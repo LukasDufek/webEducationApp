@@ -27,16 +27,13 @@ import store from "@/store/store";
 Vue.use(VueRouter);
 
 
-
-const router = new VueRouter({
-    mode: 'history',
-    base: process.env.BASE_URL,
-    routes: [
+export const routes = [
 
     {
         path:"/registerPage", component: registerPage,
         meta: {
-            requiresGuest: true
+            requiresGuest: true,
+
         }
     },
     {
@@ -49,6 +46,9 @@ const router = new VueRouter({
 
     {
         path:"/profileOverviewPage", component: profileOverviewPage,
+        title: "Profil",
+        inGame:false,
+        roles: ["student"],
         meta: {
             requiresStudent: true
         }
@@ -56,6 +56,9 @@ const router = new VueRouter({
 
     {
         path:"/mathExamples", component: mathExamples,
+        title: "Procvičování",
+        inGame:false,
+        roles: ["student"],
         meta: {
             requiresStudent: true
         }
@@ -63,6 +66,9 @@ const router = new VueRouter({
 
     {
         path:"/mathWordTasks", component: mathWordTasks,
+        title: "Slovní úlohy",
+        inGame:false,
+        roles: ["student"],
         meta: {
             requiresStudent: true
         }
@@ -70,17 +76,15 @@ const router = new VueRouter({
 
     {
         path:"/finalExam", component: finalExam,
+        title: "Závěrečný test",
+        inGame:false,
+        roles: ["student"],
         meta: {
             requiresStudent: true
         }
     },
 
-    {
-        path:"/gameShop", component: gameShop,
-        meta: {
-            requiresStudent: true
-        }
-    },
+
     {
         path:"/gameHeader", component: gameHeader,
         meta: {
@@ -89,17 +93,38 @@ const router = new VueRouter({
     },
     {
         path:"/characterOverview", component: characterOverview,
+        title: "Přehled",
+        inGame:true,
+        roles: ["student"],
         meta: {
             requiresStudent: true
         }
     },
+
+    {path:"/tranningAbilities", component: tranningAbilities,
+        title: "Cvičiště",
+        inGame:true,
+        roles: ["student"],
+        meta: {
+            requiresStudent: true
+        }
+    },
+
+    {
+        path:"/gameShop", component: gameShop,
+        title: "Obchod",
+        inGame:true,
+        roles: ["student"],
+        meta: {
+            requiresStudent: true
+        }
+    },
+
     {
         path:"/fightingStory", component: fightingStory,
-        meta: {
-            requiresStudent: true
-        }
-    },
-    {path:"/tranningAbilities", component: tranningAbilities,
+        title: "Příběh",
+        inGame:true,
+        roles: ["student"],
         meta: {
             requiresStudent: true
         }
@@ -107,19 +132,31 @@ const router = new VueRouter({
 
     {
         path:"/addWordTask", component: addWordTask,
+        title: "Přidat úlohu",
+        inGame:false,
+        roles: ["teacher"],
         meta: {
             requiresStudent: true
         }
     },
     {
         path:"/manageWordTask", component: manageWordTask,
+        title: "Spravovat úlohy",
+        inGame:false,
+        roles: ["teacher"],
         meta: {
             requiresStudent: true
-    }
+        }
     },
 ]
 
+export const router = new VueRouter({
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes: routes
+
 });
+
 
 router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresStudent)) {

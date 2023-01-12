@@ -57,11 +57,13 @@ export default {
   },
 
   computed: mapGetters(["user"]),
+
   methods: {
     ...mapActions(["getProfile"]),
 
 
     toGame(){
+      console.log(this.user.year);
       this.$router.push('./characterOverview');
 
 

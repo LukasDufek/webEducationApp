@@ -2,7 +2,7 @@
   <div>
     <game-header/>
     <div class="main-content">
-      <h2>Tvoje postava {{user.first_name}}</h2>
+      <h2>Tvoje postava {{capitalizeFirstLetter(user.first_name)}}</h2>
 
       <h3>Tvé schonposti:</h3>
       <h3>Síla: {{user.abilities.strength}}</h3>
@@ -24,18 +24,25 @@
 import GameHeader from "@/gamePages/gameHeader";
 import GoldCoinComponent from "@/components/goldCoinComponent";
 import SilverCoinComponent from "@/components/silverCoinComponent";
-import {mapActions, mapGetters} from "vuex";
+//import {mapActions, mapGetters} from "vuex";
+const user = JSON.parse(localStorage.user);
+
+
 export default {
   name: "characterOverview",
   components: {SilverCoinComponent, GoldCoinComponent, GameHeader},
 
-  computed: mapGetters(["user"]),
+  //computed: mapGetters(["user"]),
 
-  methods: {
-    ...mapActions(["getProfile"]),
+  data(){
+    return{
+      user:user
+    }
   },
-  created() {
-    this.getProfile();
+  methods:{
+    capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
   }
 
 }

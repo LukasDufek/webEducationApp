@@ -4,7 +4,7 @@
     <header-page/>
     <div class="container">
       <div class="main-content">
-      <h1><u>Slovní úlohy pro {{this.$store.state.attributes.year_of_study}}.Ročník</u></h1>
+      <h1><u>Slovní úlohy pro {{this.user.year}}.Ročník</u></h1>
 
 
       <section class="one-example" v-if="!phase_of_evaluation  && word_tasks[item]">
@@ -54,7 +54,8 @@ export default {
       item: 0,
       result: 0,
       correctly: false,
-      phase_of_evaluation : false
+      phase_of_evaluation : false,
+      user: JSON.parse(localStorage.user)
     }
   },
 
@@ -67,7 +68,7 @@ export default {
     }
 
     for(let i=0; i<this.$store.state.word_tasks.length; i++){
-      if(this.$store.state.attributes.year_of_study === this.$store.state.word_tasks[i].for_year) {
+      if(this.user.year === this.$store.state.word_tasks[i].for_year) {
         this.word_tasks.push(this.$store.state.word_tasks[i]);
       }
     }

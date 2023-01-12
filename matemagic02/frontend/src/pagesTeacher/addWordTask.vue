@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header-teacher/>
+    <header-page/>
     <div class="container">
     <div class="main-content">
     <h2>Jako učitel můžeš zadávat slovní úlohy</h2>
@@ -38,13 +38,14 @@
 <script>
 
 import store from "@/store/store";
-import HeaderTeacher from "@/components/headerTeacher";
+//import HeaderTeacher from "@/components/headerTeacher";
+import headerPage from "@/components/headerPage";
 import {mapActions, mapGetters} from "vuex";
 
 
 export default {
   name: "addWordTask",
-  components: {HeaderTeacher},
+  components: {headerPage},
   data() {
     return {
       text_of_task:'',

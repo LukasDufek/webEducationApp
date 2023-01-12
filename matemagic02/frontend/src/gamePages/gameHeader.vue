@@ -5,23 +5,11 @@
 
     <div class="navbar">
 
-      <router-link to="/characterOverview"  class="link">
-        <span role="link">Přehled postavy</span>
+      <router-link v-for="route in this.routes" :key="route.path" v-bind:to="route.path"  class="link">
+        <span role="link">{{route.title ?? route.path}}</span>
       </router-link>
 
 
-      <router-link to="/tranningAbilities"  class="link">
-        <span role="link">Vylepšení schonpostí</span>
-      </router-link>
-
-
-      <router-link to="/gameShop" class="link">
-        <span role="">Obchod</span>
-      </router-link>
-
-      <router-link to="/fightingStory" class="link">
-        <span role="link">Pokračovat v příběhu</span>
-      </router-link>
 
       <router-link to="/profileOverviewPage" class="link">
         <span role="link">Odejít ze hry</span>
@@ -35,8 +23,21 @@
 </template>
 
 <script>
+
+import {routes} from '../router/index';
+
+
 export default {
-  name: "gameHeader"
+  name: "gameHeader",
+
+  data(){
+    return {
+
+      routes: routes.filter(route => {
+        return route.inGame
+      })
+    }
+  }
 }
 </script>
 

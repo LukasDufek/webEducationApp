@@ -38,6 +38,7 @@ const actions = {
                 //console.log(user);
                 // Store the token into the localstorage
                 localStorage.setItem('token', token);
+                localStorage.setItem('user', JSON.stringify(user));
                 // Set the axios defaults
                 axios.defaults.headers.common['Authorization'] = token;
                 commit('auth_success', token, user);
@@ -75,6 +76,7 @@ const actions = {
                      commit
                  }) {
         await localStorage.removeItem('token');
+        await localStorage.removeItem('user');
         commit('logout');
         delete axios.defaults.headers.common['Authorization'];
 
@@ -162,6 +164,7 @@ const mutations = {
 
     async addMoney(state, count) {
         state.user.money += count;
+        //localStorage.setItem('user', JSON.stringify(state.user));
 
         let id = state.user._id;
 
