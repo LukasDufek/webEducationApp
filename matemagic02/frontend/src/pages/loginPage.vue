@@ -1,7 +1,7 @@
 <!--Login script-->
 
 <template>
-  <div class="container">
+  <div class="container-login">
     <div class="card card-container">
       <h1 class="welcome">Vítejte ve hře <u>MateMagic</u> </h1>
       <h1 class="login">Přihlášení</h1>
@@ -82,7 +82,7 @@ export default {
                 this.$router.push("./addWordTask");
 
 
-              }else{
+              }else if(this.user.role === 'student'){
                 this.$router.push("./profileOverviewPage");
                 //store.commit('setLocalUser', this.user);
               }
@@ -125,10 +125,20 @@ export default {
 
 <style>
 
-.container {
-  /* NUTNE ZMENIT OBRAZEK*/
-  background-image: url("https://slevomat.sgcdn.cz/images/t/1280/11/45/11456672-186820.webp");
-  background-color: #cccccc;
+.container-login{
+  background: url("https://slevomat.sgcdn.cz/images/t/1280/11/45/11456672-186820.webp");
+
+
+
+  height: 200%;
+
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  margin-top: -4rem;
 }
 
 .login{

@@ -1,7 +1,7 @@
 <!--Login script-->
 
 <template>
-  <div class="container">
+  <div class="container-login">
     <div class="card card-container">
       <h1 class="welcome">Vítejte ve hře <u>MateMagic</u> </h1>
       <h1 class="login-card">Registrace</h1>
@@ -138,7 +138,10 @@ export default {
               "helm_equip": null,
               "weapon_equip": null,
               "armor_equip": null,
-              "count_of_excercies":0
+              "total_count_of_excercies":0,
+              "success_rate":0,
+              "daily_limit_excercies":0,
+              "defeated_oponents":[]
 
             }
 
@@ -164,9 +167,19 @@ export default {
 
 <style>
 
-.container{
-  margin-top: -5%;
+.container-login{
+  background: url("https://slevomat.sgcdn.cz/images/t/1280/11/45/11456672-186820.webp");
 
+
+
+  height: 150%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  margin-top: -5%;
 }
 
 .login-card{

@@ -8,9 +8,11 @@ import profileOverviewPage from "@/pages/profileOverviewPage";
 import mathExamples from "@/pages/mathExamples";
 import mathWordTasks from "@/pages/mathWordTasks";
 import finalExam from "@/pages/finalExam";
+import controlComponent from "@/components/controlComponent";
 
 import loginPage from "@/pages/loginPage";
 import registerPage from "@/pages/registerPage";
+import helpTutorial from "@/components/helpTutorial";
 
 //pro ucitele
 import addWordTask from "@/pagesTeacher/addWordTask";
@@ -22,6 +24,9 @@ import gameHeader from "@/gamePages/gameHeader";
 import characterOverview from "@/gamePages/characterOverview";
 import fightingStory from "@/gamePages/fightingStory";
 import tranningAbilities from "@/gamePages/tranningAbilities";
+import fightComponent from "@/components/fightComponent";
+
+
 import store from "@/store/store";
 
 Vue.use(VueRouter);
@@ -36,6 +41,7 @@ export const routes = [
 
         }
     },
+
     {
         path:"/", component: loginPage,
         meta: {
@@ -43,6 +49,16 @@ export const routes = [
         }
     },
 
+
+    {
+        path:"/helpTutorial", component: helpTutorial,
+        meta: {
+            requiresStudent: true,
+
+        }
+    },
+
+    //cesty studenta - aplikace
 
     {
         path:"/profileOverviewPage", component: profileOverviewPage,
@@ -84,6 +100,17 @@ export const routes = [
         }
     },
 
+
+    {
+        path:"/control", component: controlComponent,
+        title: "Kontrola před testem",
+        meta: {
+            requiresStudent: true
+        }
+    },
+
+
+    //cesty studenta - hra
 
     {
         path:"/gameHeader", component: gameHeader,
@@ -131,6 +158,17 @@ export const routes = [
     },
 
     {
+        path:"/fight", component: fightComponent,
+        title: "Souboj",
+        meta: {
+            requiresStudent: true
+        }
+    },
+
+
+    //cesty ucitele
+
+    {
         path:"/addWordTask", component: addWordTask,
         title: "Přidat úlohu",
         inGame:false,
@@ -170,7 +208,11 @@ router.beforeEach((to, from, next) => {
     } else if (to.matched.some(record => record.meta.requiresGuest)) {
         if (store.getters.isLoggedIn) {
 
-            next('./profileOverviewPage');
+            if(store.getters.user.role === "student") {
+                next('./profileOverviewPage');
+            }else if(store.getters.user.role === "teacher"){
+                next('./addWordTask');
+            }
             // Redirect to the Login Page
         }else {
             next();

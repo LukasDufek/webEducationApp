@@ -80,10 +80,29 @@ const UserSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    count_of_excercies: {
+    total_count_of_excercies: {
         type: Number,
         required: false
+    },
+
+    success_rate: {
+        //in %
+        type: Number,
+        required: false
+    },
+
+    daily_limit_excercies: {
+        type: Number,
+        required: false,
+        max: 6
+    },
+
+    defeated_oponents: {
+        type: Array,
+        required: false
     }
+
+
 
 });
 

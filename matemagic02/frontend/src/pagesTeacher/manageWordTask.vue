@@ -1,9 +1,11 @@
 <template>
 
   <div>
-    <header-teacher/>
-    <div class="container" v-if="!editState">
+    <header-page/>
+    <div class="container">
     <div class="main-content">
+
+   <section v-if="!editState">
       <br>
       <section v-for="(item,index) in word_tasks" :key="index">
         <h1>{{index +1}}.Úloha</h1>
@@ -27,10 +29,10 @@
 
       </section>
 
-    </div>
-    </div>
 
-    <div v-else>
+    </section>
+
+    <section v-else>
     <!--tady bude prostor pro upravy slovnich uloh -->
 
       <h2>Zadání slovní úlohy:</h2>
@@ -55,6 +57,11 @@
       <br>
       <button @click="overWriteWordTask()">Dokončit úpravy</button>
 
+    </section>
+
+
+
+    </div>
     </div>
 
 
@@ -64,12 +71,12 @@
 
 <script>
 import axios from "axios";
-import HeaderTeacher from "@/components/headerTeacher";
+import headerPage from "@/components/headerPage";
 
 
 export default {
   name: "manageWordTask",
-  components: {HeaderTeacher},
+  components: {headerPage},
 
   data(){
     return{
@@ -143,29 +150,5 @@ export default {
 
 <style scoped>
 
-.container{
-  margin-top: 5rem;
-  padding-top: 1rem;
-  padding-bottom: 30rem;
-
-
-}
-
-.main-content{
-  margin: auto;
-  margin-top: 2rem;
-  position: center;
-  text-align: center;
-  width: 70%;
-  background: #ffee80;
-  font-size: 20px;
-  border-style: solid;
-  border-radius: 1em;
-  border-radius: 1em;
-  padding-left: 2em;
-  padding-top: -1em;
-
-  margin-bottom: 5rem;
-}
 
 </style>

@@ -30,7 +30,7 @@
 
       -->
 
-      <button class="to-game-button" @click.prevent="logoutUser">Odhlásit se</button>
+      <button class="logout-button" @click.prevent="logoutUser">Odhlásit se</button>
 
 
 
@@ -48,15 +48,22 @@
 
 import {routes} from '../router/index';
 import { mapGetters, mapActions } from "vuex";
-const { role }  = JSON.parse(localStorage.user ?? '{}');
-const { year }  = JSON.parse(localStorage.user ?? '{}');
+//import Auth from "@/Warehouse/Auth";
+//import store from "@/store/store";
+
+const {role}  = JSON.parse(localStorage.user ?? '{}');
+const {year}  = JSON.parse(localStorage.user ?? '{}');
 
 
 export default {
   name: "headerPage",
+
+  computed: {
+    ...mapGetters(["isLoggedIn"]),
+  },
+
   data(){
     return {
-
       role: role,
       year: year,
       routes: routes.filter(route => {
@@ -65,17 +72,22 @@ export default {
       })
     }
   },
-  computed: {
-    ...mapGetters(["isLoggedIn"]),
-  },
+
+
+
   methods: {
     ...mapActions(["logout"]),
 
+
     logoutUser() {
+
+
       this.logout();
-      this.$router.push('./registerPage');
+      this.$router.push('./');
     }
   },
+
+
 };
 
 </script>
@@ -83,30 +95,32 @@ export default {
 <style scoped>
 
 .header {
-  float: inside;
   background-color: white;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  width: 100%;
+
   height: 5rem;
   display: flex;
   flex: auto;
-  align-items: center;
 
-
-
-  box-shadow: 0 0 25px 0 black;
+  border-bottom: 4px solid black;
 }
 
 .navbar .link {
+  top: 20%;
+  position: relative;
+  margin-left: 1em;
+  text-decoration: none;
 
-  margin-left: 2rem;
+  font-size: 2.1vw;
+  text-align: center;
 
-  position: center;
-  font-size: 2rem;
-
+}
+.link:hover{
+  background-color: #e5e5e5;
+  text-decoration: underline;
 
 }
 
@@ -125,5 +139,25 @@ export default {
   font-size: 3rem;
 }
 
+
+.logout-button{
+  top: 20%;
+  position: relative;
+  margin-left: 1rem;
+
+  font-size: 1.5vw;
+  text-align: center;
+
+
+  background-color: #008CBA;
+  outline: none;
+  color: white;
+  padding: 0.3vw 1.4vw;
+
+}
+
+.logout-button:hover{
+  text-decoration: underline;
+}
 
 </style>

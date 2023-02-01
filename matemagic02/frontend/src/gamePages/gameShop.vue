@@ -2,15 +2,18 @@
   <div>
     <game-header/>
     <div class="container">
+
+      <help-tutorial :message="text_tutorial" />
+
   <div class="main-content">
     <h2 class="your-money">{{Math.floor(user.money/10)}} <gold-coin-component/>   {{user.money%10 }} <silver-coin-component/></h2>
     <button class="change-shopping-btn" @click="changeShopping">{{this.button_msg}}</button>
     <br>
     <br>
 
-    <button class="change-type-btn" @click="changeSelectedType('zbrane')">Zbrane</button>
+    <button class="change-type-btn" @click="changeSelectedType('zbrane')">Zbraně</button>
     <button class="change-type-btn" @click="changeSelectedType('helmy')">Helmy</button>
-    <button class="change-type-btn" @click="changeSelectedType('brneni')">Brneni</button>
+    <button class="change-type-btn" @click="changeSelectedType('brneni')">Brnění</button>
     <hr>
 
     <section v-for="item in selectedItems" :key="item._id" class="one-item">
@@ -52,14 +55,17 @@ import store from "@/store/store";
 import SilverCoinComponent from "@/components/silverCoinComponent";
 import goldCoinComponent from "@/components/goldCoinComponent";
 import {mapActions, mapGetters} from "vuex";
+import helpTutorial from "@/components/helpTutorial";
 
 
 export default {
 
   name: "gameShop",
-  components: {goldCoinComponent, SilverCoinComponent, GameHeader},
+  components: {goldCoinComponent, SilverCoinComponent, GameHeader, helpTutorial},
   data(){
     return{
+      text_tutorial:"Zde si můžeš kupovat předměty, kterými pak můžeš vybavit svoji postavu. Předměty zde můžeš také prodávat, ale pokud chceš nějakou položku prodat, nesmí jí mít postava právě na sobě.",
+
       selectedType: "Zbraň",
       items:[],
       shop_items:[],
@@ -191,30 +197,6 @@ export default {
 
 <style scoped>
 
-.container{
-  margin-top: 5rem;
-  padding-top: 1rem;
-  height: auto;
-  padding-bottom: 5rem;
-}
-
-.main-content{
-  margin-top: 5%;
-  margin-right: auto;
-  margin-left: auto;
-
-  position: center;
-  text-align: center;
-  width: 70%;
-  /* background: #fff498; */
-  background: rgba(255,244,152,0.8);
-  font-size: 20px;
-  border-style: solid;
-  border-radius: 1em;
-  padding-left: 2em;
-  padding-top: -1em;
-  padding-bottom: 2rem;
-}
 .imgItem{
   padding: 10px;
   border: 2px;
@@ -236,13 +218,13 @@ export default {
   padding: 10px;
   border: 2px;
   border-style: solid;
+  border-radius: 10px;
   background-color:#bfff5e;
 
 }
 
 .buy-button{
   background-color: #008CBA;
-  border: none;
   color: white;
   padding: 1% 2%;
   text-align: center;
@@ -260,7 +242,7 @@ export default {
 
 .change-type-btn, .change-shopping-btn{
   background-color: #555555;
-  border: none;
+
   color: white;
   padding: 1% 2%;
   text-align: center;
@@ -268,6 +250,19 @@ export default {
   display: inline-block;
   font-size: 115%;
   margin-left: 1%;
+}
+
+
+
+
+
+
+button{
+  border-width: 3px;
+}
+
+button:hover{
+  text-decoration: underline;
 }
 
 .change-shopping-btn{

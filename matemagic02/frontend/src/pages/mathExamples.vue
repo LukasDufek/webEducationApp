@@ -2,16 +2,21 @@
 <div class="main-contentA">
   <header-page/>
   <div class="container">
+
+    <help-tutorial :message="text_tutorial"/>
     <div class="main-content">
+
+
 
       <section class="one-example" v-if="!exercise_completed && examples[item]">
 
 
         <h1> <u>Příklady pro {{user.year}}.Ročník</u></h1>
         <h2>Dnes jsi už absolvoval {{this.daily_limit}} cvičení</h2>
+        <h2>Počet příkladů v tomto cvičení je: {{this.count_of_exmaples}}</h2>
 
         <math-problem :item="examples[item]" :index="item" @resultchanged="onChange" />
-        <button @click="onConfirm">ok</button>
+        <button class="confirm-example-button" @click="onConfirm">Další příklad</button>
 
         <hr>
 
@@ -53,6 +58,7 @@
 
 import MathProblem from "../components/MathProblem";
 import {ExampleGenerator} from "@/ExampleGenerator";
+import helpTutorial from "@/components/helpTutorial";
 //import Auth from "../Warehouse/Auth";
 import store from "@/store/store";
 
@@ -61,11 +67,12 @@ const myExampleGenerator = new ExampleGenerator();
 
 export default {
   name: "mathExamples",
-  components: {MathProblem},
+  components: {MathProblem, helpTutorial},
 
 
   data() {
     return {
+
       //rocnik: 1, //default
       example: {},
       examples: [],
@@ -81,7 +88,9 @@ export default {
       reward:0,
       count_of_exmaples: 20,
       last_data: {},
-      user: JSON.parse(localStorage.user)
+      user: JSON.parse(localStorage.user),
+
+      text_tutorial:"Na této stránce můžeš počítat příklady. Za správné výsledky pak dostaneš odměnu v podobě stříbrných  či zlatých mincí. Velikost této odměny vždy záleží na počtu správných výsledků, ale také na tvému ročníku. Abys mohl dostat odměnu  musíš absolvovat celé cvičení. ",
 
     }
   },
@@ -89,6 +98,7 @@ export default {
  mounted() {
 
    this.GENERATE();
+   console.log(this.count_of_exmaples);
 
 
   },
@@ -203,15 +213,21 @@ export default {
 
       this.success_rate = ((this.count_of_exmaples - this.wrong_examples.length) / this.count_of_exmaples) * 100;
         if(this.success_rate>= 90){
-          this.reward = parseInt( this.$store.getters.user.year) * 4;
+          this.reward = parseInt( this.user.year) * 4;
         }else if(this.success_rate >= 75){
-          this.reward = parseInt( this.$store.getters.user.year) *2;
+          this.reward = parseInt( this.user.year) *2;
         }else if(this.success_rate >= 60){
-          this.reward = parseInt(this.$store.getters.user.year) * 1;
+          this.reward = parseInt(this.user.year) * 1;
         }
+
+        //let full_success_rate = (this.success_rate + this.user.success_rate) /2;
+
 
         //this.$store.state.atributy.penize += this.reward;
         store.commit('addMoney', this.reward);
+        store.commit('increaseExcercies');
+        store.commit('setSuccessRate', (this.success_rate + this.user.success_rate) /2);
+
 
 
     },
@@ -240,32 +256,9 @@ export default {
 
 <style scoped>
 
-.container{
-  margin-top: 5rem;
-  padding-top: 1rem;
-  padding-bottom: 20rem;
 
 
-}
 
-
-.main-content{
-  margin-right: auto;
-  margin-left: auto;
-  margin-top: 2rem;
-
-  position: center;
-  text-align: center;
-  width: 70%;
-  background: #ffee80;
-  font-size: 20px;
-  border-style: solid;
-  border-radius: 1em;
-  padding-left: 2em;
-  padding-top: -1em;
-
-
-}
 
 h1{
   padding-bottom: 1rem;

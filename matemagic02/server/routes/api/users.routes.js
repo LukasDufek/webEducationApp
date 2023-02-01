@@ -28,7 +28,10 @@ userRouter.post('/register',  (req, res) => {
         helm_equip,
         weapon_equip,
         armor_equip,
-        count_of_excercies
+        total_count_of_excercies,
+        success_rate,
+        daily_limit_excercies,
+        defeated_oponents
     } = req.body;
 
     if (password !== confirm_password) {
@@ -66,7 +69,10 @@ userRouter.post('/register',  (req, res) => {
                     helm_equip,
                     weapon_equip,
                     armor_equip,
-                    count_of_excercies,
+                    total_count_of_excercies,
+                    success_rate,
+                    daily_limit_excercies,
+                    defeated_oponents
 
                 });
 

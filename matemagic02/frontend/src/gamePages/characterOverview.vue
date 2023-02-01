@@ -1,6 +1,7 @@
 <template>
   <div>
     <game-header/>
+    <div class="container">
     <div class="main-content">
       <h2>Tvoje postava {{capitalizeFirstLetter(user.first_name)}}</h2>
 
@@ -17,6 +18,7 @@
 
 
   </div>
+  </div>
 
 </template>
 
@@ -25,7 +27,7 @@ import GameHeader from "@/gamePages/gameHeader";
 import GoldCoinComponent from "@/components/goldCoinComponent";
 import SilverCoinComponent from "@/components/silverCoinComponent";
 //import {mapActions, mapGetters} from "vuex";
-const user = JSON.parse(localStorage.user);
+const user = JSON.parse(localStorage.user) || {};
 
 
 export default {
@@ -46,6 +48,8 @@ export default {
   }
 
 }
+
+
 </script>
 
 <style scoped>

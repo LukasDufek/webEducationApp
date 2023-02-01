@@ -1,5 +1,5 @@
 <template>
-  <img src="../assets/silver-coin.png" width="25" />
+  <img class="coin" src="../assets/silver-coin.png" width="30" />
 </template>
 
 <script>
@@ -9,5 +9,9 @@ export default {
 </script>
 
 <style scoped>
+
+.coin{
+  margin-bottom: -6px;
+}
 
 </style>

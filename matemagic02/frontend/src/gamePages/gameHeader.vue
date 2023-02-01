@@ -18,6 +18,8 @@
 
     </div>
 
+    <div class="study-year">{{user.year}}.Ročník</div>
+
   </header>
 
 </template>
@@ -35,7 +37,9 @@ export default {
 
       routes: routes.filter(route => {
         return route.inGame
-      })
+      }),
+
+      user:JSON.parse(localStorage.user)
     }
   }
 }
@@ -51,8 +55,7 @@ export default {
   top: 0;
   left: 0;
   right: 0;
-  width: 100%;
-  height: 100px;
+
   display: flex;
   flex: auto;
   align-items: center;
@@ -68,10 +71,18 @@ export default {
   margin-left: 2rem;
 
   position: center;
-  font-size: 2em;
+  font-size: 2.1vw;
 
 
 
+}
+
+.study-year{
+  float: right;
+  margin-left: auto;
+  margin-right: 1rem;
+
+  font-size: 3rem;
 }
 
 .logo{

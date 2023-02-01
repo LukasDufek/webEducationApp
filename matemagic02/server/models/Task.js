@@ -7,6 +7,7 @@ let Task = new mongoose.Schema({
     result: Number,
     student_result: Number,
     reward: Number,
+
 });
 
 module.exports = mongoose.model('Task', Task, 'tasks');

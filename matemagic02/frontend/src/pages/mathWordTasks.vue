@@ -3,23 +3,28 @@
   <div class="main-contentA">
     <header-page/>
     <div class="container">
+
+      <help-tutorial :message="text_tutorial"/>
+
       <div class="main-content">
       <h1><u>Slovní úlohy pro {{this.user.year}}.Ročník</u></h1>
 
 
       <section class="one-example" v-if="!phase_of_evaluation  && word_tasks[item]">
 
-        <h2>{{word_tasks[item].text_of_task}}</h2>
+        <h3 class="text-of-task">{{word_tasks[item].text_of_task}}</h3>
         <h5>Sem napiš svůj výsledek</h5>
+        <span class="submit-collection">
           <input class="input-submit" type="number" v-model="result">
           <button class="button-submit" @click="evaluate(result)">✔</button>
+          </span>
 
         <br>
 
       </section>
 
       <section v-else-if="phase_of_evaluation ">
-        <h2 v-if="correctly">Tvoje řešení bylo správné, získáváš odměnu {{this.$store.state.word_tasks[item].reward}} stříbrných mincí</h2>
+        <h2 v-if="correctly">Tvoje řešení bylo správné, získáváš odměnu {{this.word_tasks[item].reward}} stříbrných mincí</h2>
 
         <h2 v-else>Tvoje řešení bylo špatně</h2>
 
@@ -45,11 +50,15 @@
 
 import store from "@/store/store";
 import axios from "axios";
+import HelpTutorial from "@/components/helpTutorial";
 
 export default {
   name: "mathWordTasks",
+  components: {HelpTutorial},
   data(){
     return{
+      text_tutorial:"Zde můžeš řešit slovní úlohy, které zadali učitelé. Za každou správně vyřešenou úlohu dostaneš odměnu v podobě stříbrných či zlatých mincí. Pokud je to potřeba, můžeš si dělat výpočty a poznámky na papír.",
+
       word_tasks:[],
       item: 0,
       result: 0,
@@ -61,15 +70,18 @@ export default {
 
  async mounted() {
 
+    let all_tasks = [];
+
     try{
-      this.$store.state.word_tasks = (await axios.get("/api/tasks")).data;
+      all_tasks = (await axios.get("/api/tasks")).data;
     }catch(err){
       console.log(err);
     }
+    console.log(all_tasks);
 
-    for(let i=0; i<this.$store.state.word_tasks.length; i++){
-      if(this.user.year === this.$store.state.word_tasks[i].for_year) {
-        this.word_tasks.push(this.$store.state.word_tasks[i]);
+    for(let i=0; i<all_tasks.length; i++){
+      if(parseInt(this.user.year) === all_tasks[i].for_year) {
+        this.word_tasks.push(all_tasks[i]);
       }
     }
 
@@ -98,30 +110,7 @@ export default {
 
 <style scoped>
 
-.container{
-  margin-top: 5rem;
-  padding-top: 1rem;
-  padding-bottom: 30rem;
 
-
-}
-
-.main-content{
-  margin-right: auto;
-  margin-left: auto;
-  margin-top: 2rem;
-
-  position: center;
-  text-align: center;
-  width: 70%;
-  background: #ffee80;
-  font-size: 20px;
-  border-style: solid;
-  border-radius: 1em;
-  padding-left: 2em;
-  padding-top: -1em;
-  padding-bottom: 2rem;
-}
 
 h1{
   padding-bottom: 1rem;
@@ -134,6 +123,10 @@ h2{
 
 .input-submit{
 
+  margin-bottom: 1em;
+
+  width: 15%;
+
   padding-top: 1%;
   padding-bottom: 1%;
   padding-left: 2%;
@@ -143,6 +136,7 @@ h2{
   display: inline-block;
 
 }
+
 
 .button-submit{
   background-color: #4CAF50; /* Green */

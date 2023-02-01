@@ -34,14 +34,13 @@ const actions = {
             if (res.data.success) {
                 const token = res.data.token;
                 const user = res.data.user;
-                //console.log(res.data);
-                //console.log(user);
                 // Store the token into the localstorage
                 localStorage.setItem('token', token);
-                localStorage.setItem('user', JSON.stringify(user));
                 // Set the axios defaults
                 axios.defaults.headers.common['Authorization'] = token;
                 commit('auth_success', token, user);
+                //localStorage.removeItem('user');
+                localStorage.setItem('user', JSON.stringify(user));
             }
             return res;
         } catch (err) {
@@ -68,7 +67,6 @@ const actions = {
         commit('profile_request');
         let res = await axios.get('/api/users/profile');
         commit('user_profile', res.data.user);
-        //store.commit("setLocalUser", res.data.user);
         return res;
     },
     // Logout the user
@@ -76,7 +74,9 @@ const actions = {
                      commit
                  }) {
         await localStorage.removeItem('token');
-        await localStorage.removeItem('user');
+        await localStorage.removeItem('test_examples');
+        await localStorage.removeItem('test_word_tasks');
+        //await localStorage.removeItem('user');
         commit('logout');
         delete axios.defaults.headers.common['Authorization'];
 
@@ -125,6 +125,7 @@ const mutations = {
     //
     async addItem(state, item) {
         state.user.inventory.push(item);
+        localStorage.setItem('user', JSON.stringify(state.user));
 
 
         let id = state.user._id;
@@ -141,14 +142,13 @@ const mutations = {
 
     async removeItem(state, item) {
 
-
         if (state.user.inventory.length > -1) {
           state.user.inventory  = state.user.inventory.filter(object => {
                 return object._id !== item._id;
             });
 
 
-
+            localStorage.setItem('user', JSON.stringify(state.user));
             let id = state.user._id;
 
             await axios({
@@ -164,7 +164,7 @@ const mutations = {
 
     async addMoney(state, count) {
         state.user.money += count;
-        //localStorage.setItem('user', JSON.stringify(state.user));
+        localStorage.setItem('user', JSON.stringify(state.user));
 
         let id = state.user._id;
 
@@ -176,7 +176,41 @@ const mutations = {
         });
     },
 
+    async increaseExcercies(state){
+        state.user.total_count_of_excercies++;
+        localStorage.setItem('user', JSON.stringify(state.user));
+
+        let id = state.user._id;
+
+        await axios({
+            method: 'put',
+            url: `api/users/${id}`,
+            data: state.user
+
+        });
+
+    },
+
+
+
+    async setSuccessRate(state, rate){
+        state.user.success_rate = rate;
+        localStorage.setItem('user', JSON.stringify(state.user));
+
+        let id = state.user._id;
+
+        await axios({
+            method: 'put',
+            url: `api/users/${id}`,
+            data: state.user
+
+        });
+    },
+
+
+
     async upgradeAbillity(state, ability) {
+
 
         switch (ability) {
             case 'strength':
@@ -192,6 +226,7 @@ const mutations = {
                 state.user.abilities.hp++;
                 break;
         }
+        localStorage.setItem('user', JSON.stringify(state.user));
 
         let id = state.user._id;
 
@@ -202,6 +237,45 @@ const mutations = {
 
         });
     },
+
+    async next_grade(state){
+
+        if(parseInt(state.user.year) < 5){
+            state.user.year =''+parseInt(state.user.year)+1;
+            state.user.total_count_of_excercies = 0;
+            state.user.success_rate = 0;
+        }
+
+        localStorage.setItem('user', JSON.stringify(state.user));
+
+        let id = state.user._id;
+
+        await axios({
+            method: 'put',
+            url: `api/users/${id}`,
+            data: state.user
+
+        });
+    },
+
+    async defeat_enemy(state, enemy) {
+
+        if (!state.user.defeated_oponents.includes(enemy)) {
+            state.user.defeated_oponents.push(enemy);
+            localStorage.setItem('user', JSON.stringify(state.user));
+
+            let id = state.user._id;
+
+            await axios({
+                method: 'put',
+                url: `api/users/${id}`,
+                data: state.user
+
+            });
+
+        }
+    }
+
 
 };
 

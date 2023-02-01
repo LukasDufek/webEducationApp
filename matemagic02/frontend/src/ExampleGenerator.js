@@ -15,26 +15,35 @@ export class ExampleGenerator {
     generate_examples_for_I(count_of_examples){
         let example = {};
         let examples = [];
+        let count_achived = false;
 
-        while(examples.length < count_of_examples){
+        while(examples.length < count_of_examples || !count_achived){
 
 
             example = this.generate_addition_examples(1, 20, 1);
             if (!(this.exists_same_example(example, examples))) {
                 examples.push(example);
-
+                if(examples.length === count_of_examples){
+                    count_achived = true;
+                }
 
             }
 
             example = this.generate_subtraction_examples(1, 20, 1);
             if (!this.exists_same_example(example, examples)) {
                 examples.push(example);
+                if(examples.length === count_of_examples){
+                    count_achived = true;
+                }
 
             }
 
             example = this.generate_compare_examples(1, 20);
             if (!this.exists_same_example(example, examples)) {
                 examples.push(example);
+                if(examples.length === count_of_examples){
+                    count_achived = true;
+                }
 
             }
         }
@@ -55,12 +64,16 @@ export class ExampleGenerator {
     generate_examples_for_II(count_of_examples){
         let example = {};
         let examples = [];
+        let count_achived = false;
 
-        while(examples.length < count_of_examples){
+        while(examples.length < count_of_examples || !count_achived){
 
             example = this.generate_multiplication_examples(1, 5, 2);
             if (!(this.exists_same_example(example, examples))) {
                 examples.push(example);
+                if(examples.length === count_of_examples){
+                    count_achived = true;
+                }
 
 
             }
@@ -69,6 +82,9 @@ export class ExampleGenerator {
 
             if (!(this.exists_same_example(example, examples))) {
                 examples.push(example);
+                if(examples.length === count_of_examples){
+                    count_achived = true;
+                }
 
 
             }
@@ -77,6 +93,9 @@ export class ExampleGenerator {
 
             if (!(this.exists_same_example(example, examples))) {
                 examples.push(example);
+                if(examples.length === count_of_examples){
+                    count_achived = true;
+                }
 
 
             }
@@ -85,6 +104,9 @@ export class ExampleGenerator {
 
             if (!(this.exists_same_example(example, examples))) {
                 examples.push(example);
+                if(examples.length === count_of_examples){
+                    count_achived = true;
+                }
 
 
             }
@@ -105,14 +127,18 @@ export class ExampleGenerator {
 
         let example = {};
         let examples = [];
+        let count_achived = false;
 
-        while(examples.length < count_of_examples){
+        while(examples.length < count_of_examples || !count_achived){
 
 
             example = this.generate_round_examples(10, 1000, 10, 3);
 
             if (!(this.exists_same_example(example, examples))) {
                 examples.push(example);
+                if(examples.length === count_of_examples){
+                    count_achived = true;
+                }
 
             }
 
@@ -121,6 +147,9 @@ export class ExampleGenerator {
 
             if (!(this.exists_same_example(example, examples))) {
                 examples.push(example);
+                if(examples.length === count_of_examples){
+                    count_achived = true;
+                }
 
 
             }
@@ -128,14 +157,19 @@ export class ExampleGenerator {
             example = this.generate_addition_examples(10, 100, 3);
             if (!(this.exists_same_example(example, examples))) {
                 examples.push(example);
+                if(examples.length === count_of_examples){
+                    count_achived = true;
+                }
 
 
             }
 
             example = this.generate_subtraction_examples(10 , 100, 3);
-
             if (!(this.exists_same_example(example, examples))) {
                 examples.push(example);
+                if(examples.length === count_of_examples){
+                    count_achived = true;
+                }
 
 
             }
@@ -143,18 +177,20 @@ export class ExampleGenerator {
             example = this.generate_multiplication_examples(2, 10, 3);
             if (!(this.exists_same_example(example, examples))) {
                 examples.push(example);
+                if(examples.length === count_of_examples){
+                    count_achived = true;
+                }
 
 
             }
 
-            if (!(this.exists_same_example(example, examples))) {
-                examples.push(example);
-
-            }
 
             example = this.generate_division_examples(2, 100, 3);
             if (!(this.exists_same_example(example, examples))) {
                 examples.push(example);
+                if(examples.length === count_of_examples){
+                    count_achived = true;
+                }
 
             }
         }
@@ -173,19 +209,26 @@ export class ExampleGenerator {
 
         let example = {};
         let examples = [];
+        let count_achived = false;
 
 
-        while(examples.length < count_of_examples){
+        while(examples.length < count_of_examples || !count_achived){
 
             //cele tisice
             example = this.generate_round_examples(1000, 1000000, 10000, 4);
             if (!(this.exists_same_example(example, examples))) {
                 examples.push(example);
+                if(examples.length === count_of_examples){
+                    count_achived = true;
+                }
             }
 
             example = this.generate_round_examples(1000, 1000000, 1000, 4);
             if (!(this.exists_same_example(example, examples))) {
                 examples.push(example);
+                if(examples.length === count_of_examples){
+                    count_achived = true;
+                }
 
             }
 
@@ -193,27 +236,42 @@ export class ExampleGenerator {
             example = this.generate_addition_examples(1000, 100000, 4);
             if (!(this.exists_same_example(example, examples))) {
                 examples.push(example);
+                if(examples.length === count_of_examples){
+                    count_achived = true;
+                }
 
             }
             example = this.generate_subtraction_examples(1000, 100000, 4);
             if (!(this.exists_same_example(example, examples))) {
                 examples.push(example);
+                if(examples.length === count_of_examples){
+                    count_achived = true;
+                }
 
             }
             example = this.generate_multiplication_examples(10, 100000, 4);
             if (!(this.exists_same_example(example, examples))) {
                 examples.push(example);
+                if(examples.length === count_of_examples){
+                    count_achived = true;
+                }
 
             }
             example = this.generate_division_examples(10, 100000, 4);
             if (!(this.exists_same_example(example, examples))) {
                 examples.push(example);
+                if(examples.length === count_of_examples){
+                    count_achived = true;
+                }
 
             }
 
             example = this.generate_division_remainder_examples(2, 100);
             if (!(this.exists_same_example(example, examples))) {
                 examples.push(example);
+                if(examples.length === count_of_examples){
+                    count_achived = true;
+                }
 
             }
 
@@ -223,23 +281,27 @@ export class ExampleGenerator {
     }
 
 
-    //--------------------------------------------------------------------------
+//--------------------------------------------------------------------------
 //--------------GNEREROVANI CVICENI PRO V.ROCNIK-----------------------------
 //----------------------------------------------------------------------------
 
 //pro 5.ROCNIK - generovani a priprava cviceni
 
-    generate_examples_for_V(count_of_exmaples){
+    generate_examples_for_V(count_of_examples){
 
         let example = {};
         let examples = [];
+        let count_achived = false;
 
 
-        while(examples.length < count_of_exmaples){
+        while(examples.length < count_of_examples || !count_achived){
 
             example = this.generate_subtraction_examples(1, 100, 5);
             if (!(this.exists_same_example(example, examples))) {
                 examples.push(example);
+                if(examples.length === count_of_examples){
+                    count_achived = true;
+                }
 
             }
 
@@ -248,31 +310,49 @@ export class ExampleGenerator {
             example = this.generate_roman_number_example_intToRoman(1,3000);
             if (!(this.exists_same_example(example, examples))) {
                 examples.push(example);
+                if(examples.length === count_of_examples){
+                    count_achived = true;
+                }
 
             }
             example = this.generate_roman_number_example_romanToInt(1, 3000);
             if (!(this.exists_same_example(example, examples))) {
                 examples.push(example);
+                if(examples.length === count_of_examples){
+                    count_achived = true;
+                }
 
             }
             example = this.generate_addtion_decimal_examples(10, 100);
             if (!(this.exists_same_example(example, examples))) {
                 examples.push(example);
+                if(examples.length === count_of_examples){
+                    count_achived = true;
+                }
 
             }
             example = this.generate_subtraction_decimal_examples(10, 100);
             if (!(this.exists_same_example(example, examples))) {
                 examples.push(example);
+                if(examples.length === count_of_examples){
+                    count_achived = true;
+                }
 
             }
             example = this.generate_multiplication_decimal_examples(10, 100);
             if (!(this.exists_same_example(example, examples))) {
                 examples.push(example);
+                if(examples.length === count_of_examples){
+                    count_achived = true;
+                }
 
             }
             example = this.generate_division_decimal_examples(10, 100);
             if (!(this.exists_same_example(example, examples))) {
                 examples.push(example);
+                if(examples.length === count_of_examples){
+                    count_achived = true;
+                }
 
             }
         }
@@ -281,6 +361,25 @@ export class ExampleGenerator {
         return examples.sort(() => 0.5 - Math.random());
 
     }
+
+
+//-----------------------------------------------------------------------------------------------
+
+
+    sort_examples(examples){
+
+        /*
+        let sorted_examples = [];
+
+
+        for(let i=0; i<examples.length; i++){
+            sorted_examples.push(examples[i].sort((a,b) => (a.type > b.type) ? 1 : ((b.type > a.type) ? -1 : 0)));
+        }
+         */
+        return examples.sort((a,b) => (a.type > b.type) ? 1 : ((b.type > a.type) ? -1 : 0))
+
+    }
+
 
 
 //-----------------------------------------------------------------------------------------------
@@ -309,7 +408,7 @@ export class ExampleGenerator {
         let first_number = this.generateNumber(minLimit, maxLimit);
         let second_number = this.generateNumber(minLimit, maxLimit);
         let operator = ''; //nepovinne
-        let your_result = '';
+        let your_result = '0';
         let message = 'Porovnej:';
 
         let type = 'compare';
@@ -317,7 +416,9 @@ export class ExampleGenerator {
         let result = this.comapre_number(first_number, second_number);
         let toText = first_number.toString()+' '+second_number.toString();
 
-        return {message, type, toText, first_number, second_number, operator, result, your_result};
+        let completed = false;
+
+        return {message, type, toText, first_number, second_number, operator, result, your_result, completed};
     }
 
 
@@ -361,11 +462,14 @@ export class ExampleGenerator {
         let operator = '+';
         let your_result = 0;
         let type = 'calculate';
-        let message = 'Vpočítej:';
+        let message = 'Vypočítej:';
 
         let result = first_number + second_number;
         let toText = first_number.toString()+' '+operator.toString()+' '+second_number.toString()+' = '
-        example = {message, type, toText, first_number, second_number, operator, result, your_result};
+
+        let completed = false;
+
+        example = {message, type, toText, first_number, second_number, operator, result, your_result, completed};
 
         if( (year === 5) && (result > (maxLimit * 1000000)) ){
             return this.generate_addition_examples(minLimit, maxLimit, year);
@@ -415,12 +519,14 @@ export class ExampleGenerator {
 
         let operator = '-';
         let your_result = 0;
-        let message = 'Vpočítej:';
+        let message = 'Vypočítej:';
         let type = 'calculate';
 
         let result = first_number - second_number;
         let toText = first_number.toString()+' '+operator.toString()+' '+second_number.toString()+' = ';
-        let example = {message, type, toText, first_number, second_number, operator, result, your_result};
+        let completed = false;
+
+        let example = {message, type, toText, first_number, second_number, operator, result, your_result, completed};
         //let example = {"message": message, "type":type, "toText":toText, "first_number":first_number, "second_number":second_number, "operator":operator, "result":result, "your_result":your_result};
 
 
@@ -457,12 +563,13 @@ export class ExampleGenerator {
 
         let operator = '•';
         let your_result = 0;
-        let message = 'Vpočítej:';
+        let message = 'Vypočítej:';
         let type = 'calculate';
         let result = first_number * second_number;
         let toText = first_number.toString()+' '+operator.toString()+' '+second_number.toString()+' = ';
+        let completed = false;
 
-        return {message, type, toText, first_number, second_number, operator, result, your_result};
+        return {message, type, toText, first_number, second_number, operator, result, your_result, completed};
 
     }
 
@@ -503,12 +610,13 @@ export class ExampleGenerator {
 
         let operator = ':';
         let your_result = 0;
-        let message = 'Vpočítej:';
+        let message = 'Vypočítej:';
         let type = 'calculate';
         let result = first_number / second_number;
 
         let toText = first_number.toString()+' '+operator.toString()+' '+second_number.toString()+' = ';
-        let example = {message, type, toText, first_number, second_number, operator, result, your_result}
+        let completed = false;
+        let example = {message, type, toText, first_number, second_number, operator, result, your_result, completed}
 
 
         if( (first_number / second_number) > 10 ){
@@ -547,7 +655,8 @@ export class ExampleGenerator {
         let result = Math.round(first_number / rounding_accuracy) * rounding_accuracy;
 
         let toText = first_number.toString()+' '+operator.toString()+' ';
-        return {message, type, toText, first_number, operator, result, your_result, second_number};
+        let completed = false;
+        return {message, type, toText, first_number, operator, result, your_result, second_number, completed};
 
     }
 
@@ -574,13 +683,14 @@ export class ExampleGenerator {
         let operator = ':';
         let your_result = 0;
         let your_remainder = 0;
-        let message = 'Vpočítej:';
+        let message = 'Vypočítej:';
         let type = 'division_remainder';
         let result = Math.floor(first_number / second_number);
         let remainder = first_number % second_number;
 
         let toText = first_number.toString()+' '+operator.toString()+' '+second_number.toString()+' = ';
-        return {message, type, toText, first_number, second_number, operator, result, your_result, remainder, your_remainder}
+        let completed = false;
+        return {message, type, toText, first_number, second_number, operator, result, your_result, remainder, your_remainder, completed}
     }
 
 
@@ -607,7 +717,8 @@ export class ExampleGenerator {
 
         let result = this.convert_int_to_roman(first_number);
         let toText = first_number.toString()+' '+operator.toString()+' = ';
-        return {message, type, toText, first_number, operator, result, your_result}
+        let completed = false;
+        return {message, type, toText, first_number, operator, result, your_result, completed}
 
     }
 
@@ -626,7 +737,8 @@ export class ExampleGenerator {
 
         let first_number = this.convert_int_to_roman(result);
         let toText = first_number.toString()+' '+operator.toString()+' = ';
-        return {message, type, toText, first_number, operator, result, your_result}
+        let completed = false;
+        return {message, type, toText, first_number, operator, result, your_result, completed}
 
     }
 
@@ -683,7 +795,7 @@ export class ExampleGenerator {
 
         let operator = 'z čísla';
         let your_result = 0;
-        let message = 'Vpočítej:';
+        let message = 'Vypočítej:';
         let type = 'fraction';
         let result = Math.floor((second_number / first_number[1]) *first_number[0]);
 
@@ -710,14 +822,15 @@ export class ExampleGenerator {
         let second_number = Math.floor(Math.random() * (minLimit * maxLimit - 1 * maxLimit) + 1 * maxLimit) / (maxLimit);
 
         let operator = '+';
-        let your_result = 0.0;
+        let your_result = -1.0;
         let type = 'decimal';
-        let message = 'Vpočítej:';
+        let message = 'Vypočítej:';
 
         let result = first_number + second_number;
         result = Math.round(result * 100) / 100;
         let toText = first_number.toString()+' '+operator.toString()+' '+second_number.toString()+' = '
-        return {message, type, toText, first_number, second_number, operator, result, your_result};
+        let completed = false;
+        return {message, type, toText, first_number, second_number, operator, result, your_result, completed};
 
     }
 
@@ -735,14 +848,15 @@ export class ExampleGenerator {
         }
 
         let operator = '-';
-        let your_result = 0.0;
+        let your_result = -1.0;
         let type = 'decimal';
-        let message = 'Vpočítej:';
+        let message = 'Vypočítej:';
 
         let result = first_number - second_number;
         result = Math.round(result * 100) / 100;
         let toText = first_number.toString()+' '+operator.toString()+' '+second_number.toString()+' = '
-        return {message, type, toText, first_number, second_number, operator, result, your_result};
+        let completed = false;
+        return {message, type, toText, first_number, second_number, operator, result, your_result, completed};
 
 
     }
@@ -756,14 +870,15 @@ export class ExampleGenerator {
         let second_number = nums[Math.floor(Math.random()*nums.length)];
 
         let operator = '•';
-        let your_result = 0.0;
+        let your_result = -1.0;
         let type = 'decimal';
-        let message = 'Vpočítej:';
+        let message = 'Vypočítej:';
 
         let result = first_number * second_number;
         result = Math.round(result * 100) / 100;
         let toText = first_number.toString()+' '+operator.toString()+' '+second_number.toString()+' = '
-        return {message, type, toText, first_number, second_number, operator, result, your_result};
+        let completed = false;
+        return {message, type, toText, first_number, second_number, operator, result, your_result, completed};
 
 
     }
@@ -778,13 +893,14 @@ export class ExampleGenerator {
         let second_number = nums[Math.floor(Math.random()*nums.length)];
 
         let operator = ':';
-        let your_result = 0.0;
+        let your_result = -1.0;
         let type = 'decimal';
-        let message = 'Vpočítej:';
+        let message = 'Vypočítej:';
 
         let result = first_number / second_number;
         let toText = first_number.toString()+' '+operator.toString()+' '+second_number.toString()+' = '
-        return {message, type, toText, first_number, second_number, operator, result, your_result};
+        let completed = false;
+        return {message, type, toText, first_number, second_number, operator, result, your_result, completed};
 
 
 
