@@ -2,12 +2,15 @@
   <div>
     <header-page/>
     <div class="container">
+
+      <help-tutorial :message="text_tutorial" />
+
     <div class="main-content">
     <h2>Jako učitel můžeš zadávat slovní úlohy</h2>
    <!-- <button class="change-shopping-btn" @click="changeTypeOfTasks">{{this.button_msg}}</button> -->
 
 
-      <section v-if="addTextTask">
+      <section>
       <h2>Zadání slovní úlohy:</h2>
 
 
@@ -30,53 +33,14 @@
     <input type="number" min=1 max=50 v-model="reward">
 
       <br>
-    <button @click="addWordTask(text_of_task, for_year, result, reward)">Přidat úlohu</button>
+    <button class="add-task-btn" @click="addWordTask(text_of_task, for_year, result, reward)">Přidat úlohu</button>
       <br>
       <br>
       <br>
 
       </section>
 
-      <section v-else>
 
-        <h2>Zadání slovní úlohy:</h2>
-
-
-        <p style="white-space: pre-line;">{{ text_of_task }}</p>
-        <textarea class="text-area-for-task" v-model="text_of_task" placeholder="Zde napiš celé znění slovní úlohy"></textarea>
-
-        <h3>Zde bude výběr z obrázků...</h3>
-
-
-        <form @submit.prevent="onSubmit" enctype="multipart/form-data">
-          <div class="fields">
-            <label>Upload File</label><br/>
-            <input
-                type="file"
-                ref="file"
-                @change="onSelect"
-            />
-          </div>
-          <div class="fields">
-            <button>Submit</button>
-          </div>
-          <div class="message">
-            <h5>{{message}}</h5>
-          </div>
-        </form>
-
-        <br>
-        <h2>Zadej ročník, pro jaký je úlohu určena</h2>
-        <select v-model="for_year">
-          <option disabled value="">Zvolit ročník</option>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
-
-      </section>
 
 
   </div>
@@ -91,28 +55,26 @@
 import store from "@/store/store";
 import headerPage from "@/components/headerPage";
 import {mapActions, mapGetters} from "vuex";
-import axios from "axios";
+import helpTutorial from "@/components/helpTutorial";
 //import axios from "axios";
+
 
 
 export default {
   name: "addWordTask",
-  components: {headerPage},
+  components: {headerPage, helpTutorial},
   data() {
     return {
-      image1: '',
-      image2: '',
-      image3: '',
-      message:'',
+      text_tutorial:"Dobrý den pane učiteli. Jako učitel můžete vytvářet a přidávat nové slovní úlohy pro různé ročníky studentů. Můžete ale také, v sekci 'Spravovat úlohy' mazat nebo jen upravovat již existující slovní úlohy. ",
 
-      text_of_task:'',
+      text_of_task: '',
       for_year: 1,
-      result:0,
-      reward:1,
-      word_tasks:[],
-      actual_task:{},
+      result: 0,
+      reward: 1,
+      word_tasks: [],
+      actual_task: {},
       button_msg: "Zadat obrázkovou úlohu",
-      addTextTask: true
+
     }
   },
   computed: mapGetters(["user"]),
@@ -120,57 +82,7 @@ export default {
     ...mapActions(["getProfile"]),
 
 
-    changeTypeOfTasks(){
-      if(this.button_msg === "Zadat obrázkovou úlohu"){
-        this.button_msg = "Zadat úlohu s textem";
-        this.addTextTask = false;
-      }else{
-        this.button_msg = "Zadat obrázkovou úlohu";
-        this.addTextTask = true;
-      }
-
-
-    },
-
-
-    onSelect(){
-      //const allowedTypes = ["image/jpeg", "image/jpg", "image/png"];
-      const file = this.$refs.file.files[0];
-
-      this.image1 = file;
-      /*
-      if(!allowedTypes.includes(file.type)){
-        this.message = "Filetype is wrong!!"
-      }
-
-       */
-      if(file.size>500000){
-        this.message = 'Too large, max size allowed is 500kb'
-      }
-      console.log(this.image1);
-    },
-
-
-    async onSubmit(){
-      const formData = new FormData();
-      formData.append('file',this.image1);
-      console.log(this.image1);
-
-      try{
-        //await axios.post('http://localhost:5000/upload',formData);
-
-        await axios.post("api/tasks", this.image1);
-        this.message = 'Uploaded!!'
-      }
-      catch(err){
-        console.log(err);
-        this.message = err.response.data.error
-      }
-    },
-
-
-
-    async addWordTask(_text_of_task, _for_year, _result, _reward){
+    async addWordTask(_text_of_task, _for_year, _result, _reward) {
 
       //let student_result =0;
       this.text_of_task = _text_of_task;
@@ -178,24 +90,29 @@ export default {
       this.result = _result;
       this.reward = _reward;
       //this.actual_task = {_text_of_task, _for_year, _result, student_result, _reward}; //nefunkcni
-      this.actual_task = {"text_of_task": this.text_of_task, "for_year": this.for_year, "result":this.result, "student_result": 0, "reward":this.reward}
+      this.actual_task = {
+        "text_of_task": this.text_of_task,
+        "for_year": this.for_year,
+        "result": this.result,
+        "student_result": 0,
+        "reward": this.reward
+      }
       this.word_tasks.push(this.actual_task);
       store.commit('addTask', this.actual_task);
-
 
 
       alert("Úloha úspěšně přidána");
       location.reload();
       console.log(this.word_tasks);
     },
-    /*
+
+  },
+  /*
     odhlasit(){
       this.$router.push('./');
     }
      */
 
-
-  },
   created() {
     this.getProfile();
   }
@@ -205,18 +122,34 @@ export default {
 <style scoped>
 
 .text-area-for-task{
-  width: 40%;
+
+  height: 15rem;
+  width: 50%;
+  max-width: 85%;
+  max-height: 15rem;
 
 }
 
-.imagePreviewWrapper {
-  width: 250px;
-  height: 250px;
-  display: block;
-  cursor: pointer;
-  margin: 0 auto 30px;
-  background-size: cover;
-  background-position: center center;
+.add-task-btn{
+  margin-top: 2rem;
+  box-shadow: 0 0 0 2px #9fb4f2;
+  background-color:#7892c2;
+  border-radius:5px;
+  border:1px solid #4e6096;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:Arial,serif;
+  font-size:19px;
+  padding:12px 37px;
+  text-decoration:none;
+  text-shadow:0 1px 0 #283966;
 }
+
+.add-task-btn:hover{
+  font-size: 20px;
+  text-decoration: underline;
+}
+
 
 </style>

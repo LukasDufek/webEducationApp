@@ -48,7 +48,7 @@
 
 <script>
 
-import axios from "axios";
+//import axios from "axios";
 
 import GameHeader from "@/gamePages/gameHeader";
 import store from "@/store/store";
@@ -56,6 +56,7 @@ import SilverCoinComponent from "@/components/silverCoinComponent";
 import goldCoinComponent from "@/components/goldCoinComponent";
 import {mapActions, mapGetters} from "vuex";
 import helpTutorial from "@/components/helpTutorial";
+import store_of_items from "@/store/store_of_items";
 
 
 export default {
@@ -79,6 +80,7 @@ export default {
   computed: mapGetters(["user"]),
 
   async mounted(){
+    /*
     try {
       this.shop_items = (await axios.get("api/items/")).data;
       this.$store.state.items = this.shop_items;
@@ -88,11 +90,27 @@ export default {
           this.selectedItems.push(this.shop_items[i]);
         }
       }
+
+
+
       this.items = this.shop_items;
 
     }catch (err){
       this.err = err;
       console.log(this.err);
+    }
+
+     */
+    this.shop_items = store_of_items.state.items;
+
+    for(let i=0; i<this.shop_items.length; i++) {
+      if (this.shop_items[i].type === this.selectedType) {
+        this.selectedItems.push(this.shop_items[i]);
+      }
+
+      this.items = this.shop_items;
+      console.log(this.items[0]._id);
+      console.log(this.items[0].name);
     }
 
     //this.players_items = this.$store.getters.user.inventory;
@@ -179,7 +197,7 @@ export default {
       let allready_got = false;
 
       for(let i=0; i<this.user.inventory.length; i++){
-        if(this.user.inventory[i]._id ===item._id){
+        if(this.user.inventory[i].name ===item.name){
           allready_got = true;
         }
       }

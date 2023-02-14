@@ -208,11 +208,8 @@ router.beforeEach((to, from, next) => {
     } else if (to.matched.some(record => record.meta.requiresGuest)) {
         if (store.getters.isLoggedIn) {
 
-            if(store.getters.user.role === "student") {
-                next('./profileOverviewPage');
-            }else if(store.getters.user.role === "teacher"){
-                next('./addWordTask');
-            }
+            next('./profileOverviewPage');
+
             // Redirect to the Login Page
         }else {
             next();

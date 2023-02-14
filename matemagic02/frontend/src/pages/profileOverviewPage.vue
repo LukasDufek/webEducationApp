@@ -55,7 +55,7 @@ export default {
   components: {NoLogged, GoldCoinComponent, SilverCoinComponent, helpTutorial},
   data() {
     return {
-      text_tutorial:"Zde můžeš vidět celkový přehled tvých vlastností. Kromě těch máš navíc od 3.ročníku možnost vstoupit do hry, kde můžeš využít mince, které si získal za vypočítané příklady a úlohy.",
+      text_tutorial:"Zde můžeš vidět celkový přehled tvých vlastností. Kromě přehledu máš navíc od 3.ročníku možnost vstoupit do hry, kde můžeš využít mince, které si získal za vypočítané příklady a úlohy.",
 
       first_name: '',
       last_name: '',
@@ -98,6 +98,7 @@ export default {
   padding: 40px 40px;
 
   border: #3449ff 4px solid;
+  border-radius: 0.5em;
 
   background: white;
 }

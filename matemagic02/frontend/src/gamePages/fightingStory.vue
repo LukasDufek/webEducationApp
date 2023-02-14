@@ -228,10 +228,15 @@ export default {
 
 <style scoped>
 
-
+body {
+  background: linear-gradient(#ccc, #fff);
+  font: 14px sans-serif;
+  padding: 20px;
+}
 
 .book{
 
+  /*
   height:400px;
   width:80%;
   overflow:scroll;
@@ -247,8 +252,30 @@ export default {
   margin-top: 3rem;
   text-align: left;
 
+   */
+
+
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  margin: 26px auto 0;
+  overflow:scroll;
+  max-width: 550px;
+  height:500px;
+  padding: 24px;
+  width: 70%;
+  text-align: left;
+
+  top: 15px;
+  right: 15px;
+  transition: transform 300ms linear;
+  transform-origin: 0 0;
+  background: #fff linear-gradient(to right, rgba(0, 0, 0, 0.4) 0, #fff 10%, #fff 50%, rgba(0, 0, 0, 0.2) 100%);
+  z-index: 1;
+
+  border: 5px double #4C4C4C;
 
 }
+
+
 
 .choose-year{
   margin-top: 2rem;

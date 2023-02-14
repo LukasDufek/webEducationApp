@@ -24,11 +24,13 @@ const getters = {
 };
 
 const actions = {
+
     // Login Action
     async login({
                     commit
                 }, user) {
         commit('auth_request');
+
         try {
             let res = await axios.post('/api/users/login', user)
             if (res.data.success) {
@@ -70,12 +72,12 @@ const actions = {
         return res;
     },
     // Logout the user
-    async logout({
+     logout({
                      commit
                  }) {
-        await localStorage.removeItem('token');
-        await localStorage.removeItem('test_examples');
-        await localStorage.removeItem('test_word_tasks');
+         localStorage.removeItem('token');
+         localStorage.removeItem('test_examples');
+         localStorage.removeItem('test_word_tasks');
         //await localStorage.removeItem('user');
         commit('logout');
         delete axios.defaults.headers.common['Authorization'];
@@ -144,7 +146,7 @@ const mutations = {
 
         if (state.user.inventory.length > -1) {
           state.user.inventory  = state.user.inventory.filter(object => {
-                return object._id !== item._id;
+                return object.name !== item.name;
             });
 
 

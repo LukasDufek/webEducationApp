@@ -27,7 +27,7 @@ z ukrytu v křoví na tebe vyskočí loupežník. @ ;
 
 Bravo porazil si loupežníka a osvobodil může. U poraženého loupežníka si našel mapu, kde se nachází tábor loupežníků.
 Muž se ti představí jako bývalí velitel na královském hradě. Jako odměnu za jeho vysvobození ti nabídne pomoc s táborem loupežníků,
-ale také to, že tě bude cvičit, abys tak měl vůbec nějakou šanci. Až budeš dostatečně připravený, můžeš jít za loupežníky,
+ale také to, že tě bude cvičit, abys tak měl šanci loupežníky porazit. Až budeš dostatečně připravený, můžeš jít za loupežníky,
 do té doby se musíš vylepšovat. Můžeš také bojovat s loupežníky, na které v lese narazíš. @ ;
 
 ;

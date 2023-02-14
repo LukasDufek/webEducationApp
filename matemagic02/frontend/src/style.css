@@ -1,13 +1,8 @@
 .container{
-    background: url("https://slevomat.sgcdn.cz/images/t/1280/11/45/11456672-186820.webp");
-
-
-
     height: 100%;
 
     /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
+    background: url("https://slevomat.sgcdn.cz/images/t/1280/11/45/11456672-186820.webp") no-repeat center;
     background-size: cover;
 
 

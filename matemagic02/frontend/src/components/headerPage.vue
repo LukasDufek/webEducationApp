@@ -2,7 +2,9 @@
 
   <header class="header">
 
+
     <div class="logo">MateMagic</div>
+
 
     <div class="navbar">
         <router-link v-for="route in this.routes" :key="route.path" v-bind:to="route.path"  class="link">
@@ -35,7 +37,7 @@
 
 
 
-    </div>
+    </div >
 
     <div class="study-year" v-if="role==='student'">{{year}}.Ročník</div>
 
@@ -66,6 +68,7 @@ export default {
     return {
       role: role,
       year: year,
+      user: JSON.parse(localStorage.user),
       routes: routes.filter(route => {
         //console.log(role);
         return route.roles?.includes(role) && !route.inGame
@@ -125,39 +128,47 @@ export default {
 }
 
 .logo{
+
   float: left;
 
   margin-left: 1rem;
+  margin-right: 1rem;
   font-size: 4rem;
+  /* color: #A7DD3C; */
+
+  color: #e5e883;
+background: #FFFFFF;
+text-shadow: 2px 0 0 #800040, 3px 2px 0 rgba(77,0,38,0.5), 3px 0 3px #FF002B, 5px 0 3px #800015, 6px 2px 3px rgba(77,0,13,0.5), 6px 0 9px #FF5500, 8px 0 9px #802A00, 9px 2px 9px rgba(77,25,0,0.5), 9px 0 18px #FFD500, 11px 0 18px #806A00, 12px 2px 18px rgba(77,66,0,0.5), 12px 0 30px #D4FF00, 14px 0 30px #6A8000, 15px 2px 30px rgba(64,77,0,0.5), 15px 0 45px #80FF00, 17px 0 45px #408000, 17px 2px 45px rgba(38,77,0,0.5);
+
 }
 
 .study-year{
-  float: right;
-  margin-left: auto;
-  margin-right: 1rem;
+float: right;
+margin-left: auto;
+margin-right: 1rem;
 
-  font-size: 3rem;
+font-size: 3rem;
 }
 
 
 .logout-button{
-  top: 20%;
-  position: relative;
-  margin-left: 1rem;
+top: 20%;
+position: relative;
+margin-left: 1rem;
 
-  font-size: 1.5vw;
-  text-align: center;
+font-size: 1.5vw;
+text-align: center;
 
 
-  background-color: #008CBA;
-  outline: none;
-  color: white;
-  padding: 0.3vw 1.4vw;
+background-color: #008CBA;
+outline: none;
+color: white;
+padding: 0.3vw 1.4vw;
 
 }
 
 .logout-button:hover{
-  text-decoration: underline;
+text-decoration: underline;
 }
 
 </style>

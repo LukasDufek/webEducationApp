@@ -3,10 +3,10 @@
 <template>
   <div class="container-login">
     <div class="card card-container">
-      <h1 class="welcome">Vítejte ve hře <u>MateMagic</u> </h1>
-      <h1 class="login-card">Registrace</h1>
+      <h1 class="welcome">Vítejte ve hře</h1> <h3 class="logo">MateMagic</h3>
+      <h1 class="login-input">Registrace</h1>
       <h2>Již máš účet?</h2>
-      <button class="btn btn-lg btn-primary btn-block btn-signin" @click="toLogin" type="submit">Přihlásit zde</button>
+      <button class="button-register-login" @click="toLogin" type="submit">Přihlásit zde</button>
       <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
       <p id="profile-name" class="profile-name-card"></p>
 
@@ -47,7 +47,7 @@
         </div>
           <br>
 
-        <button class="btn btn-lg btn-primary btn-block btn-signin" @click="registerUser">Zaregistrovat</button>
+        <button class="button-register-login" @click="registerUser">Zaregistrovat</button>
 
         </div>
       </form>
@@ -168,26 +168,15 @@ export default {
 <style>
 
 .container-login{
-  background: url("https://slevomat.sgcdn.cz/images/t/1280/11/45/11456672-186820.webp");
-
-
-
   height: 150%;
 
   /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
+  background: url("https://slevomat.sgcdn.cz/images/t/1280/11/45/11456672-186820.webp") no-repeat center;
   background-size: cover;
 
   margin-top: -5%;
 }
 
-.login-card{
-
-  font-size: 30px;
-  text-align: center;
-  padding-bottom: 50px;
-}
 
 .card-container.card {
   margin-top: 5%;
@@ -199,29 +188,21 @@ export default {
 
 }
 
-.btn {
-  font-weight: 700;
-  height: 36px;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-  cursor: default;
-}
 
 /*
  * Card component
  */
 .card {
-  background-color: #F7F7F7;
+  background-color: rgba(247, 247, 247, 0.9);
   padding: 20px 25px 30px;
   margin: auto;
 
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   border-radius: 2px;
-  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
 }
 
 .profile-img-card {
@@ -245,20 +226,6 @@ export default {
   min-height: 1em;
 }
 
-.reauth-email {
-  display: block;
-  color: #404040;
-  line-height: 2;
-  margin-bottom: 10px;
-  font-size: 14px;
-  text-align: center;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
 
 .form-signin .inputName,
 .form-signin #inputPassword, #inputPasswordAgain  {
@@ -288,31 +255,35 @@ export default {
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
 }
 
-.btn.btn-signin {
-  background-color: rgb(104, 145, 162);
-  padding: 0px;
-  font-weight: 700;
-  font-size: 14px;
-  height: 36px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  border: none;
-  -o-transition: all 0.218s;
-  -moz-transition: all 0.218s;
-  -webkit-transition: all 0.218s;
-  transition: all 0.218s;
-}
-
-.btn.btn-signin:hover,
-.btn.btn-signin:active,
-.btn.btn-signin:focus {
-  background-color: rgb(12, 97, 33);
-}
 .welcome{
   text-align: center;
   font-size: 35px;
 }
+
+.button-register-login{
+  margin-bottom: 5%;
+
+  box-shadow:inset 0 1px 0 0 #bee2f9;
+  background-color:#63b8ee;
+  border-radius:6px;
+  border:1px solid #3866a3;
+  display:inline-block;
+  cursor:pointer;
+  color:#14396a;
+  font-family:Arial,serif;
+  font-size:18px;
+  font-weight:bold;
+  padding:6px 24px;
+  text-decoration:none;
+  text-shadow:0 1px 0 #7cacde;
+}
+
+.button-register-login:hover{
+  background-color:#468ccf;
+  text-decoration: underline;
+}
+
+
 
 
 </style>
