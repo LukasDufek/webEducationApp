@@ -1,0 +1,61 @@
+.container{
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background: url("https://slevomat.sgcdn.cz/images/t/1280/11/45/11456672-186820.webp") no-repeat center;
+    background-size: cover;
+
+
+ }
+
+.container{
+    margin-top: 5rem;
+    padding-top: 1rem;
+    padding-bottom: 20rem;
+}
+
+.main-content{
+
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 2rem;
+    position: center;
+    text-align: center;
+    width: 70%;
+    background: rgba(255, 238, 128, 0.9);
+    font-size: 20px;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 1em;
+    padding-left: 2em;
+    padding-top: -1em;
+}
+
+button{
+    cursor: pointer;
+}
+
+.confirm-example-button{
+    margin-bottom: 1rem;
+
+    box-shadow:inset 0 1px 0 0 #caefab;
+    background-color:#77d42a;
+    border-radius:6px;
+    border:1px solid #268a16;
+    display:inline-block;
+    cursor:pointer;
+    color:#306108;
+    font-family:Arial,serif;
+    font-size:20px;
+    font-weight:bold;
+    padding:6px 24px;
+    text-decoration:none;
+    text-shadow:0 1px 0 #aade7c;
+}
+
+.confirm-example-button:hover {
+    background-color:#5cb811;
+    text-decoration: underline;
+}
+
+
