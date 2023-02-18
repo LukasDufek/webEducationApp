@@ -8,7 +8,7 @@ const passport = require('passport');
 
 const app = express();
 //routes
-const items = require('./routes/api/items.routes');
+//const items = require('./routes/api/items.routes');
 const tasks = require('./routes/api/tasks.routes');
 const users = require('./routes/api/users.routes');
 const path = require("path");
@@ -29,20 +29,22 @@ require('./config/passport')(passport);
 
 
 //Middlewares routes
-app.use('/api/items', items);
+//app.use('/api/items', items);
 app.use('/api/tasks', tasks);
 app.use('/api/users', users);
 
 
+const db = require('./config/keys').mongoURI;
 //connect to database
 mongoose
-    .connect('mongodb+srv://lukas-dufek:frameworkvuejs@items.x2hdz8c.mongodb.net/?retryWrites=true&w=majority', {
+    .connect(db, {
         useNewUrlParser: true,
-        useCreateIndex: true,
-        useUnifiedTopology: true
     })
-    .then(() => console.log('MongoDB database Connected...'))
-    .catch((err) => console.log(err))
+    .then(() => {
+        console.log(`Database connected successfully ${db}`)
+    }).catch(err => {
+    console.log(`Unable to connect with the database ${err}`)
+});
 
 // Seting up the static directory
 // to deploy
