@@ -54,7 +54,8 @@ import GameHeader from "@/gamePages/gameHeader";
 import GoldCoinComponent from "@/components/goldCoinComponent";
 import SilverCoinComponent from "@/components/silverCoinComponent";
 //import {mapActions, mapGetters} from "vuex";
-const user = JSON.parse(localStorage.user) || {};
+//const user = JSON.parse(localStorage.user) || {};
+const user = JSON.parse(localStorage.user ?? '{}');
 
 
 export default {
