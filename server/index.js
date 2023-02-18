@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-//const path = require('path');
+const path = require('path');
 const cors = require('cors');
 const passport = require('passport');
 
@@ -11,7 +11,7 @@ const app = express();
 //const items = require('./routes/api/items.routes');
 const tasks = require('./routes/api/tasks.routes');
 const users = require('./routes/api/users.routes');
-const path = require("path");
+
 
 
 //define middlewares
@@ -23,7 +23,12 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.use(cors());
-app.use(passport.initialize());
+
+// Seting up the static directory
+// to deploy
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(passport.initialize(undefined));
 require('./config/passport')(passport);
 
 
@@ -45,10 +50,6 @@ mongoose
     }).catch(err => {
     console.log(`Unable to connect with the database ${err}`)
 });
-
-// Seting up the static directory
-// to deploy
-app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.get('*', (req, res)=>{
