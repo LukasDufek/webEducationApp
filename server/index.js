@@ -46,7 +46,7 @@ mongoose
         useNewUrlParser: true,
     })
     .then(() => {
-        console.log(`Database connected successfully ${db}`)
+        console.log(`Database connected successfully`)
     }).catch(err => {
     console.log(`Unable to connect with the database ${err}`)
 });
