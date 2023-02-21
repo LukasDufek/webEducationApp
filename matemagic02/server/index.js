@@ -1,16 +1,16 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-//const path = require('path');
+const path = require('path');
 const cors = require('cors');
 const passport = require('passport');
 
 
 const app = express();
 //routes
-const items = require('./routes/api/items.routes');
 const tasks = require('./routes/api/tasks.routes');
 const users = require('./routes/api/users.routes');
+
 
 
 //define middlewares
@@ -22,30 +22,38 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.use(cors());
-app.use(passport.initialize());
+
+// Seting up the static directory
+// to deploy
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(passport.initialize(undefined));
 require('./config/passport')(passport);
 
 
 
 //Middlewares routes
-app.use('/api/items', items);
 app.use('/api/tasks', tasks);
 app.use('/api/users', users);
 
 
+const db = require('./config/keys').mongoURI;
 //connect to database
 mongoose
-    .connect('mongodb+srv://lukas-dufek:frameworkvuejs@items.x2hdz8c.mongodb.net/?retryWrites=true&w=majority', {
+    .connect(db, {
         useNewUrlParser: true,
-        useCreateIndex: true,
-        useUnifiedTopology: true
     })
-    .then(() => console.log('MongoDB database Connected...'))
-    .catch((err) => console.log(err))
+    .then(() => {
+        console.log(`Database connected successfully`)
+    }).catch(err => {
+    console.log(`Unable to connect with the database ${err}`)
+});
 
-// Seting up the static directory
-// to deploy
-// app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, 'public/index.html'));
+})
+
 
 
 const port = process.env.PORT || 5000;
