@@ -2,6 +2,7 @@
 
 <template>
   <div class="container-login">
+    <Errors v-if="error" :msg="error" />
     <div class="card card-container">
       <h1 class="welcome">Vítejte ve hře</h1> <h3 class="logo">MateMagic</h3>
       <h1 class="login-input">Registrace</h1>
@@ -60,8 +61,15 @@
 </template>
 <script>
 import { mapActions } from "vuex";
+import {mapGetters} from "vuex";
+import Errors from "@/components/Errors";
 
 export default {
+  components:{Errors},
+  computed:{
+    ...mapGetters(["error"])
+  },
+
   data() {
     return {
       first_name: '',
@@ -104,7 +112,7 @@ export default {
 
       }).catch(() =>{
         //console.log(err);
-        alert("Tento mail je již používán nebo se neshodují hesla");
+
       })
 
 

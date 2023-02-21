@@ -8,7 +8,6 @@ const passport = require('passport');
 
 const app = express();
 //routes
-//const items = require('./routes/api/items.routes');
 const tasks = require('./routes/api/tasks.routes');
 const users = require('./routes/api/users.routes');
 
@@ -34,7 +33,6 @@ require('./config/passport')(passport);
 
 
 //Middlewares routes
-//app.use('/api/items', items);
 app.use('/api/tasks', tasks);
 app.use('/api/users', users);
 

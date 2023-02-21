@@ -38,7 +38,7 @@ userRouter.post('/register',  (req, res) => {
 
 
         return res.status(400).json({
-            msg: "Password do not match."
+            msg: "Hesla se neshodují."
         });
 
     }else {
@@ -50,7 +50,7 @@ userRouter.post('/register',  (req, res) => {
             if (user) {
 
                 return res.status(400).json({
-                    msg: "Email is already registred. Did you forgot your password."
+                    msg: "Tento mail je již používán."
                 });
 
             } else {
@@ -86,7 +86,7 @@ userRouter.post('/register',  (req, res) => {
                     await newUser.save().then(() => {
                         return res.status(201).json({
                             success: true,
-                            msg: "Hurry! User is now registered."
+                            msg: "Uživatel úspěšně registrován"
                         });
                     });
 
@@ -116,7 +116,7 @@ userRouter.post('/login',  (req, res) => {
     }).then(user => {
         if (!user) {
             return res.status(404).json({
-                msg: "Username is not found.",
+                msg: "Nesprávný email",
                 success: false
             });
         }else {
@@ -140,12 +140,12 @@ userRouter.post('/login',  (req, res) => {
                             success: true,
                             token: `Bearer ${token}`,
                             user: user,
-                            msg: "Hurry! You are now logged in."
+                            msg: "Uživatel úspěšně přihlášen"
                         });
                     })
                 } else {
                     return res.status(404).json({
-                        msg: "Incorrect password.",
+                        msg: "Nesprávné heslo",
                         success: false
                     });
                 }

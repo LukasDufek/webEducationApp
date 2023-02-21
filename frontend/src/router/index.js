@@ -53,7 +53,7 @@ export const routes = [
     {
         path:"/helpTutorial", component: helpTutorial,
         meta: {
-            requiresStudent: true,
+            requiresUser: true,
 
         }
     },
@@ -66,7 +66,7 @@ export const routes = [
         inGame:false,
         roles: ["student"],
         meta: {
-            requiresStudent: true
+            requiresUser: true
         }
     },
 
@@ -76,7 +76,7 @@ export const routes = [
         inGame:false,
         roles: ["student"],
         meta: {
-            requiresStudent: true
+            requiresUser: true
         }
     },
 
@@ -86,7 +86,7 @@ export const routes = [
         inGame:false,
         roles: ["student"],
         meta: {
-            requiresStudent: true
+            requiresUser: true
         }
     },
 
@@ -96,7 +96,7 @@ export const routes = [
         inGame:false,
         roles: ["student"],
         meta: {
-            requiresStudent: true
+            requiresUser: true
         }
     },
 
@@ -105,7 +105,7 @@ export const routes = [
         path:"/control", component: controlComponent,
         title: "Kontrola před testem",
         meta: {
-            requiresStudent: true
+            requiresUser: true
         }
     },
 
@@ -115,7 +115,7 @@ export const routes = [
     {
         path:"/gameHeader", component: gameHeader,
         meta: {
-            requiresStudent: true
+            requiresUser: true
         }
     },
     {
@@ -124,16 +124,17 @@ export const routes = [
         inGame:true,
         roles: ["student"],
         meta: {
-            requiresStudent: true
+            requiresUser: true
         }
     },
 
-    {path:"/tranningAbilities", component: tranningAbilities,
+    {
+        path:"/tranningAbilities", component: tranningAbilities,
         title: "Cvičiště",
         inGame:true,
         roles: ["student"],
         meta: {
-            requiresStudent: true
+            requiresUser: true
         }
     },
 
@@ -143,7 +144,7 @@ export const routes = [
         inGame:true,
         roles: ["student"],
         meta: {
-            requiresStudent: true
+            requiresUser: true
         }
     },
 
@@ -153,7 +154,7 @@ export const routes = [
         inGame:true,
         roles: ["student"],
         meta: {
-            requiresStudent: true
+            requiresUser: true
         }
     },
 
@@ -161,7 +162,7 @@ export const routes = [
         path:"/fight", component: fightComponent,
         title: "Souboj",
         meta: {
-            requiresStudent: true
+            requiresUser: true
         }
     },
 
@@ -174,7 +175,7 @@ export const routes = [
         inGame:false,
         roles: ["teacher"],
         meta: {
-            requiresStudent: true
+            requiresUser: true
         }
     },
     {
@@ -183,7 +184,7 @@ export const routes = [
         inGame:false,
         roles: ["teacher"],
         meta: {
-            requiresStudent: true
+            requiresUser: true
         }
     },
 ]
@@ -197,7 +198,7 @@ export const router = new VueRouter({
 
 
 router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.requiresStudent)) {
+    if (to.matched.some(record => record.meta.requiresUser)) {
         if (!store.getters.isLoggedIn) {
             // Redirect to the Login Page
             next('./');

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <main>
-      <Errors v-if="error" :msg="error" />
+
       <router-view />
     </main>
   </div>
@@ -9,20 +9,11 @@
 
 <script>
 //import HelloWorld from './components/HelloWorld.vue'
-import {mapGetters} from "vuex";
-import Errors from "@/components/Errors";
+
 
 export default {
   name: 'App',
-  components: {
-    Errors
-  },
-  computed:{
-    ...mapGetters(["error"])
-  }
-  //
 
-  //
 
 }
 </script>
