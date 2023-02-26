@@ -48,18 +48,18 @@ export default {
 <style scoped>
 
 .header {
-  float: inside;
   background-color: white;
-  color: black;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
 
+  height: 5rem;
   display: flex;
   flex: auto;
-  align-items: center;
-  padding-bottom: 1em;
+  min-width: 550px;
+  padding-bottom: 1.5%;
+
   border-bottom: 4px solid black;
 
   box-shadow: 0 0 45px 0 blue;
@@ -68,11 +68,13 @@ export default {
 
 .navbar .link {
 
-  margin-left: 2rem;
-
+  top: 20%;
+  position: relative;
+  margin-left: 1em;
   text-decoration: none;
-  position: center;
-  font-size: 2.1vw;
+
+  font-size: 2.2vw;
+  text-align: center;
 }
 .link:hover{
   background-color: #e5e5e5;
@@ -85,8 +87,13 @@ export default {
   float: right;
   margin-left: auto;
   margin-right: 1rem;
+  padding-right: 1%;
+  padding-left: 1%;
+  padding-top: 1%;
 
   font-size: 3rem;
+
+  text-decoration: underline;
 }
 
 .logo{
@@ -94,7 +101,7 @@ export default {
 
   margin-left: 1rem;
   margin-right: 1rem;
-  font-size: 4rem;
+  font-size: 60px;
   /* color: #A7DD3C; */
 
   color: #e5e883;

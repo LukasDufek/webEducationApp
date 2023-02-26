@@ -102,6 +102,7 @@ export default {
   position: center;
   text-align: center;
   width: 70%;
+  min-width: 500px;
   background: rgba(255, 238, 128, 0.9);
   font-size: 20px;
   border-style: solid;
@@ -112,17 +113,21 @@ export default {
 }
 
 .one-item{
-  position: center;
-  width: 30%;
-  min-width: 11rem;
+  width: 40%;
   margin-bottom: 5%;
-  margin-left: 25vw;
+  margin-left: 30%;
+
+
+  left: 37%;
+  right: 37%;
+  top: 20%;
+
 
   padding: 10px;
   border: 2px;
   border-style: solid;
   border-radius: 10px;
-  background-color:#bfff5e;
+  background-color:#bfff5e
 }
 
 .imgItem{

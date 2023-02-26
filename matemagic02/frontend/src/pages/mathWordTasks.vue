@@ -20,6 +20,9 @@
           </span>
 
         <br>
+        <h3 class="money" v-if="word_tasks[item].reward%10 === 0">Odměna za tuto úlohu je: {{word_tasks[item].reward/10}} <gold-coin-component/> </h3>
+        <h3 class="money" v-else-if= "word_tasks[item].reward/10 > 0 ">Odměna za tuto úlohu je: {{Math.floor(word_tasks[item].reward/10)}} <gold-coin-component/> {{word_tasks[item].reward%10}}  <silver-coin-component/> </h3>
+        <br>
 
       </section>
 
@@ -52,9 +55,12 @@ import store from "@/store/store";
 import axios from "axios";
 import HelpTutorial from "@/components/helpTutorial";
 
+import SilverCoinComponent from "@/components/silverCoinComponent";
+import goldCoinComponent from "@/components/goldCoinComponent";
+
 export default {
   name: "mathWordTasks",
-  components: {HelpTutorial},
+  components: {HelpTutorial, SilverCoinComponent, goldCoinComponent},
   data(){
     return{
       text_tutorial:"Zde můžeš řešit slovní úlohy, které zadali učitelé. Za každou správně vyřešenou úlohu dostaneš odměnu v podobě stříbrných či zlatých mincí. Pokud je to potřeba, můžeš si dělat výpočty a poznámky na papír.",
