@@ -31,6 +31,8 @@ import store from "@/store/store";
 
 Vue.use(VueRouter);
 
+const user = JSON.parse(localStorage.user ?? '{}');
+
 
 export const routes = [
 
@@ -209,7 +211,13 @@ router.beforeEach((to, from, next) => {
     } else if (to.matched.some(record => record.meta.requiresGuest)) {
         if (store.getters.isLoggedIn) {
 
-            next('./profileOverviewPage');
+            if(user.role ==="student") {
+
+                next('./profileOverviewPage');
+            }
+            else if(user.role ==="teacher"){
+                next('./addWordTask');
+            }
 
             // Redirect to the Login Page
         }else {

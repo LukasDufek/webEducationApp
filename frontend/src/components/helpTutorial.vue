@@ -49,7 +49,7 @@ export default {
   width: 50%;
   background: #94ff80;
 
-  font-size: 18px;
+  font-size: 23px;
   border-style: solid;
   border-radius: 4em;
 
@@ -57,7 +57,7 @@ export default {
 
 .text-tutorial{
   text-align: center;
-  font-size: 1.8vw;
+  font-size: 20px;
   padding: 2% 5% 5% 5%;
 }
 

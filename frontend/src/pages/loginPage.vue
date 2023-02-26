@@ -144,6 +144,7 @@ export default {
 
 .card-container.card {
   max-width: 350px;
+  min-width: 350px;
   padding: 40px 40px;
   border: #7cff97 4px solid;
   /* border: #7cff97; */

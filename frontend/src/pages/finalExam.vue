@@ -251,7 +251,7 @@
         let success_rate1 = ((this.examples.length - this.wrong_examples.length) / this.examples.length ) *4/5;
         let success_rate2 = ((this.word_tasks.length - this.wrong_word_task.length) / this.word_tasks.length ) /5;
 
-         this.success_rate = success_rate1 + success_rate2;
+         this.success_rate = Math.round((success_rate1 + success_rate2) * 100) / 100;
 
         if(this.success_rate >= 90){
           //splnil si test a postupujes do dalisho rocniku
