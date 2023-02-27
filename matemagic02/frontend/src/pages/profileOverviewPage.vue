@@ -1,8 +1,8 @@
 <template>
-  <div v-if="user">
+  <div v-if="user.role==='student'">
     <header-page/>
     <div class="container">
-      <help-tutorial :message="text_tutorial"/>
+      <help-tutorial :message="text_tutorial_for_student"/>
 
     <div  class="user-card">
       <h1>Přehled tvého profilu</h1>
@@ -34,8 +34,29 @@
 
   </div>
 
+
   <div v-else>
-    <no-logged/>
+
+    <header-page/>
+    <div class="container">
+      <help-tutorial :message="text_tutorial_for_teacher"/>
+
+      <div  class="user-card">
+        <h1>Přehled tvého učitelského profilu</h1>
+        <h2>Jméno: {{user.first_name}}</h2>
+        <h2>Příjmení: {{user.last_name}}</h2>
+
+
+
+        <br>
+
+
+      </div>
+
+
+    </div>
+
+
   </div>
 
 
@@ -49,13 +70,15 @@ import GoldCoinComponent from "@/components/goldCoinComponent";
 import helpTutorial from "@/components/helpTutorial";
 import {mapGetters} from "vuex";
 import { mapActions } from "vuex";
-import NoLogged from "@/components/noLogged";
+//import NoLogged from "@/components/noLogged";
 export default {
   name: "profileOverviewPage",
-  components: {NoLogged, GoldCoinComponent, SilverCoinComponent, helpTutorial},
+  components: {GoldCoinComponent, SilverCoinComponent, helpTutorial},
   data() {
     return {
-      text_tutorial:"Zde můžeš vidět celkový přehled tvých vlastností. Kromě přehledu máš navíc od 3.ročníku možnost vstoupit do hry, kde můžeš využít mince, které si získal za vypočítané příklady a úlohy.",
+      text_tutorial_for_student:"Zde můžeš vidět celkový přehled tvých vlastností. Kromě přehledu máš navíc od 3.ročníku možnost vstoupit do hry, kde můžeš využít mince, které si získal za vypočítané příklady a úlohy.",
+
+      text_tutorial_for_teacher:"Dobrý den pane učiteli. Jako učitel můžete vytvářet a přidávat nové slovní úlohy pro různé ročníky studentů. Můžete ale také, v sekci 'Spravovat úlohy' mazat nebo jen upravovat již existující slovní úlohy. ",
 
       first_name: '',
       last_name: '',

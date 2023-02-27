@@ -41,6 +41,7 @@ const actions = {
                 // Set the axios defaults
                 axios.defaults.headers.common['Authorization'] = token;
                 commit('auth_success', token, user);
+                location.reload();
                 //localStorage.removeItem('user');
                 localStorage.setItem('user', JSON.stringify(user));
             }
@@ -48,6 +49,7 @@ const actions = {
         } catch (err) {
             commit('auth_error', err);
         }
+        //location.reload();
     },
     // Register User
     async register({commit}, userData) {

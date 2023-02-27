@@ -31,7 +31,7 @@ import store from "@/store/store";
 
 Vue.use(VueRouter);
 
-const user = JSON.parse(localStorage.user ?? '{}');
+//const user = JSON.parse(localStorage.user ?? '{}');
 
 
 export const routes = [
@@ -66,7 +66,7 @@ export const routes = [
         path:"/profileOverviewPage", component: profileOverviewPage,
         title: "Profil",
         inGame:false,
-        roles: ["student"],
+        roles: ["student", "teacher"],
         meta: {
             requiresUser: true
         }
@@ -211,13 +211,8 @@ router.beforeEach((to, from, next) => {
     } else if (to.matched.some(record => record.meta.requiresGuest)) {
         if (store.getters.isLoggedIn) {
 
-            if(user.role ==="student") {
+            next('./profileOverviewPage');
 
-                next('./profileOverviewPage');
-            }
-            else if(user.role ==="teacher"){
-                next('./addWordTask');
-            }
 
             // Redirect to the Login Page
         }else {
