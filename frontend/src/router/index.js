@@ -173,7 +173,6 @@ export const routes = [
     {
         path:"/fight", component: fightComponent,
         title: "Souboj",
-        roles: ["student"],
         meta: {
             requiresUser: true,
             roles: ["student"],
