@@ -41,7 +41,13 @@ userRouter.post('/register',  (req, res) => {
             msg: "Hesla se neshodují."
         });
 
-    }else {
+    }else if(first_name==="" || last_name==="" || email==="" || password==="" || role==="" || (role==="student" && year==="0") ) {
+
+        return res.status(400).json({
+            msg: "Nebyly vyplněná všechna pole."
+        });
+
+    }else{
 
         // Check for the Unique Email
         User.findOne({
