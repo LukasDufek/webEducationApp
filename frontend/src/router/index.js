@@ -216,7 +216,7 @@ router.beforeEach((to, from, next) => {
 
 
     const route = to.matched[0];
-    const user = JSON.parse(localStorage.getItem("user") ?? {});
+    const user = JSON.parse(localStorage.user ?? '{}');
     //const user = store.state.user;
     if (route) {
         console.log(route.meta, user)
