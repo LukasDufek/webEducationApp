@@ -216,10 +216,9 @@ router.beforeEach((to, from, next) => {
 
 
     const route = to.matched[0];
-    const user = JSON.parse(localStorage.getItem("user") ?? {});
-    //const user = store.state.user;
+    const user = JSON.parse(localStorage.user ?? '{}');
     if (route) {
-        console.log(route.meta, user)
+        //console.log(route.meta, user)
         if (!route.meta.roles || (route.meta.roles.length > 0 && route.meta.roles.includes(user?.role))) {
             // ok
             next();

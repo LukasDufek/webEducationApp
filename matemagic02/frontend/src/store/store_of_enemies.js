@@ -19,7 +19,7 @@ export default new Vuex.Store({
                 "hp": randomize_enemy_abilities(6),
                 "money_reward":20,
                 "exp_reward":200,
-                "link":'https://s9.gifyu.com/images/loupeznik.md.png',
+                "link":'assets/imgs/enemies/enemies_3/loupeznik.png',
             },
             {
                 "name":"Druhý loupežník",
@@ -29,7 +29,7 @@ export default new Vuex.Store({
                 "hp": randomize_enemy_abilities(10),
                 "money_reward":50,
                 "exp_reward":200,
-                "link":'https://s9.gifyu.com/images/loupeznik_2.md.png'
+                "link":'assets/imgs/enemies/enemies_3/loupeznik_2.png'
             },
             {
                 "name":"Třetí loupežník",
@@ -39,7 +39,7 @@ export default new Vuex.Store({
                 "hp": randomize_enemy_abilities(13),
                 "money_reward":60,
                 "exp_reward":200,
-                "link":'https://s9.gifyu.com/images/loupeznik_3.md.png'
+                "link":'assets/imgs/enemies/enemies_3/loupeznik_3.png'
             },
             {
                 "name":"Čtvrtý loupežník",
@@ -49,7 +49,7 @@ export default new Vuex.Store({
                 "hp": randomize_enemy_abilities(15),
                 "money_reward":80,
                 "exp_reward":200,
-                "link":'https://s9.gifyu.com/images/loupeznik_4.md.png'
+                "link":'assets/imgs/enemies/enemies_3/loupeznik_4.png'
             },
 
         ],

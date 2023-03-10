@@ -100,6 +100,15 @@ const UserSchema = new Schema({
     defeated_oponents: {
         type: Array,
         required: false
+    },
+
+    completed_word_tasks: {
+        type: Array,
+        required: false
+    },
+
+    date_of_last_calculating:{
+        type:Date,
     }
 
 

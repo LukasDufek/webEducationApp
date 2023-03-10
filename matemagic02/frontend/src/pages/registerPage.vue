@@ -143,13 +143,15 @@ export default {
                 hp: 5
               },
               "inventory": [],
-              "helm_equip": null,
-              "weapon_equip": null,
-              "armor_equip": null,
+              "helm_equip": {},
+              "weapon_equip": {},
+              "armor_equip": {},
               "total_count_of_excercies":0,
               "success_rate":0,
               "daily_limit_excercies":0,
-              "defeated_oponents":[]
+              "defeated_oponents":[],
+              "completed_word_tasks":[],
+              "date_of_last_calculating":null
 
             }
 
@@ -179,7 +181,7 @@ export default {
   height: 150%;
 
   /* Center and scale the image nicely */
-  background: url("https://slevomat.sgcdn.cz/images/t/1280/11/45/11456672-186820.webp") no-repeat center;
+  background: url("http://localhost:8080/assets/imgs/background.png");
   background-size: cover;
 
   margin-top: -5%;

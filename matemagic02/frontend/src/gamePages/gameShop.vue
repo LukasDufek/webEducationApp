@@ -67,7 +67,7 @@ export default {
     return{
       text_tutorial:"Zde si můžeš kupovat předměty, kterými pak můžeš vybavit svoji postavu. Předměty zde můžeš také prodávat, ale pokud chceš nějakou položku prodat, nesmí jí mít postava právě na sobě.",
 
-      selectedType: "Zbraň",
+      selectedType: "weapon",
       items:[],
       shop_items:[],
       players_items:[],
@@ -109,8 +109,8 @@ export default {
       }
 
       this.items = this.shop_items;
-      console.log(this.items[0]._id);
-      console.log(this.items[0].name);
+      //console.log(this.items[0]._id);
+      //console.log(this.items[0].name);
     }
 
     //this.players_items = this.$store.getters.user.inventory;
@@ -127,13 +127,13 @@ export default {
 
       switch (parameter){
         case 'zbrane':
-          this.selectedType = "Zbraň"
+          this.selectedType = "weapon"
           break;
         case 'helmy':
-          this.selectedType = "Helma";
+          this.selectedType = "helm";
           break;
         case 'brneni':
-          this.selectedType = "Brnění";
+          this.selectedType = "armor";
           break;
       }
 
@@ -216,10 +216,11 @@ export default {
 <style scoped>
 
 .imgItem{
-  padding: 10px;
-  border: 2px;
-  border-style: solid;
-  background-color: white;
+  height: 70%;
+  width: 70%;
+  border: 3px solid black;
+  background-color: black;
+  border-radius: 15px;
 }
 
 .one-item{
@@ -234,8 +235,7 @@ export default {
 
 
   padding: 10px;
-  border: 2px;
-  border-style: solid;
+  border: 2px solid;
   border-radius: 10px;
   background-color:#bfff5e;
 

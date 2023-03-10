@@ -203,7 +203,7 @@ export default {
         while (i < this.user.defeated_oponents.length) {
 
           //console.log(this.allContent[j]);
-          console.log('actual content', this.actualContent);
+          //console.log('actual content', this.actualContent);
           if (this.allContent[j].includes('@')) {
             this.allContent[j] = this.allContent[j].replace('@', '');
             //count_of_char++;
@@ -307,10 +307,13 @@ body {
   margin-top: 2rem;
   margin-left: 1%;
 
+/*
   box-shadow:inset 0 1px 0 0 #a6827e;
-  background: #7d5d3b linear-gradient(to bottom, #7d5d3b 5%, #634b30 100%);
+   background: #7d5d3b linear-gradient(to bottom, #7d5d3b 5%, #634b30 100%);
   border-radius:3px;
   border:1px solid #54381e;
+
+   */
   display:inline-block;
   cursor:pointer;
   color:#ffffff;
@@ -319,11 +322,16 @@ body {
   padding:6px 24px;
   text-decoration:none;
   text-shadow:0 1px 0 #4d3534;
+
+  background: #333;
+  border: none;
+  border-radius: 10px;
 }
 
 .choose-year:hover{
-  text-decoration: underline;
-  border-width: 3px;
+  /* text-decoration: underline; */
+  color: #71b7f0;
+  text-shadow: 0 0 10px #71b7f0;
 }
 
 .next-page{

@@ -136,7 +136,8 @@ export default {
 
 
   /* Center and scale the image nicely */
-  background: url("https://slevomat.sgcdn.cz/images/t/1280/11/45/11456672-186820.webp") no-repeat center;
+  background: url("http://localhost:8080/assets/imgs/background.png");
+
   background-size: cover;
 
   margin-top: -4rem;

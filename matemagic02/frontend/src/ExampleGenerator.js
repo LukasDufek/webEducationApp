@@ -25,6 +25,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -34,6 +35,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -43,6 +45,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -73,6 +76,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
 
@@ -84,6 +88,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
 
@@ -95,6 +100,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
 
@@ -106,6 +112,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
 
@@ -138,6 +145,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -149,6 +157,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
 
@@ -159,6 +168,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
 
@@ -169,6 +179,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
 
@@ -179,6 +190,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
 
@@ -190,6 +202,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -200,7 +213,7 @@ export class ExampleGenerator {
     }
 
 
-//--------------------------------------------------------------------------
+//----------------------------------------------------------------------------
 //--------------GNEREROVANI CVICENI PRO IV.ROCNIK-----------------------------
 //----------------------------------------------------------------------------
 
@@ -220,6 +233,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
             }
 
@@ -228,6 +242,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -238,6 +253,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -246,6 +262,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -254,6 +271,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -262,6 +280,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -271,6 +290,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -301,6 +321,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -312,6 +333,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -320,6 +342,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -328,6 +351,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -336,6 +360,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -344,6 +369,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -352,6 +378,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }

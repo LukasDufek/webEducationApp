@@ -43,7 +43,7 @@ export default {
   margin-top: 2rem;
   margin-bottom: 2rem;
 */
-  margin: 1rem auto 3rem auto;
+  margin: 2rem auto 3rem auto;
   position: center;
   text-align: center;
   width: 50%;
