@@ -4,9 +4,9 @@
     <div class="container">
       <div class="character-main">
     <div class="column character-stats">
-      <h2>Tvoje postava {{capitalizeFirstLetter(user.first_name)}}</h2>
+      <h2>Postava Jakuba</h2>
 
-      <h3>Tvé schonposti:</h3>
+      <h3>Schonposti:</h3>
       <h3>Síla: {{user.abilities.strength}}</h3>
       <h3>Útok: {{user.abilities.attack}}</h3>
       <h3>Obrana: {{user.abilities.defense}}</h3>
