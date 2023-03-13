@@ -20,20 +20,20 @@ export default new Vuex.Store({
                 "name":"Palice",
                 "type":"weapon",
                 "using":"attack",
-                "value":0,
+                "value":2,
                 "img_address":"assets/imgs/items/weapons/1.png",
-                "price":0,
-                "sell_price":0,
+                "price":40,
+                "sell_price":20,
                 "equip":false
             },
             {
                 "name":"Palice s hřebíky",
                 "type":"weapon",
                 "using":"attack",
-                "value":0,
+                "value":3,
                 "img_address":"assets/imgs/items/weapons/2.png",
-                "price":0,
-                "sell_price":0,
+                "price":50,
+                "sell_price":25,
                 "equip":false
             },
 
@@ -41,10 +41,10 @@ export default new Vuex.Store({
                 "name":"Dýka",
                 "type":"weapon",
                 "using":"attack",
-                "value":0,
+                "value":6,
                 "img_address":"assets/imgs/items/weapons/3.png",
-                "price":0,
-                "sell_price":0,
+                "price":90,
+                "sell_price":45,
                 "equip":false
             },
 
@@ -52,10 +52,10 @@ export default new Vuex.Store({
                 "name":"Soubojová šavle",
                 "type":"weapon",
                 "using":"attack",
-                "value":0,
+                "value":10,
                 "img_address":"assets/imgs/items/weapons/4.png",
-                "price":0,
-                "sell_price":0,
+                "price":160,
+                "sell_price":80,
                 "equip":false
             },
 
@@ -63,10 +63,10 @@ export default new Vuex.Store({
                 "name":"Šermířský rapír",
                 "type":"weapon",
                 "using":"attack",
-                "value":0,
+                "value":14,
                 "img_address":"assets/imgs/items/weapons/5.png",
-                "price":0,
-                "sell_price":0,
+                "price":220,
+                "sell_price":110,
                 "equip":false
             },
 
@@ -74,10 +74,10 @@ export default new Vuex.Store({
                 "name":"Sekera",
                 "type":"weapon",
                 "using":"attack",
-                "value":0,
+                "value":18,
                 "img_address":"assets/imgs/items/weapons/6.png",
-                "price":0,
-                "sell_price":0,
+                "price":270,
+                "sell_price":135,
                 "equip":false
             },
 
@@ -85,10 +85,10 @@ export default new Vuex.Store({
                 "name":"Rytířský meč",
                 "type":"weapon",
                 "using":"attack",
-                "value":0,
+                "value":24,
                 "img_address":"assets/imgs/items/weapons/7.png",
-                "price":0,
-                "sell_price":0,
+                "price":350,
+                "sell_price":175,
                 "equip":false
             },
 
@@ -96,10 +96,10 @@ export default new Vuex.Store({
                 "name":"Šlechtický meč",
                 "type":"weapon",
                 "using":"attack",
-                "value":0,
+                "value":35,
                 "img_address":"assets/imgs/items/weapons/8.png",
-                "price":0,
-                "sell_price":0,
+                "price":500,
+                "sell_price":250,
                 "equip":false
             },
 
@@ -107,10 +107,10 @@ export default new Vuex.Store({
                 "name":"Očarovaná sekera",
                 "type":"weapon",
                 "using":"attack",
-                "value":0,
+                "value":42,
                 "img_address":"assets/imgs/items/weapons/9.png",
-                "price":0,
-                "sell_price":0,
+                "price":600,
+                "sell_price":300,
                 "equip":false
             },
 
@@ -118,10 +118,10 @@ export default new Vuex.Store({
                 "name":"Očarovaný meč",
                 "type":"weapon",
                 "using":"attack",
-                "value":0,
+                "value":60,
                 "img_address":"assets/imgs/items/weapons/10.png",
-                "price":0,
-                "sell_price":0,
+                "price":900,
+                "sell_price":450,
                 "equip":false
             },
 
@@ -129,10 +129,10 @@ export default new Vuex.Store({
                 "name":"Dračí meč",
                 "type":"weapon",
                 "using":"attack",
-                "value":0,
+                "value":80,
                 "img_address":"assets/imgs/items/weapons/11.png",
-                "price":0,
-                "sell_price":0,
+                "price":1500,
+                "sell_price":750,
                 "equip":false
             },
 
@@ -144,10 +144,10 @@ export default new Vuex.Store({
                 "name":"Sedlácká čapka",
                 "type":"helm",
                 "using":"defence",
-                "value":0,
+                "value":2,
                 "img_address":"assets/imgs/items/helms/1.png",
-                "price":0,
-                "sell_price":0,
+                "price":48,
+                "sell_price":24,
                 "equip":false
             },
 
@@ -156,10 +156,10 @@ export default new Vuex.Store({
                 "name":"Železný klobouk",
                 "type":"helm",
                 "using":"defence",
-                "value":0,
+                "value":7,
                 "img_address":"assets/imgs/items/helms/2.png",
-                "price":0,
-                "sell_price":0,
+                "price":110,
+                "sell_price":55,
                 "equip":false
             },
 
@@ -167,10 +167,10 @@ export default new Vuex.Store({
                 "name":"Rytířská přilbice",
                 "type":"helm",
                 "using":"defence",
-                "value":0,
+                "value":11,
                 "img_address":"assets/imgs/items/helms/3.png",
-                "price":0,
-                "sell_price":0,
+                "price":210,
+                "sell_price":105,
                 "equip":false
             },
 
@@ -178,21 +178,21 @@ export default new Vuex.Store({
                 "name":"Kapitánská přilbice",
                 "type":"helm",
                 "using":"defence",
-                "value":0,
+                "value":24,
                 "img_address":"assets/imgs/items/helms/4.png",
-                "price":0,
-                "sell_price":0,
+                "price":350,
+                "sell_price":175,
                 "equip":false
             },
 
             {
-                "name":"Přilbice Šampionů",
+                "name":"Přilbice šampionů",
                 "type":"helm",
                 "using":"defence",
-                "value":0,
+                "value":38,
                 "img_address":"assets/imgs/items/helms/5.png",
-                "price":0,
-                "sell_price":0,
+                "price":700,
+                "sell_price":350,
                 "equip":false
             },
 
@@ -203,10 +203,10 @@ export default new Vuex.Store({
                 "name":"Košile",
                 "type":"armor",
                 "using":"defence",
-                "value":0,
+                "value":3,
                 "img_address":"assets/imgs/items/armors/1.png",
-                "price":0,
-                "sell_price":0,
+                "price":60,
+                "sell_price":30,
                 "equip":false
             },
 
@@ -214,10 +214,10 @@ export default new Vuex.Store({
                 "name":"Lehká měděná zbroj",
                 "type":"armor",
                 "using":"defence",
-                "value":0,
+                "value":7,
                 "img_address":"assets/imgs/items/armors/2.png",
-                "price":0,
-                "sell_price":0,
+                "price":120,
+                "sell_price":60,
                 "equip":false
             },
 
@@ -225,10 +225,10 @@ export default new Vuex.Store({
                 "name":"Rytířská zbroj",
                 "type":"armor",
                 "using":"defence",
-                "value":0,
+                "value":13,
                 "img_address":"assets/imgs/items/armors/3.png",
-                "price":0,
-                "sell_price":0,
+                "price":240,
+                "sell_price":120,
                 "equip":false
             },
 
@@ -236,10 +236,10 @@ export default new Vuex.Store({
                 "name":"Velitelská zbroj",
                 "type":"armor",
                 "using":"defence",
-                "value":0,
+                "value":20,
                 "img_address":"assets/imgs/items/armors/4.png",
-                "price":0,
-                "sell_price":0,
+                "price":300,
+                "sell_price":150,
                 "equip":false
             },
 
@@ -247,10 +247,10 @@ export default new Vuex.Store({
                 "name":"Kouzelná ocelová zbroj",
                 "type":"armor",
                 "using":"defence",
-                "value":0,
+                "value":32,
                 "img_address":"assets/imgs/items/armors/5.png",
-                "price":0,
-                "sell_price":0,
+                "price":600,
+                "sell_price":300,
                 "equip":false
             },
 
@@ -258,10 +258,10 @@ export default new Vuex.Store({
                 "name":"Nebeská zbroj z kouzelných kovů",
                 "type":"armor",
                 "using":"defence",
-                "value":0,
+                "value":50,
                 "img_address":"assets/imgs/items/armors/6.png",
-                "price":0,
-                "sell_price":0,
+                "price":1000,
+                "sell_price":500,
                 "equip":false
             },
 

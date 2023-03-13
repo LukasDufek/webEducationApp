@@ -8,19 +8,19 @@
         <h2>Tvoje postava {{user.first_name}}</h2>
 
         <h3>Vylepšit schonposti:</h3>
-        <h3 v-if="user.abilities.strength > 10">Síla: {{user.abilities.strength}} <button class="upgrade-button" @click="training('strength', strength)">+</button> cena: {{Math.floor(user.abilities.strength /10)}} <gold-coin-component/> a {{user.abilities.strength % 10}} <silver-coin-component/></h3>
-        <h3 v-else>Síla: {{user.abilities.strength}} <button class="upgrade-button" @click="training('strength', strength)">+</button> cena: {{user.abilities.strength}} <silver-coin-component/> </h3>
+        <h3 v-if="user.abilities.strength*5 >= 10">Síla: {{user.abilities.strength}} <button class="upgrade-button" @click="training('strength', strength*5)">+</button> cena: {{Math.floor(user.abilities.strength*5 /10)}} <gold-coin-component/> a {{user.abilities.strength*5 % 10}} <silver-coin-component/></h3>
+        <h3 v-else>Síla: {{user.abilities.strength}} <button class="upgrade-button" @click="training('strength', strength*5)">+</button> cena: {{user.abilities.strength*5}} <silver-coin-component/> </h3>
 
 
-        <h3 v-if="user.abilities.attack > 10">Útok: {{user.abilities.attack}} <button class="upgrade-button" @click="training('attack', attack)">+</button> cena: {{Math.floor(user.abilities.attack /10)}} <gold-coin-component/> a {{user.abilities.attack % 10}} <silver-coin-component/></h3>
-        <h3 v-else>Útok: {{user.abilities.attack}} <button class="upgrade-button" @click="training('attack', attack)">+</button> cena: {{user.abilities.attack}} <silver-coin-component/></h3>
+        <h3 v-if="user.abilities.attack*5 >= 10">Útok: {{user.abilities.attack}} <button class="upgrade-button" @click="training('attack', attack*5)">+</button> cena: {{Math.floor(user.abilities.attack*5 /10)}} <gold-coin-component/> a {{user.abilities.attack*5 % 10}} <silver-coin-component/></h3>
+        <h3 v-else>Útok: {{user.abilities.attack}} <button class="upgrade-button" @click="training('attack', attack*5)">+</button> cena: {{user.abilities.attack*5}} <silver-coin-component/></h3>
 
 
-        <h3 v-if="user.abilities.defense > 10">Obrana: {{user.abilities.defense}} <button class="upgrade-button" @click="training('defense', defense)">+</button> cena: {{Math.floor(user.abilities.defense /10)}} <gold-coin-component/> a {{user.abilities.defense % 10}} <silver-coin-component/></h3>
-        <h3 v-else>Obrana: {{user.abilities.defense}} <button class="upgrade-button" @click="training('defense', defense)">+</button> cena: {{user.abilities.defense}} <silver-coin-component/></h3>
+        <h3 v-if="user.abilities.defense*5 >= 10">Obrana: {{user.abilities.defense}} <button class="upgrade-button" @click="training('defense', defense*5)">+</button> cena: {{Math.floor(user.abilities.defense*5 /10)}} <gold-coin-component/> a {{user.abilities.defense*5 % 10}} <silver-coin-component/></h3>
+        <h3 v-else>Obrana: {{user.abilities.defense}} <button class="upgrade-button" @click="training('defense', defense*5)">+</button> cena: {{user.abilities.defense*5}} <silver-coin-component/></h3>
 
-        <h3 v-if="user.abilities.hp > 10">Výdrž: {{user.abilities.hp}} <button class="upgrade-button" @click="training('hp', hp)">+</button> cena: {{Math.floor(user.abilities.hp /10)}} <gold-coin-component/> a {{user.abilities.hp % 10}} <silver-coin-component/></h3>
-        <h3 v-else>Výdrž: {{user.abilities.hp}} <button class="upgrade-button" @click="training('hp', hp)">+</button> cena: {{user.abilities.hp}} <silver-coin-component/></h3>
+        <h3 v-if="user.abilities.hp*5 >= 10">Výdrž: {{user.abilities.hp}} <button class="upgrade-button" @click="training('hp', hp*5)">+</button> cena: {{Math.floor(user.abilities.hp*5 /10)}} <gold-coin-component/> a {{user.abilities.hp*5 % 10}} <silver-coin-component/></h3>
+        <h3 v-else>Výdrž: {{user.abilities.hp}} <button class="upgrade-button" @click="training('hp', hp*5)">+</button> cena: {{user.abilities.hp*5}} <silver-coin-component/></h3>
 
         <br>
         <h3>Vlastníš: {{Math.floor(user.money /10)}} <gold-coin-component/> a {{user.money % 10}} <silver-coin-component/> </h3>

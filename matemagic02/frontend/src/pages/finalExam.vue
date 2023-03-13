@@ -8,15 +8,12 @@
       <div class="main-content">
 
 
-<!--
-    <div v-if="control_component_metod()===false">
+    <div v-if="control_component_metod()">
       <control-component/>
     </div>
 
-    <div v-else-if="control_component_metod()===true">
+    <div v-else-if="!control_component_metod()">
 
--->
-         <div> <!-- tento div pak smazat -->
 
 
 
@@ -83,18 +80,18 @@
 
   <script>
 
-  import {ExampleGenerator} from "@/ExampleGenerator";
-  import FinalExampleComponent from "@/components/finalExampleComponent";
-  //import controlComponent from "@/components/controlComponent";
-  import axios from "axios";
-  import helpTutorial from "@/components/helpTutorial";
+import {ExampleGenerator} from "@/ExampleGenerator";
+import FinalExampleComponent from "@/components/finalExampleComponent";
+import controlComponent from "@/components/controlComponent";
+import axios from "axios";
+import helpTutorial from "@/components/helpTutorial";
 
   const myExampleGenerator = new ExampleGenerator();
 
 
   export default {
     name: "finalExam",
-    components: {FinalExampleComponent, helpTutorial//, controlComponent
+    components: {FinalExampleComponent, helpTutorial, controlComponent
       },
     data(){
       return{

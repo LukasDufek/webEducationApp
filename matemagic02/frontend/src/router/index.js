@@ -224,6 +224,7 @@ router.beforeEach((to, from, next) => {
             next();
         }  else {
             next('./');
+
         }
     }
 
@@ -231,6 +232,7 @@ router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresUser)) {
         if (!store.getters) {
             // Redirect to the Login Page
+
             next('./');
         } else {
             next();

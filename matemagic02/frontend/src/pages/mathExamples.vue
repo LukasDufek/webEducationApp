@@ -10,17 +10,13 @@
       <section class="one-example" v-if="!exercise_completed && item<this.count_of_exmaples">
 
         <h1> <u>Příklady pro {{user.year}}.Ročník</u></h1>
-        <h2>Dnes jsi už absolvoval {{this.daily_limit}} cvičení</h2>
+        <h2>Dnes jsi už absolvoval {{this.user.daily_limit_excercies}} cvičení</h2>
         <h2>Počet příkladů v tomto cvičení je: {{this.count_of_exmaples}}</h2>
 
         <math-problem :item="examples[item]" :index="item" @resultchanged="onChange" />
         <button v-if="item<this.count_of_exmaples" class="confirm-example-button" @click="onConfirm">Další příklad</button>
 
         <hr>
-
-
-
-
 
       </section>
 
@@ -34,7 +30,10 @@
     <section v-if="exercise_completed">
       <h2>Počet chyb: {{num_of_wrong}} z {{count_of_exmaples}} příkladů</h2>
       <h2>Tvoje úspěšnost je : {{this.success_rate}}%</h2>
-      <h2>Dostáváš odměnu : {{this.reward}}</h2>
+      <h2 class="money" v-if="this.reward%10 === 0">Dostáváš odměnu : {{this.reward/10}} <gold-coin-component/> </h2>
+      <h2 class="money" v-else-if= "this.reward/10 > 0 ">Dostáváš odměnu : {{Math.floor(this.reward/10)}} <gold-coin-component/> {{this.reward%10}}  <silver-coin-component/> </h2>
+      <h2 class="money" v-else-if="this.reward/10 < 0 " >Dostáváš odměnu : {{this.reward}}  <silver-coin-component/> </h2>
+
       <h2 v-if="wrong_examples.length > 0">Příklady, které byly špatně: </h2>
       <section v-for="(item, index) in wrong_examples" :key="index">
         <h3 v-if="wrong_examples[index].type === 'compare'">{{(index+1)}}.Příklad: {{wrong_examples[index].first_number}} <u>{{wrong_examples[index].result}}</u>  {{wrong_examples[index].second_number}} </h3>
@@ -45,6 +44,7 @@
 
 
       </section>
+
       <button class="confirm-example-button" @click="next_exercise">Další procvičování</button>
     </section>
     </div>
@@ -65,6 +65,8 @@
 import MathProblem from "../components/MathProblem";
 import {ExampleGenerator} from "@/ExampleGenerator";
 import helpTutorial from "@/components/helpTutorial";
+import goldCoinComponent from "@/components/goldCoinComponent";
+import silverCoinComponent from "@/components/silverCoinComponent";
 //import Auth from "../Warehouse/Auth";
 import store from "@/store/store";
 
@@ -74,7 +76,7 @@ const myExampleGenerator = new ExampleGenerator();
 
 export default {
   name: "mathExamples",
-  components: {MathProblem, helpTutorial},
+  components: {MathProblem, helpTutorial, goldCoinComponent, silverCoinComponent},
 
 
   data() {
@@ -106,6 +108,8 @@ export default {
 
     this.control_daily_excercies();
     this.GENERATE();
+    console.log(this.examples.length);
+    console.log(this.examples);
 
 
   },
@@ -213,9 +217,9 @@ export default {
       }
 
 
-      this.success_rate = ((this.count_of_exmaples - this.wrong_examples.length) / this.count_of_exmaples) * 100;
+      this.success_rate = Math.round(((this.count_of_exmaples - this.wrong_examples.length) / this.count_of_exmaples) * 100);
       if (this.success_rate >= 90) {
-        this.reward = parseInt(this.user.year) * 4;
+        this.reward = parseInt(this.user.year) * 3;
       } else if (this.success_rate >= 75) {
         this.reward = parseInt(this.user.year) * 2;
       } else if (this.success_rate >= 60) {
@@ -269,6 +273,7 @@ export default {
 
         if(oldDate[0] !== actualDate[0] && oldDate[1] !== actualDate[1] && oldDate[2] !== actualDate[2]){
           store.commit('increaseExcercies', 'down');
+          location.reload();
         }
 
 

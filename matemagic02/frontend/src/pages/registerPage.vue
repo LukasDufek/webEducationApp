@@ -126,6 +126,30 @@ export default {
 
     createNewPlayer() {
 
+            let money =0;
+            switch (this.year){
+              case "1":
+                money = 5;
+                break;
+
+              case "2":
+                money = 50;
+                break;
+
+              case "3":
+                money = 200;
+                break;
+
+              case "4":
+                money = 450;
+                break;
+
+              case "5":
+                money = 900;
+                break;
+            }
+
+
             this.user = {
               "first_name": this.first_name,
               "last_name": this.last_name,
@@ -134,7 +158,7 @@ export default {
               "confirm_password": this.confirm_password,
               "role": this.role,
               "year": this.year,
-              "money": parseInt(this.year) * 20,
+              "money": money,
               "exp": 0,
               "abilities": {
                 strength: 5,
@@ -178,7 +202,7 @@ export default {
 <style>
 
 .container-login{
-  height: 150%;
+  max-height: 100%;
 
   /* Center and scale the image nicely */
   background: url("http://localhost:8080/assets/imgs/background.png");

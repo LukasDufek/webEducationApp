@@ -160,6 +160,13 @@ const mutations = {
 
         }
 
+        if(item.using ==='attack'){
+            state.user.abilities.attack += item.value;
+        }else if(item.using ==='defence'){
+            state.user.abilities.defense += item.value;
+        }
+
+
 
         let id = state.user._id;
 
@@ -172,6 +179,7 @@ const mutations = {
             data: state.user
 
         });
+         location.reload();
 
     },
 
@@ -188,6 +196,12 @@ const mutations = {
 
         }
 
+        if(item.using ==='attack'){
+            state.user.abilities.attack -= item.value;
+        }else if(item.using ==='defence'){
+            state.user.abilities.defense -= item.value;
+        }
+
         localStorage.setItem('user', JSON.stringify(state.user));
 
         await axios({
@@ -196,6 +210,7 @@ const mutations = {
             data: state.user
 
         });
+        location.reload();
 
     },
 
@@ -276,11 +291,12 @@ const mutations = {
 
         if(parameter==='up') {
             state.user.total_count_of_excercies++;
+            state.user.daily_limit_excercies++;
             state.user.date_of_last_calculating = new Date().toLocaleDateString('en-GB', {
                 day: 'numeric', month: 'numeric', year: 'numeric'
             })
         }else{
-            state.user.total_count_of_excercies =0;
+            state.user.daily_limit_excercies =0;
         }
 
         localStorage.setItem('user', JSON.stringify(state.user));

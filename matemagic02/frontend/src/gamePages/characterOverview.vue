@@ -60,10 +60,10 @@
 
    <div class="character-inventory">
      <h1>Položky ve tvém inventáři</h1>
-     <div v-if="user.inventory.length >0">
+     <div v-if="user_actual_invetory.length >0">
 
 
-     <section v-for="item in user.inventory" :key="item.name" class="one-item">
+     <section v-for="item in user_actual_invetory" :key="item.name" class="one-item">
 
        <h2><u>{{item.name}}</u></h2>
 
@@ -114,6 +114,7 @@ export default {
       equip_weapon:null,
       equip_helm:null,
       equip_armor:null,
+      user_actual_invetory:[]
     }
   },
 
@@ -127,9 +128,13 @@ export default {
 
     equipItem(item) {
 
-      store.commit('equip_item', item);
-      this.control_equip_weapon();
-      location.reload();
+
+      if(item === this.equip_weapon || item ===this.equip_helm || item ===this.equip_armor) {
+        alert('Tato položka je již vybavená');
+      }else{
+        store.commit('equip_item', item);
+        this.control_equip_weapon();
+      }
 
 
 
@@ -147,12 +152,12 @@ export default {
       }else if(equip_item.type==='armor'){
         this.equip_armor = null;
       }
-      location.reload();
-
 
     },
 
     control_equip_weapon() {
+
+      this.user_actual_invetory=[];
 
       for (let i = 0; i < user.inventory.length; i++) {
         if (user.inventory[i].type === 'weapon' && user.inventory[i].equip) {
@@ -166,6 +171,9 @@ export default {
         if (user.inventory[i].type === 'armor' && user.inventory[i].equip) {
           this.equip_armor = user.inventory[i];
 
+        }
+        if(!user.inventory[i].equip){
+          this.user_actual_invetory.push(user.inventory[i]);
         }
 
       }

@@ -22,12 +22,12 @@
       <h3 v-else-if="item.using==='defence'">Obrana +{{item.value}}</h3>
 
       <h3 class="money" v-if="item.price%10 === 0">Cena: {{item.price/10}} <gold-coin-component/> </h3>
-      <h3 class="money" v-else-if= "item.price/10 > 0 ">Cena: {{item.price/10}} <gold-coin-component/> {{item.price%10}}  <silver-coin-component/> </h3>
+      <h3 class="money" v-else-if= "item.price/10 > 0 ">Cena: {{Math.floor(item.price/10)}} <gold-coin-component/> {{item.price%10}}  <silver-coin-component/> </h3>
       <h3 class="money" v-else >Cena: {{item.price}}  <silver-coin-component/> </h3>
 
 
-      <h3 class="money" v-if="item.price%10 === 0">Prodejní cena: {{item.sell_price/10}} <gold-coin-component/> </h3>
-      <h3 class="money" v-else-if= "item.price/10 > 0 ">Prodejní cena: {{item.sell_price/10}}<gold-coin-component/> {{item.sell_price%10}}  <silver-coin-component/> </h3>
+      <h3 class="money" v-if="item.sell_price%10 === 0">Prodejní cena: {{item.sell_price/10}} <gold-coin-component/> </h3>
+      <h3 class="money" v-else-if= "item.sell_price/10 > 0 ">Prodejní cena: {{Math.floor(item.sell_price/10)}}<gold-coin-component/> {{item.sell_price%10}}  <silver-coin-component/> </h3>
       <h3 class="money" v-else >Prodejní cena: {{item.sell_price}}  <silver-coin-component/> </h3>
 
       <!-- {{this.$store.state.attributes.money/10}} <gold-coin-component/>  a {{this.$store.state.attributes.money%10 }} <silver-coin-component/> -->
@@ -190,6 +190,7 @@ export default {
         alert("Položka prodána");
         this.changeShopping();
       }
+      location.reload();
 
     },
 
@@ -215,6 +216,8 @@ export default {
 
 <style scoped>
 
+
+
 .imgItem{
   height: 70%;
   width: 70%;
@@ -232,7 +235,6 @@ export default {
   left: 37%;
   right: 37%;
   top: 20%;
-
 
   padding: 10px;
   border: 2px solid;
@@ -289,7 +291,8 @@ button:hover{
 }
 .your-money{
   text-align: right;
-  padding-right: 2rem;
+  padding-right: -5%;
+  padding-left: 5%;
   margin-bottom: -2rem;
 }
 
