@@ -32,7 +32,7 @@ const actions = {
         commit('auth_request');
 
         try {
-            let res = await axios.post('http://localhost:5000/api/users/login', user)
+            let res = await axios.post('/api/users/login', user)
             if (res.data.success) {
                 const token = res.data.token;
                 const user = res.data.user;
@@ -56,7 +56,7 @@ const actions = {
     async register({commit}, userData) {
         try {
             commit('register_request');
-            let res = await axios.post('http://localhost:5000/api/users/register', userData);
+            let res = await axios.post('/api/users/register', userData);
             if (res.data !== undefined) {
                 commit('register_success');
             }
@@ -70,7 +70,7 @@ const actions = {
                          commit
                      }) {
         commit('profile_request');
-        let res = await axios.get('http://localhost:5000/api/users/profile');
+        let res = await axios.get('/api/users/profile');
         commit('user_profile', res.data.user);
         return res;
     },
@@ -137,7 +137,7 @@ const mutations = {
 
         await axios({
             method: 'put',
-            url: `http://localhost:5000/api/users/${id}`,
+            url: `/api/users/${id}`,
             data: state.user
 
         });
@@ -175,7 +175,7 @@ const mutations = {
 
         await axios({
             method: 'put',
-            url: `http://localhost:5000/api/users/${id}`,
+            url: `/api/users/${id}`,
             data: state.user
 
         });
@@ -206,7 +206,7 @@ const mutations = {
 
         await axios({
             method: 'put',
-            url: `http://localhost:5000/api/users/${id}`,
+            url: `/api/users/${id}`,
             data: state.user
 
         });
@@ -228,7 +228,7 @@ const mutations = {
 
             await axios({
                 method: 'put',
-                url: `http://localhost:5000/api/users/${id}`,
+                url: `/api/users/${id}`,
                 data: state.user.inventory
 
             });
@@ -248,7 +248,7 @@ const mutations = {
 
         await axios({
             method: 'put',
-            url: `http://localhost:5000/api/users/${id}`,
+            url: `/api/users/${id}`,
             data: state.user
 
         });
@@ -279,7 +279,7 @@ const mutations = {
 
         await axios({
             method: 'put',
-            url: `http://localhost:5000/api/users/${id}`,
+            url: `/api/users/${id}`,
             data: state.user
 
         });
@@ -305,7 +305,7 @@ const mutations = {
 
         await axios({
             method: 'put',
-            url: `http://localhost:5000/api/users/${id}`,
+            url: `/api/users/${id}`,
             data: state.user
 
         });
@@ -321,7 +321,7 @@ const mutations = {
 
         await axios({
             method: 'put',
-            url: `http://localhost:5000/api/users/${id}`,
+            url: `/api/users/${id}`,
             data: state.user
 
         });
@@ -338,7 +338,7 @@ const mutations = {
 
         await axios({
             method: 'put',
-            url: `http://localhost:5000/api/users/${id}`,
+            url: `/api/users/${id}`,
             data: state.user
 
         });
@@ -360,7 +360,7 @@ const mutations = {
 
         await axios({
             method: 'put',
-            url: `http://localhost:5000/api/users/${id}`,
+            url: `/api/users/${id}`,
             data: state.user
 
         });
@@ -379,7 +379,7 @@ const mutations = {
 
             await axios({
                 method: 'put',
-                url: `http://localhost:5000/api/users/${id}`,
+                url: `/api/users/${id}`,
                 data: state.user
 
             });

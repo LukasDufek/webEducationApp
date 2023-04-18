@@ -33,7 +33,7 @@ export default {
     main_control(){
       // true X false
 
-      return (this.user.total_count_of_excercies >= 30) && (this.user.success_rate >= 85);
+      return (this.user.total_count_of_excercies >= 40) && (this.user.success_rate >= 85);
     },
 
     to_test(){

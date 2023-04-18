@@ -115,14 +115,7 @@ export default {
 
 
 .user-card{
-  /* margin: auto; */
-  /*
-  margin-top: 5%;
-  margin-left: 2rem;
-  max-width: 350px;
-  padding: 40px 40px;
 
-   */
   position: center;
   width: 26%;
   height: 450px;
@@ -159,14 +152,5 @@ export default {
 }
 
 
-
-.logout{
-  margin-top: 3%;
-}
-
-.no-logged{
-  font-size: 400%;
-  padding-bottom: 50%;
-}
 
 </style>

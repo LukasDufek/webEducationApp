@@ -5,15 +5,17 @@
       <div class="character-main">
     <div class="column character-stats">
       <h2>Postava Jakuba</h2>
+      <img v-if="parseInt(user.year) === 3" v-bind:src="'assets/imgs/hlavni-postava/sedlak-Jakub.png'" class="imgItem" alt="">
+      <img v-else v-bind:src="'assets/imgs/hlavni-postava/hlavni_postava.png'" class="imgItem" alt="">
 
       <h3>Schonposti:</h3>
+
       <h3>Síla: {{user.abilities.strength}}</h3>
       <h3>Útok: {{user.abilities.attack}}</h3>
       <h3>Obrana: {{user.abilities.defense}}</h3>
       <h3>Výdrž: {{user.abilities.hp}}</h3>
       <br>
       <h3>Vlastníš: {{Math.floor(user.money /10)}} <gold-coin-component/> a {{user.money % 10}} <silver-coin-component/> </h3>
-      <h3>Zkušenosti: {{user.exp}}</h3>
 
     </div>
 

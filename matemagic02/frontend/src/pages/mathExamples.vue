@@ -108,8 +108,7 @@ export default {
 
     this.control_daily_excercies();
     this.GENERATE();
-    console.log(this.examples.length);
-    console.log(this.examples);
+
 
 
   },
@@ -125,9 +124,9 @@ export default {
 
     onConfirm() {
       const data = this.last_data;
-      console.log('tvuj vysledek', data.value);
+      //console.log('tvuj vysledek', data.value);
       //console.log('tvuj vysledek',this.examples[data.index]);
-      this.add_to_results(data.value, this.examples[data.index], data.reminder ?? 0);
+      this.add_to_results(data.value, this.examples[data.index], data.remainder ?? 0);
     },
 
     GENERATE() {
@@ -245,8 +244,8 @@ export default {
       this.results = [];
       this.examples = [];
       this.GENERATE();
-      console.log(this.reward);
-      console.log('this.$store.state.atributy.jmeno');
+      //console.log(this.reward);
+      //console.log('this.$store.state.atributy.jmeno');
 
 
     },

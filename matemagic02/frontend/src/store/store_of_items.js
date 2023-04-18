@@ -156,7 +156,7 @@ export default new Vuex.Store({
                 "name":"Železný klobouk",
                 "type":"helm",
                 "using":"defence",
-                "value":7,
+                "value":6,
                 "img_address":"assets/imgs/items/helms/2.png",
                 "price":110,
                 "sell_price":55,
