@@ -6,7 +6,8 @@
     /*background: url("") no-repeat center; */
 
     /*background: url("assets/imgs/items/armors/1.png") no-repeat center; */
-    background: url("http://localhost:8080/assets/imgs/background.png") no-repeat fixed center;
+     /* background: url("/assets/imgs/background.png") no-repeat fixed center; */
+    background-image: url(src:/assets/imgs/background.png;});
 
     background-size: cover;
 
