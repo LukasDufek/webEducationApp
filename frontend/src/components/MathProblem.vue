@@ -6,7 +6,7 @@
         <h3>{{index + 1}}.Příklad:</h3>
         <h4>{{item.message}}</h4>
         <h2>{{this.part_zeros(item.first_number)}} {{item.operator}} {{this.part_zeros(item.second_number)}} =</h2>
-        <input class="input-submit" type="number" v-model="result" @input="(event) => onChanged(event.target.valueAsNumber)">
+        <input class="input submit" :value="item.student_result" type="number" @input="(event) => onChanged(event.target.valueAsNumber)">
 
       </h3>
     </section>
@@ -16,7 +16,7 @@
         <h3>{{index+1}}.Příklad:</h3>
         <h4>{{item.message}}</h4>
         <h2>{{item.first_number}}
-          <select class="input-submit"  v-model="result" @change="(event) => onChanged(event.target.value)">
+          <select class="input submit"  :value="vyber" @change="(event) => onChanged(event.target.value)">
             <option>=</option>
             <option>&lt;</option>
             <option>&gt;</option>
@@ -30,7 +30,7 @@
         <h3>{{index+1}}.Příklad:</h3>
         <h4>{{item.message}}</h4>
         <h2>{{this.part_zeros(item.first_number)}} {{item.operator}} {{this.part_zeros(item.second_number)}} =</h2>
-        <input class="input-submit" type="number" step="0.01" v-model="result" @change="(event) => onChanged(event.target.value)">
+        <input class="input submit" type="number" step="0.01" :value="item.student_result" @change="(event) => onChanged(event.target.value)">
 
 
       </h3>
@@ -43,7 +43,7 @@
         <h3>{{index+1}}.Příklad:</h3>
         <h4>{{item.message}} {{item.second_number}}</h4>
         <h2>{{this.part_zeros(item.first_number)}} {{item.operator}} </h2>
-        <input class="input-submit" type="number" v-model="result" @change="(event) => onChanged(event.target.value)">
+        <input class="input submit" type="number" :value="item.student_result" @change="(event) => onChanged(event.target.value)">
 
       </h3>
 
@@ -56,9 +56,9 @@
         <h3>{{index+1}}.Příklad:</h3>
         <h4>{{item.message}}</h4>
         <h2>{{item.first_number}} {{item.operator}} {{item.second_number}} = </h2>
-        <input class="input-submit" type="number" v-model="result">
+        <input class="input submit" type="number" :value="item.student_result">
         <p>Zb.</p>
-        <input class="input-submit" type="number" v-model="remainder" @change="(event) => onChanged(event.target.value)">
+        <input class="input submit" type="number" v-model="remainder" @change="(event) => onChanged(event.target.value)">
       </h3>
 
       <br>
@@ -70,7 +70,7 @@
         <h4>Římská čísla</h4>
         <h4>{{item.message}}</h4>
         <h2>{{item.first_number}} {{item.operator}} =</h2>
-        <input class="input-submit-roman" type="text" v-model="result" @change="(event) => onChanged(event.target.value)">
+        <input class="input submit roman" type="text" :value="item.student_result" @change="(event) => onChanged(event.target.value)">
       </h3>
 
       <br>
@@ -81,7 +81,7 @@
         <h3>{{index+1}}.Příklad:</h3>
         <h4>{{item.message}}</h4>
         <h3>{{item.first_number[0]}}/{{item.first_number[1]}} {{item.operator}}  {{item.second_number}}</h3>
-        <input class="input-submit" type="text" v-model="result" @change="(event) => onChanged(event.target.value)">
+        <input class="input submit" type="text" :value="item.student_result" @change="(event) => onChanged(event.target.value)">
       </h3>
 
       <br>
@@ -127,5 +127,14 @@ export default {
 </script>
 
 <style scoped>
+
+.input{
+
+  width: 250px;
+  font-size: 28px;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
 
 </style>

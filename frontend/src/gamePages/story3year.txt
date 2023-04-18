@@ -1,6 +1,6 @@
 Úvod;
 Bylo jednou jedno království, kde dlouhá léta vládl mírumilovně a spravedlivě král Dobromil.
-Král měl jedinou dceru „Ludmilu“ a uvědomoval si tedy, že jednou ho na trůně nahradí jako královna.
+Král měl jedinou dceru Rozárku a uvědomoval si tedy, že jednou ho na trůně nahradí jako královna.
 Dobromil chtěl své dceři zanechat nejen království, ve kterém panuje mír a spravedlnost, ale také ji chtěl najít vhodného ženicha,
 se kterým by jeho dcera společně vládla a třeba i přivedla na svět vnouče.
 Jak dcera dospívala, začali se o ni zajímat princové ze sousedních zemí, ale král měl o každém z nich jisté pochybnosti.
@@ -14,22 +14,28 @@ Král ho však odmítl přijmout jako svého zetě, čímž tohoto podivína ura
 Vláda Dobromila byla v ohrožení, neboť králové okolních zemí věděli, že nemá žádného dědice,
 rozpoutali válku a snažili se získat Dobromilovo království. V tu chvíli začali v říše krále Dobromila velké nepokoje,
 chudoba obyvatel a do to všeho začali v říši řádit loupežníci.;
-1.Kapitola;
-Je pozdní ráno, probouzíš se v posteli na vaší rodinné farmě a otec tě zrovna volá do práce.
-Když dojíš krajíc chleba a chystáš se vyjít ven, vidíš z okna bandu loupežníků, kteří vám vyhubili veškerý dobytek,
-zapálili pole i chatrč. Všechno proběhlo tak rychle a ty si nestihl ani zareagovat.
-Vyjdeš tedy ven a vidíš svého zraněného otce klečet nad pozůstatky vaše majetku. Otce však netrápí zranění,
-tak jako fakt, že právě přišel o veškeré živobytí. Pro svoji tvrdohlavost přísaháš otci, že loupežníci,
-kteří to způsobili za to zaplatí. Přes otcovi protesty se tedy vydáváš hledat tábor loupežníků.
-;
-Po několika hodinách chůze lesem zahledneš muže svázaného ke stromu. Když se ho chystáš osvobodit,
-z ukrytu v křoví na tebe vyskočí loupežník. @ ;
 
-Bravo porazil si loupežníka a osvobodil může. U poraženého loupežníka si našel mapu, kde se nachází tábor loupežníků.
-Muž se ti představí jako bývalí velitel na královském hradě. Jako odměnu za jeho vysvobození ti nabídne pomoc s táborem loupežníků,
-ale také to, že tě bude cvičit, abys tak měl šanci loupežníky porazit. Až budeš dostatečně připravený, můžeš jít za loupežníky,
-do té doby se musíš vylepšovat. Můžeš také bojovat s loupežníky, na které v lese narazíš. @ ;
-
+Je pozdní ráno, Jakub se probouzí v posteli na jeho rodinné farmě a otec ho zrovna volá do práce.
+Když dojí krajíc chleba a chystá se vyjít ven, vidí z okna bandu loupežníků, kteří jim vyhubili veškerý dobytek,
+zapálili pole i chatrč. Všechno proběhlo tak rychle že Jakub ani nestihl zareagovat.
+Vyjde tedy ven a vidí svého zraněného otce klečet nad pozůstatky jejich majetku. Otce však netrápí zranění,
+tak jako fakt, že právě přišel o veškeré živobytí. Pro svoji tvrdohlavost přísahá Jakub otci, že loupežníci,
+kteří to způsobili za to zaplatí. Přes otcovi protesty se tedy vydává hledat tábor loupežníků.
 ;
+Po několika hodinách chůze lesem zahledne muže svázaného ke stromu. Když se ho chystá osvobodit,
+z ukrytu v křoví na něj vyskočí loupežník. @ ;
+
+Bravo, porazil loupežníka a osvobodil může. U poraženého loupežníka Jakub našel mapu, kde se nachází tábor loupežníků.
+Muž se představí jako Arthur a říká, že býval velitelem na královském hradě. Jako odměnu za jeho vysvobození Jakubovi nabídne pomoc s táborem loupežníků,
+ale také to, že ho bude cvičit v boji, aby tak měl šanci loupežníky porazit. Až bude dostatečně připravený, můžeš jít za loupežníky,
+do té doby musíš Jakuba vylepšovat. Po několika dnech se svým novým přítelem vydávají do tábora loupežníků. Hned při příchodu do tábora naráží na nepřátelského loupežníka. @ ;
+
+Jakub loupežínka porazil ale hned na to k němu přiběhl další @ ;
+Jakub porazil i tohoto loupežníka. Právě zahlédl hlavní stan, kde bude pravděpodobně jejich velitel a pokud i jeho porazí je pravděpodobné, že se loupežníci dobrovolně vzdají. Vydává se tedy ke stanu, ale cestu mu zkříží další kumpán. @ ;
+
+Výborně,  Jakub ho také porazil, ale během souboje zahlédl jak jejich velitel utíká. Během toho se ho snažil chytit Arthur ale ten byl velitelem zraněn a samotný velitel se dal na útěk. jakub se tedy rozhodne ho následovat. Po krátké honičce se mu podaří ho chytit, ale velitel se nechce vzdát bez boje. Jakuba tedy čeká další souboj. @ ;
+
+Byl to sice náročný souboj, ale Jakub nakonec vyhrál, během souboje však velitel odhodil pytel. Když se ho Jakub rozhodne prozkoumat, nalezne vzácné klenoty. Sténající Arthur mu prozradí, že tyto klenoty jsou z královské pokladnice a pověří ho, aby je vrátil samotnému králi. On s ním však už nepůjde neboť je přílíš zraněný a slabý. Jakuba tedy čeká cesta do královského hradu.
+
 
 

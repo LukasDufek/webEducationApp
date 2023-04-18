@@ -7,6 +7,8 @@ module.exports = {
         target: 'http://localhost:5000'
       }
     }
+
+
   },
   chainWebpack: config => {
     config.module

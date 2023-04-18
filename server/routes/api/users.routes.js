@@ -31,7 +31,9 @@ userRouter.post('/register',  (req, res) => {
         total_count_of_excercies,
         success_rate,
         daily_limit_excercies,
-        defeated_oponents
+        defeated_oponents,
+        completed_word_tasks,
+        date_of_last_calculating
     } = req.body;
 
     if (password !== confirm_password) {
@@ -78,7 +80,9 @@ userRouter.post('/register',  (req, res) => {
                     total_count_of_excercies,
                     success_rate,
                     daily_limit_excercies,
-                    defeated_oponents
+                    defeated_oponents,
+                    completed_word_tasks,
+                    date_of_last_calculating
 
                 });
 
@@ -98,7 +102,7 @@ userRouter.post('/register',  (req, res) => {
 
 
                 } catch (err) {
-
+                    console.log(err);
                 }
 
 

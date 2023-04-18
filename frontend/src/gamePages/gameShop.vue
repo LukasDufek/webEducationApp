@@ -22,12 +22,12 @@
       <h3 v-else-if="item.using==='defence'">Obrana +{{item.value}}</h3>
 
       <h3 class="money" v-if="item.price%10 === 0">Cena: {{item.price/10}} <gold-coin-component/> </h3>
-      <h3 class="money" v-else-if= "item.price/10 > 0 ">Cena: {{item.price/10}} <gold-coin-component/> {{item.price%10}}  <silver-coin-component/> </h3>
+      <h3 class="money" v-else-if= "item.price/10 > 0 ">Cena: {{Math.floor(item.price/10)}} <gold-coin-component/> {{item.price%10}}  <silver-coin-component/> </h3>
       <h3 class="money" v-else >Cena: {{item.price}}  <silver-coin-component/> </h3>
 
 
-      <h3 class="money" v-if="item.price%10 === 0">Prodejní cena: {{item.sell_price/10}} <gold-coin-component/> </h3>
-      <h3 class="money" v-else-if= "item.price/10 > 0 ">Prodejní cena: {{item.sell_price/10}}<gold-coin-component/> {{item.sell_price%10}}  <silver-coin-component/> </h3>
+      <h3 class="money" v-if="item.sell_price%10 === 0">Prodejní cena: {{item.sell_price/10}} <gold-coin-component/> </h3>
+      <h3 class="money" v-else-if= "item.sell_price/10 > 0 ">Prodejní cena: {{Math.floor(item.sell_price/10)}}<gold-coin-component/> {{item.sell_price%10}}  <silver-coin-component/> </h3>
       <h3 class="money" v-else >Prodejní cena: {{item.sell_price}}  <silver-coin-component/> </h3>
 
       <!-- {{this.$store.state.attributes.money/10}} <gold-coin-component/>  a {{this.$store.state.attributes.money%10 }} <silver-coin-component/> -->
@@ -67,7 +67,7 @@ export default {
     return{
       text_tutorial:"Zde si můžeš kupovat předměty, kterými pak můžeš vybavit svoji postavu. Předměty zde můžeš také prodávat, ale pokud chceš nějakou položku prodat, nesmí jí mít postava právě na sobě.",
 
-      selectedType: "Zbraň",
+      selectedType: "weapon",
       items:[],
       shop_items:[],
       players_items:[],
@@ -109,8 +109,8 @@ export default {
       }
 
       this.items = this.shop_items;
-      console.log(this.items[0]._id);
-      console.log(this.items[0].name);
+      //console.log(this.items[0]._id);
+      //console.log(this.items[0].name);
     }
 
     //this.players_items = this.$store.getters.user.inventory;
@@ -127,13 +127,13 @@ export default {
 
       switch (parameter){
         case 'zbrane':
-          this.selectedType = "Zbraň"
+          this.selectedType = "weapon"
           break;
         case 'helmy':
-          this.selectedType = "Helma";
+          this.selectedType = "helm";
           break;
         case 'brneni':
-          this.selectedType = "Brnění";
+          this.selectedType = "armor";
           break;
       }
 
@@ -190,6 +190,7 @@ export default {
         alert("Položka prodána");
         this.changeShopping();
       }
+      location.reload();
 
     },
 
@@ -215,11 +216,14 @@ export default {
 
 <style scoped>
 
+
+
 .imgItem{
-  padding: 10px;
-  border: 2px;
-  border-style: solid;
-  background-color: white;
+  height: 70%;
+  width: 70%;
+  border: 3px solid black;
+  background-color: black;
+  border-radius: 15px;
 }
 
 .one-item{
@@ -232,10 +236,8 @@ export default {
   right: 37%;
   top: 20%;
 
-
   padding: 10px;
-  border: 2px;
-  border-style: solid;
+  border: 2px solid;
   border-radius: 10px;
   background-color:#bfff5e;
 
@@ -289,7 +291,8 @@ button:hover{
 }
 .your-money{
   text-align: right;
-  padding-right: 2rem;
+  padding-right: -5%;
+  padding-left: 5%;
   margin-bottom: -2rem;
 }
 

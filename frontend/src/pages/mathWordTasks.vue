@@ -10,7 +10,7 @@
       <h1><u>Slovní úlohy pro {{this.user.year}}.Ročník</u></h1>
 
 
-      <section class="one-example" v-if="!phase_of_evaluation  && word_tasks[item]">
+      <section class="one-example" v-if="!phase_of_evaluation  && word_tasks[item] && !task_allready_solved(word_tasks[item])">
 
         <h3 class="text-of-task">{{word_tasks[item].text_of_task}}</h3>
         <h5>Sem napiš svůj výsledek</h5>
@@ -27,15 +27,18 @@
       </section>
 
       <section v-else-if="phase_of_evaluation ">
-        <h2 v-if="correctly">Tvoje řešení bylo správné, získáváš odměnu {{this.word_tasks[item].reward}} stříbrných mincí</h2>
+        <h3 v-if="correctly">
 
+        <h3 class="money" v-if="this.word_tasks[item].reward%10 === 0">Získáváš: {{this.word_tasks[item].reward/10}} <gold-coin-component/> </h3>
+        <h3 class="money" v-else-if= "this.word_tasks[item].reward/10 > 0 ">Získáváš: {{Math.floor(this.word_tasks[item].reward/10)}} <gold-coin-component/> {{this.word_tasks[item].reward%10}}  <silver-coin-component/> </h3>
+        </h3>
         <h2 v-else>Tvoje řešení bylo špatně</h2>
 
         <h2>Chceš zkusit další slovní úlohu?</h2>
-        <button @click="next_word_task">Další úloha </button>
+        <button class="next-task-btn" @click="next_word_task">Další úloha </button>
       </section>
 
-      <section v-if="item >= word_tasks.length">
+      <section v-else>
         <h2>Bohužel pro tebe nemáme žádné nové úlohy</h2>
       </section>
 
@@ -57,6 +60,8 @@ import HelpTutorial from "@/components/helpTutorial";
 
 import SilverCoinComponent from "@/components/silverCoinComponent";
 import goldCoinComponent from "@/components/goldCoinComponent";
+
+const user = JSON.parse(localStorage.user ?? '{}');
 
 export default {
   name: "mathWordTasks",
@@ -83,11 +88,12 @@ export default {
     }catch(err){
       console.log(err);
     }
-    console.log(all_tasks);
 
     for(let i=0; i<all_tasks.length; i++){
       if(parseInt(this.user.year) === all_tasks[i].for_year) {
-        this.word_tasks.push(all_tasks[i]);
+        if(!this.task_allready_solved(all_tasks[i])) {
+          this.word_tasks.push(all_tasks[i]);
+        }
       }
     }
 
@@ -96,17 +102,43 @@ export default {
   methods:{
     evaluate(result) {
       this.phase_of_evaluation  = true;
+
+      if(result.includes('.') || result.includes(',')){
+        result = parseFloat(result);
+      }else{
+        result = parseInt(result);
+      }
+
+
       this.word_tasks[this.item].student_result = result;
+
 
       if(this.word_tasks[this.item].student_result === this.word_tasks[this.item].result){
         this.correctly = true;
         store.commit('addMoney', this.word_tasks[this.item].reward);
+        console.log(this.word_tasks[this.item]);
+        store.commit('addSuccefullWordTask', this.word_tasks[this.item]);
       }
+      console.log(this.word_tasks[this.item]);
 
     },
     next_word_task(){
       this.phase_of_evaluation  = false;
       this.item++;
+    },
+
+    task_allready_solved(task){
+      let was_solved = false;
+
+      if(user.completed_word_tasks.length > 0) {
+        for (let i = 0; i < user.completed_word_tasks.length; i++) {
+          if (user.completed_word_tasks[i]._id === task._id) {
+            was_solved = true;
+          }
+        }
+      }
+      return was_solved;
+
     }
 
 
@@ -154,6 +186,30 @@ h2{
   display: inline-block;
   font-size: 115%;
   margin-left: 1%;
+}
+
+.next-task-btn{
+
+  background-color: #13aa52;
+  border: 1px solid #13aa52;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  margin-bottom: 5%;
+  font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  outline: none;
+  outline: 0;
+  padding: 10px 25px;
+  text-align: center;
+  transform: translateY(0);
+  transition: transform 150ms, box-shadow 150ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
 

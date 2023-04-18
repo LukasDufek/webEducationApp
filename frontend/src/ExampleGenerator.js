@@ -5,7 +5,7 @@ export class ExampleGenerator {
     }
 
 
-    //--------------------------------------------------------------------------
+//---------------------------------------------------------------------------
 //--------------GNEREROVANI CVICENI PRO I.ROCNIK-----------------------------
 //---------------------------------------------------------------------------
 
@@ -15,16 +15,17 @@ export class ExampleGenerator {
     generate_examples_for_I(count_of_examples){
         let example = {};
         let examples = [];
-        let count_achived = false;
+        let count_achieved = false;
 
-        while(examples.length < count_of_examples || !count_achived){
+        while(examples.length < count_of_examples || !count_achieved){
 
 
             example = this.generate_addition_examples(1, 20, 1);
             if (!(this.exists_same_example(example, examples))) {
                 examples.push(example);
                 if(examples.length === count_of_examples){
-                    count_achived = true;
+                    count_achieved = true;
+                    break;
                 }
 
             }
@@ -33,7 +34,8 @@ export class ExampleGenerator {
             if (!this.exists_same_example(example, examples)) {
                 examples.push(example);
                 if(examples.length === count_of_examples){
-                    count_achived = true;
+                    count_achieved = true;
+                    break;
                 }
 
             }
@@ -42,7 +44,8 @@ export class ExampleGenerator {
             if (!this.exists_same_example(example, examples)) {
                 examples.push(example);
                 if(examples.length === count_of_examples){
-                    count_achived = true;
+                    count_achieved = true;
+                    break;
                 }
 
             }
@@ -73,6 +76,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
 
@@ -84,6 +88,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
 
@@ -95,6 +100,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
 
@@ -106,6 +112,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
 
@@ -118,9 +125,9 @@ export class ExampleGenerator {
     }
 
 
-//--------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 //--------------GNEREROVANI CVICENI PRO III.ROCNIK-----------------------------
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
 //pro 3.ROCNIK - generovani a priprava cviceni
     generate_examples_for_III(count_of_examples){
@@ -138,6 +145,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -149,6 +157,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
 
@@ -159,6 +168,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
 
@@ -169,6 +179,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
 
@@ -179,6 +190,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
 
@@ -190,6 +202,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -200,7 +213,7 @@ export class ExampleGenerator {
     }
 
 
-//--------------------------------------------------------------------------
+//----------------------------------------------------------------------------
 //--------------GNEREROVANI CVICENI PRO IV.ROCNIK-----------------------------
 //----------------------------------------------------------------------------
 
@@ -220,6 +233,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
             }
 
@@ -228,6 +242,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -238,6 +253,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -246,6 +262,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -254,6 +271,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -262,6 +280,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -271,6 +290,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -301,6 +321,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -312,6 +333,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -320,6 +342,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -328,6 +351,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -336,6 +360,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -344,6 +369,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -352,6 +378,7 @@ export class ExampleGenerator {
                 examples.push(example);
                 if(examples.length === count_of_examples){
                     count_achived = true;
+                    break;
                 }
 
             }
@@ -475,7 +502,7 @@ export class ExampleGenerator {
             return this.generate_addition_examples(minLimit, maxLimit, year);
         }else if(result > maxLimit){
             return this.generate_addition_examples(minLimit, maxLimit, year);
-        }else if( ( ((first_number%10) + (second_number%10)) > 10) && ((year) < 3)){ //prehod pred desitku
+        }else if( ( ((first_number%10) + (second_number%10)) > 10) && ((year) < 3)){ //prehod pres desitku
             return this.generate_addition_examples(minLimit, maxLimit, year);
         }else {
             return example;

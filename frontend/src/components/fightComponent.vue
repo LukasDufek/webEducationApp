@@ -8,8 +8,9 @@
 
           <h1>Průběh boje</h1>
           <section class="column">
-            <h3 class="enemy-name"><u>{{user.first_name}}</u></h3>
-          <img src="https://s9.gifyu.com/images/hlavni_postava.md.png" class="avatar" alt="" />
+            <h3 class="enemy-name"><u>Jakub</u></h3>
+            <img v-if="parseInt(user.year) === 3" v-bind:src="'assets/imgs/hlavni-postava/sedlak-Jakub.png'" class="avatar" alt="">
+            <img v-else v-bind:src="'assets/imgs/hlavni-postava/hlavni_postava.png'" class="avatar" alt="">
             <h3>Síla: {{user.abilities.strength}}</h3>
             <h3>Útok: {{user.abilities.attack}}</h3>
             <h3>Obrana: {{user.abilities.defense}}</h3>

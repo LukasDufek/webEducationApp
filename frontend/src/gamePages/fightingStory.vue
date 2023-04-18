@@ -36,7 +36,7 @@
 
 
 
-        <div v-if="!continue_story" class="enemy-card"> <!-- v-if="!continue_story"-->
+        <div v-if="!continue_story" class="enemy-card">
 
           <h3 class="enemy-name"><u>{{actual_enemy.name}}</u></h3>
           <img v-bind:src=actual_enemy.link class="avatar" alt="" />
@@ -78,13 +78,13 @@ export default {
 
       user:JSON.parse(localStorage.user) || {},
       allContent: '',
-      link:'https://s9.gifyu.com/images/loupeznik_4.md.png',
       actualContent: '',
       year:0,
       Chapter:0,
       actual_index_text:-1,
       story_progress:-1,
       pages:'',
+      defeated_oponents_in_year:[],
       continue_story:true,
       //breakpoint:0,
       //breakpoints:[4],
@@ -113,6 +113,7 @@ export default {
           this.actualContent = "Pro pokračování listuj šipkami na další stranu";
           this.allContent = story3Text.split(";");
           this.enemies = store_of_enemies.state.enemies_from_3;
+          this.set_enemies(3);
           this.control_progress();
           break;
 
@@ -121,6 +122,7 @@ export default {
           this.actualContent = "Pro pokračování listuj šipkami na další stranu";
           this.allContent = story4Text.split(";");
           this.enemies = store_of_enemies.state.enemies_from_4;
+          this.set_enemies(4);
           this.control_progress();
 
           break;
@@ -130,6 +132,7 @@ export default {
           this.actualContent = "Pro pokračování listuj šipkami na další stranu";
           this.allContent = story5Text.split(";");
           this.enemies = store_of_enemies.state.enemies_from_5;
+          this.set_enemies(5);
           this.control_progress();
 
           break;
@@ -149,19 +152,13 @@ export default {
 
         this.story_progress++;
 
-        /*
-        if (this.story_progress === this.breakpoints[this.breakpoint] && this.continue_story) {
-          this.continue_story = false;
-          this.actual_enemy = this.enemies[0];
-        }
-         */
 
 
       if(this.allContent[this.actual_index_text].includes('@')){
         this.continue_story = false;
 
-        if(!this.user.defeated_oponents.includes(this.enemies[this.user.defeated_oponents.length])){
-          this.actual_enemy = this.enemies[this.user.defeated_oponents.length];
+        if(!this.defeated_oponents_in_year.includes(this.enemies[this.defeated_oponents_in_year.length])){
+          this.actual_enemy = this.enemies[this.defeated_oponents_in_year.length];
         }
 
       }
@@ -194,22 +191,33 @@ export default {
       //console.log(typeof this.allContent);
       //console.log(this.allContent);
 
+      console.log(this.defeated_oponents_in_year.length);
+      console.log(this.user.defeated_oponents.length);
+      console.log(this.defeated_oponents_in_year);
 
-      if(this.user.defeated_oponents.length >0) {
-
+      if(this.defeated_oponents_in_year.length >0) {
         let i=0;
         let j=0;
-
-        while (i < this.user.defeated_oponents.length) {
-
+        while (i < this.defeated_oponents_in_year.length) {
           //console.log(this.allContent[j]);
-          console.log('actual content', this.actualContent);
+          //console.log('actual content', this.actualContent);
           if (this.allContent[j].includes('@')) {
             this.allContent[j] = this.allContent[j].replace('@', '');
             //count_of_char++;
             i++;
           }
           j++;
+        }
+      }
+    },
+
+
+    set_enemies(choosen_year){
+      if(this.user.defeated_oponents.length > 0) {
+        for (let i = 0; i < this.user.defeated_oponents.length; i++) {
+          if(this.user.defeated_oponents[i].year === choosen_year){
+            this.defeated_oponents_in_year.push(this.user.defeated_oponents[i]);
+          }
         }
       }
 
@@ -261,7 +269,7 @@ body {
 
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
   margin: 26px auto 0;
-  overflow:scroll;
+  overflow:auto;
   max-width: 550px;
   height:500px;
   padding: 24px;
@@ -307,10 +315,13 @@ body {
   margin-top: 2rem;
   margin-left: 1%;
 
+/*
   box-shadow:inset 0 1px 0 0 #a6827e;
-  background: #7d5d3b linear-gradient(to bottom, #7d5d3b 5%, #634b30 100%);
+   background: #7d5d3b linear-gradient(to bottom, #7d5d3b 5%, #634b30 100%);
   border-radius:3px;
   border:1px solid #54381e;
+
+   */
   display:inline-block;
   cursor:pointer;
   color:#ffffff;
@@ -319,11 +330,16 @@ body {
   padding:6px 24px;
   text-decoration:none;
   text-shadow:0 1px 0 #4d3534;
+
+  background: #333;
+  border: none;
+  border-radius: 10px;
 }
 
 .choose-year:hover{
-  text-decoration: underline;
-  border-width: 3px;
+  /* text-decoration: underline; */
+  color: #71b7f0;
+  text-shadow: 0 0 10px #71b7f0;
 }
 
 .next-page{

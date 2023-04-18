@@ -27,8 +27,9 @@ export default {
 <style scoped>
 
 .noLoggedPage{
-  background: url("https://slevomat.sgcdn.cz/images/t/1280/11/45/11456672-186820.webp");
-
+  /*
+  background: url("https://drive.google.com/uc?export=view&id=1fM2OftAKxzVyn_yOm0RfbDHro8t1rRkY") no-repeat center;
+*/
   background-size: cover;
   margin-top: -4rem;
   padding-top: 1rem;

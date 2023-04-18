@@ -182,6 +182,7 @@ export const routes = [
 
     //cesty ucitele
 
+
     {
         path:"/addWordTask", component: addWordTask,
         title: "Přidat úlohu",
@@ -217,14 +218,14 @@ router.beforeEach((to, from, next) => {
 
     const route = to.matched[0];
     const user = JSON.parse(localStorage.user ?? '{}');
-    //const user = store.state.user;
     if (route) {
-        console.log(route.meta, user)
+        //console.log(route.meta, user)
         if (!route.meta.roles || (route.meta.roles.length > 0 && route.meta.roles.includes(user?.role))) {
             // ok
             next();
         }  else {
             next('./');
+
         }
     }
 
@@ -232,6 +233,7 @@ router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresUser)) {
         if (!store.getters) {
             // Redirect to the Login Page
+
             next('./');
         } else {
             next();

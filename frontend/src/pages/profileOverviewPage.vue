@@ -115,15 +115,17 @@ export default {
 
 
 .user-card{
-  /* margin: auto; */
-  margin-left: 2rem;
-  max-width: 350px;
-  padding: 40px 40px;
+
+  position: center;
+  width: 26%;
+  height: 450px;
+  margin-top: 5%;
+  margin-left: 37%;
 
   border: #3449ff 4px solid;
   border-radius: 0.5em;
 
-  background: white;
+  background: rgba(255, 255, 255, 0.8);
 }
 
 .to-game-button {
@@ -138,7 +140,7 @@ export default {
   cursor:pointer;
   color:#ffffff;
   font-family:Arial,serif;
-  font-size:15px;
+  font-size:26px;
   font-weight:bold;
   padding:6px 24px;
   text-decoration:none;
@@ -150,14 +152,5 @@ export default {
 }
 
 
-
-.logout{
-  margin-top: 3%;
-}
-
-.no-logged{
-  font-size: 400%;
-  padding-bottom: 50%;
-}
 
 </style>

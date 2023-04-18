@@ -11,26 +11,6 @@
           <span role="link">{{route.title ?? route.path}}</span>
         </router-link>
 
-      <!--
-      <router-link to="/profileOverviewPage"  class="link">
-        <span role="link">Přehled</span>
-      </router-link>
-
-
-      <router-link to="/mathExamples"  class="link">
-        <span role="link">Procvičování</span>
-      </router-link>
-
-
-      <router-link to="/mathWordTasks" class="link">
-        <span role="">Slovní úlohy</span>
-      </router-link>
-
-      <router-link to="/finalExam" class="link">
-        <span role="link">Závěrečný Test</span>
-      </router-link>
-
-      -->
 
       <button class="logout-button" @click.prevent="logoutUser">Odhlásit se</button>
 
@@ -166,6 +146,7 @@ export default {
 top: 20%;
 position: relative;
 margin-left: 1rem;
+margin-top: 3px;
 
 font-size: 1.5vw;
 text-align: center;

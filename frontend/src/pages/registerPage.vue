@@ -126,6 +126,30 @@ export default {
 
     createNewPlayer() {
 
+            let money =0;
+            switch (this.year){
+              case "1":
+                money = 5;
+                break;
+
+              case "2":
+                money = 50;
+                break;
+
+              case "3":
+                money = 200;
+                break;
+
+              case "4":
+                money = 450;
+                break;
+
+              case "5":
+                money = 900;
+                break;
+            }
+
+
             this.user = {
               "first_name": this.first_name,
               "last_name": this.last_name,
@@ -134,7 +158,7 @@ export default {
               "confirm_password": this.confirm_password,
               "role": this.role,
               "year": this.year,
-              "money": parseInt(this.year) * 20,
+              "money": money,
               "exp": 0,
               "abilities": {
                 strength: 5,
@@ -143,13 +167,15 @@ export default {
                 hp: 5
               },
               "inventory": [],
-              "helm_equip": null,
-              "weapon_equip": null,
-              "armor_equip": null,
+              "helm_equip": {},
+              "weapon_equip": {},
+              "armor_equip": {},
               "total_count_of_excercies":0,
               "success_rate":0,
               "daily_limit_excercies":0,
-              "defeated_oponents":[]
+              "defeated_oponents":[],
+              "completed_word_tasks":[],
+              "date_of_last_calculating":null
 
             }
 
@@ -176,10 +202,10 @@ export default {
 <style>
 
 .container-login{
-  height: 150%;
+  max-height: 100%;
 
   /* Center and scale the image nicely */
-  background: url("https://slevomat.sgcdn.cz/images/t/1280/11/45/11456672-186820.webp") no-repeat center;
+  background: url("http://localhost:8080/assets/imgs/background.png");
   background-size: cover;
 
   margin-top: -5%;

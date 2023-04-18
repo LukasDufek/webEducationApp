@@ -50,7 +50,7 @@ TaskRouter.delete('/:id', async (req, res) => {
     const { id } = req.params
     try {
         const removed = await Task.findByIdAndDelete(id)
-        if (!removed) throw Error('Something went wrong ')
+        if (!removed) throw Error('Something went wrong')
         res.status(200).json(removed)
     } catch (error) {
         res.status(500).json({ message: error.message })

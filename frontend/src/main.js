@@ -5,6 +5,7 @@ import store from '@/store/store';
 import axios from "axios";
 import headerPage from "./components/headerPage";
 import ('./style.css')
+import VueCookies from 'vue-cookies'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -19,6 +20,14 @@ const token = localStorage.getItem("token");
 if (token) {
   Vue.prototype.$http.defaults.headers.common['Authorization'] = token;
 }
+
+Vue.use(VueCookies, {
+  expires: '1d',
+  path: '/',
+  domain: '',
+  secure: '',
+  sameSite: 'Lax'
+})
 
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)

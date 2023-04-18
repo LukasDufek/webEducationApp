@@ -30,7 +30,7 @@
     <h2>Sem zadej výsledek slovní úlohy</h2>
     <input type="number" v-model="result">
     <h2>Sem zadej výsledek odměnu pro žáka ve stříbrných mincích</h2>
-    <input type="number" min=1 max=50 v-model="reward">
+    <input type="number" min=1 :max="for_year*10" v-model="reward">
 
       <br>
     <button class="add-task-btn" @click="addWordTask(text_of_task, for_year, result, reward)">Přidat úlohu</button>

@@ -1,19 +1,20 @@
 .container{
-    height: 100%;
+    height: 200%;
     min-width: 750px;
 
     /* Center and scale the image nicely */
-    background: url("https://slevomat.sgcdn.cz/images/t/1280/11/45/11456672-186820.webp") no-repeat center;
+    /*background: url("") no-repeat center; */
+
+    /*background: url("assets/imgs/items/armors/1.png") no-repeat center; */
+    background: url("http://localhost:8080/assets/imgs/background.png") no-repeat fixed center;
+
     background-size: cover;
 
-
- }
-
-.container{
     margin-top: 5rem;
     padding-top: 1rem;
     padding-bottom: 20rem;
 }
+
 
 .main-content{
 
@@ -22,9 +23,9 @@
     margin-top: 2rem;
     position: center;
     text-align: center;
-    width: 70%;
+    width: 50%;
     min-width: 500px;
-    background: rgba(255, 238, 128, 0.9);
+    background: rgba(255, 238, 128, 0.87);
     font-size: 20px;
     border-style: solid;
     border-width: 3px;
