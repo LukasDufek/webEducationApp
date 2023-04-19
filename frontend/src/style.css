@@ -5,10 +5,8 @@
     /* Center and scale the image nicely */
     /*background: url("") no-repeat center; */
 
-    /*background: url("assets/imgs/items/armors/1.png") no-repeat center; */
      /* background: url("/assets/imgs/background.png") no-repeat fixed center; */
-    /* background-image: url("~@/assets/background.png"); */
-
+    background: url("~@/assets/background.png") no-repeat fixed center;
 
     background-size: cover;
 

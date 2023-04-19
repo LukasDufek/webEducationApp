@@ -206,7 +206,7 @@ export default {
 
   /* Center and scale the image nicely */
   /* background: url("http://localhost:8080/assets/imgs/background.png"); */
-  /* background-image: url("~@/assets/background.png"); */
+  background: url("~@/assets/background.png") no-repeat fixed center;
   background-size: cover;
 
   margin-top: -5%;
