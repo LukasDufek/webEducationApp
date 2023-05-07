@@ -8,7 +8,7 @@
       <img v-if="parseInt(user.year) === 3" v-bind:src="'assets/imgs/hlavni-postava/sedlak-Jakub.png'" class="imgItem" alt="">
       <img v-else v-bind:src="'assets/imgs/hlavni-postava/hlavni_postava.png'" class="imgItem" alt="">
 
-      <h3>Schonposti:</h3>
+      <h3>Schopnosti:</h3>
 
       <h3>Síla: {{user.abilities.strength}}</h3>
       <h3>Útok: {{user.abilities.attack}}</h3>

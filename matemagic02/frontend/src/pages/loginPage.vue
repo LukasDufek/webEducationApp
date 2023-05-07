@@ -137,7 +137,7 @@ export default {
 
   /* Center and scale the image nicely */
   /* background: url("http://localhost:8080/assets/imgs/background.png"); */
-  background-image: url(src:/assets/imgs/background.png;});
+  background: url("~@/assets/background.png") no-repeat fixed center;
 
   background-size: cover;
 
@@ -145,7 +145,7 @@ export default {
 }
 
 .card-container.card {
-  max-width: 350px;
+  max-width: 550px;
   min-width: 350px;
   padding: 40px 40px;
   border: #7cff97 4px solid;
