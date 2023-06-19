@@ -7,7 +7,7 @@
 
    <section v-if="!editState">
       <br>
-      <section class="word-task-content" v-for="(item,index) in word_tasks" :key="index">
+      <section class="word-task-content" v-for="(item, index) in word_tasks" :key="index">
         <h1>{{index +1}}.Úloha</h1>
       <h3><u>Zadání úlohy: </u></h3>
         <h4>{{word_tasks[index].text_of_task}}</h4>

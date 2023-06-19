@@ -43,7 +43,7 @@ userRouter.post('/register',  (req, res) => {
             msg: "Hesla se neshodují."
         });
 
-    }else if(first_name==="" || last_name==="" || email==="" || password==="" || role==="vyber" || (role==="student" && year==="0") ) {
+    }else if(first_name==="" || last_name==="" || email==="" || password==="" || role==="vyber" || (role==="student" && ( year==="0" || year ===0)) ) {
 
         return res.status(400).json({
             msg: "Nebyly vyplněná všechna pole."

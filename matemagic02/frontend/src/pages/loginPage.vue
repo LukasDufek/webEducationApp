@@ -52,11 +52,16 @@ export default {
 
   async mounted() {
 
+
+
     try {
       this.users = (await axios.get("/api/users")).data;
     } catch (err) {
         console.log(err);
     }
+
+
+
   },
 
   methods: {
