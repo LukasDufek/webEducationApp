@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "client-install": "npm install --prefix frontend",
+    "install": "npm install && cd ./frontend &&  npm install",
     "start": "node server/index.js",
     "server": "nodemon server/index.js --ignore './frontend' ",
     "frontend": "cd ./frontend &&  npm run serve",
