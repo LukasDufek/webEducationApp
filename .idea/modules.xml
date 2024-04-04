@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/matemagic02.iml" filepath="$PROJECT_DIR$/.idea/matemagic02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/webEducationApp.iml" filepath="$PROJECT_DIR$/.idea/webEducationApp.iml" />
     </modules>
   </component>
 </project>

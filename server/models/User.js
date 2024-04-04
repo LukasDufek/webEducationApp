@@ -3,39 +3,42 @@ const Schema = mongoose.Schema;
 
 // Create the User Schema
 const UserSchema = new Schema({
+
+
     first_name: {
         type: String,
-        required: true
+        //required: true
     },
+
     last_name: {
         type: String,
-        required: true
+        //required: true
     },
     email: {
         type: String,
-        required: true
+        //required: true
     },
     password: {
         type: String,
-        required: true
+        //required: true
     },
     role:{
         type: String,
-        required: false
+        //required: false
     },
     year:{
         type: String,
-        required: false
+        //required: false
     },
 
     money:{
         type: Number,
-        required: false
+        //required: false
 
     },
     exp:{
         type: Number,
-        required: false
+        //required: false
     },
 
     abilities: {
@@ -52,28 +55,27 @@ const UserSchema = new Schema({
         hp:{
             type: Number
         },
-        required: false
+        //required: false
 
     },
     inventory:{
         type:Array,
-        required: false
     },
 
     helm_equip:{
         type: Object,
-        required: false
+        //required: false
 
     },
 
     weapon_equip:{
         type: Object,
-        required: false
+        //required: false
     },
 
     armor_equip:{
         type: Object,
-        required: false
+        //required: false
     },
 
     date: {
@@ -82,29 +84,27 @@ const UserSchema = new Schema({
     },
     total_count_of_excercies: {
         type: Number,
-        required: false
+        //required: false
     },
 
     success_rate: {
         //in %
         type: Number,
-        required: false
+       // required: false
     },
 
     daily_limit_excercies: {
         type: Number,
-        required: false,
+        //required: false,
         max: 6
     },
 
     defeated_oponents: {
         type: Array,
-        required: false
     },
 
     completed_word_tasks: {
         type: Array,
-        required: false
     },
 
     date_of_last_calculating:{

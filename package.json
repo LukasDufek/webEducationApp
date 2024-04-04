@@ -8,6 +8,8 @@
     "start": "node server/index.js",
     "server": "nodemon server/index.js --ignore './frontend' ",
     "frontend": "cd ./frontend &&  npm run serve",
+    "prebuild":"cd ./frontend &&  npm run build",
+    "build":"npm run client-install &&  npm run prebuild",
     "dev": "concurrently \"npm run server\" \"npm run frontend\""
   },
   "author": "Lukas Dufek",

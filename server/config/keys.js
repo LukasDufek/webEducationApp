@@ -1,4 +1,4 @@
 module.exports = {
-    mongoURI:'mongodb+srv://lukas-dufek:frameworkvuejs@items.x2hdz8c.mongodb.net/?retryWrites=true&w=majority',
+    mongoURI:'mongodb+srv://lukasdufek:frameworkvuejs@mate-magic.kmkxpac.mongodb.net/',
     secret: 'yoursecret'
 }

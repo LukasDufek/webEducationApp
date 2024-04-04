@@ -49,10 +49,11 @@ mongoose
     console.log(`Unable to connect with the database ${err}`)
 });
 
-
+/*
 app.get('*', (req, res)=>{
     res.sendFile(path.join(__dirname, 'public/index.html'));
 })
+*/
 
 
 
